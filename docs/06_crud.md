@@ -15,6 +15,61 @@ application does these four things. Nothing more, nothing less.
 *We use soft delete — `UPDATE status = 0` instead of `DELETE FROM`.
 The record stays in the database but disappears from the application.
 
+## From two methods to four
+
+If you have only used HTML forms, you know two HTTP methods:
+
+```html
+<form method="GET">   <!-- read / search -->
+<form method="POST">  <!-- send data -->
+```
+
+That is all a classic `<form>` can do. To handle Update and Delete you
+would need to add a parameter and branch on it:
+
+```
+POST /api/books.php?action=create
+POST /api/books.php?action=update
+POST /api/books.php?action=delete
+```
+
+It works, but the URL says nothing about the intention — the meaning is
+hidden inside a parameter.
+
+With `fetch` in JavaScript, you are no longer limited to GET and POST.
+You can use all four HTTP methods:
+
+```
+POST   /api/books.php   → create
+GET    /api/books.php   → read
+PUT    /api/books.php   → update
+DELETE /api/books.php   → delete
+```
+
+Same URL, different verb. The method *is* the intention — no extra
+parameters, no ambiguity. Anyone reading the code knows immediately
+what the request does.
+
+This is the key shift: in a classic website, the browser navigates
+to a new page on every action. In a single-page application (SPA),
+JavaScript talks directly to the API via `fetch`, sends the right
+HTTP method, and updates only the part of the page that changed —
+without a full reload.
+
+```javascript
+// The browser can only do GET and POST.
+// With fetch, you choose freely:
+await fetch('/api/books.php', {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ book_id: 3 })
+});
+```
+
+That is why Bibliotheca has no traditional `<form>` elements that
+submit to a new page. Every form is intercepted by JavaScript, which
+calls `fetch` with the appropriate method, and the page never reloads.
+
 ## The complete flow
 
 **Create:**

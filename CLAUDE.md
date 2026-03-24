@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Bibliotheca is a didactic web application (book catalog) built with a pure stack: PHP, JavaScript (ES6), HTML, CSS, SQLite. No frameworks, no build tools, no package managers.
+Bibliotheca is a didactic web application (book catalog) built with a pure stack: PHP, JavaScript (ES6), HTML, CSS, SQLite. No frameworks, no build tools, no package managers. Every choice serves clarity and learning.
 
 ## Architecture
 
@@ -28,6 +28,16 @@ The `src/` directory is outside the document root and not web-accessible. Only `
 - Foreign keys enforced (`PRAGMA foreign_keys = ON` in DBMS.php)
 - Rebuild DB: `cat sql/ddl/create_table.sql sql/dml/insert.sql | sqlite3 sql/bibliotheca.db`
 
+## Commands
+
+Run unit tests (uses in-memory SQLite, no setup needed):
+
+```bash
+php tests/run.php
+```
+
+No build step, no linter, no package manager. Requires Apache2 with mod_rewrite, PHP, and php-sqlite3.
+
 ## Coding Standards (see CONVENTIONS.md)
 
 - **PHP**: PSR-12, `declare(strict_types=1);`, 4-space indent, PascalCase classes, camelCase methods, one class per file
@@ -39,9 +49,9 @@ The `src/` directory is outside the document root and not web-accessible. Only `
 
 ## Development
 
-No build, test, or lint tooling. Requires Apache2 with mod_rewrite, PHP, and php-sqlite3.
-
 Served from `/var/www/html/bibliotheca/public/` as Apache document root. The `.htaccess` handles URL rewriting.
+
+Adding a new entity requires touching all layers: model (`src/`), API endpoint (`public/api/`), page templates (`public/pages/` — list and detail), JS classes (`public/js/` — view and form pair), and a route entry in `public/index.php`'s `$allowed` array.
 
 ## Lessons
 
