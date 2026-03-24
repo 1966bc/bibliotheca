@@ -11,6 +11,8 @@ no libraries, no magic. Just code.
 A book catalog — simple enough to hold in your head, rich enough to
 teach you the fundamentals of web development in anno Domini 2026.
 
+![Bibliotheca](screenshot.png)
+
 ## Stack
 
 | Layer    | Technology         |
