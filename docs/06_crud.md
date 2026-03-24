@@ -10,10 +10,12 @@ application does these four things. Nothing more, nothing less.
 | Create    | POST        | INSERT    | Add a new publisher         |
 | Read      | GET         | SELECT    | List all publishers         |
 | Update    | PUT         | UPDATE    | Change a publisher's name   |
-| Delete    | DELETE       | UPDATE*   | Deactivate a publisher      |
+| Delete    | DELETE       | DELETE    | Remove a publisher          |
 
-*We use soft delete — `UPDATE status = 0` instead of `DELETE FROM`.
-The record stays in the database but disappears from the application.
+Bibliotheca also uses a `status` column (1 = active, 0 = disabled).
+Disabling a record is an Update (PUT), not a Delete — the record stays
+in the database but appears greyed out in the list. Deleting is permanent:
+`DELETE FROM` removes the record entirely.
 
 ## From two methods to four
 
@@ -98,7 +100,7 @@ calls `fetch` with the appropriate method, and the page never reloads.
 **Delete:**
 1. User clicks Delete — confirmation dialog appears.
 2. JavaScript sends a DELETE with the record ID.
-3. Controller calls Model's `delete` (sets status = 0).
+3. Controller calls Model's `delete` (`DELETE FROM` — permanent).
 4. JavaScript reloads the list.
 
 ## Next

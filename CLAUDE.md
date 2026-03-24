@@ -24,7 +24,7 @@ The `src/` directory is outside the document root and not web-accessible. Only `
 
 - SQLite file at `sql/bibliotheca.db`; schema in `sql/ddl/create_table.sql`, sample data in `sql/dml/insert.sql`
 - 5 tables: `publisher`, `category`, `author`, `book`, `book_author` (many-to-many junction)
-- Soft deletes via `status` column (1=active, 0=deleted)
+- `status` column (1=active, 0=disabled) for toggling visibility; deletes are hard (`DELETE FROM`)
 - Foreign keys enforced (`PRAGMA foreign_keys = ON` in DBMS.php)
 - Rebuild DB: `cat sql/ddl/create_table.sql sql/dml/insert.sql | sqlite3 sql/bibliotheca.db`
 
