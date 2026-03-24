@@ -29,20 +29,24 @@ class AuthorsView {
             row.appendChild(birthCell);
 
             const actionsCell = document.createElement('td');
+            const actionsDiv = document.createElement('div');
+            actionsDiv.className = 'actions';
 
             const editBtn = document.createElement('button');
             editBtn.textContent = 'Edit';
             editBtn.addEventListener('click', () => {
                 window.location.href = '/bibliotheca/public/author?id=' + author.author_id;
             });
-            actionsCell.appendChild(editBtn);
+            actionsDiv.appendChild(editBtn);
 
             const deleteBtn = document.createElement('button');
             deleteBtn.textContent = 'Delete';
+            deleteBtn.className = 'btn-delete';
             deleteBtn.addEventListener('click', () => {
                 this.remove(author.author_id);
             });
-            actionsCell.appendChild(deleteBtn);
+            actionsDiv.appendChild(deleteBtn);
+            actionsCell.appendChild(actionsDiv);
 
             row.appendChild(actionsCell);
             this.table.appendChild(row);
@@ -54,11 +58,17 @@ class AuthorsView {
             return;
         }
 
-        await fetch(this.API, {
+        const response = await fetch(this.API, {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({author_id: id}),
         });
+
+        if (!response.ok) {
+            const result = await response.json();
+            alert(result.error);
+            return;
+        }
 
         this.load();
     }

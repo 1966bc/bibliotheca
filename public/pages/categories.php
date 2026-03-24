@@ -1,11 +1,13 @@
 <section>
-    <h2>Categories</h2>
-    <p><a href="/bibliotheca/public/category">Add new category</a></p>
+    <div class="section-header">
+        <h2>Categories</h2>
+        <a href="/bibliotheca/public/category" class="btn">Add new category</a>
+    </div>
     <table id="category-table">
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Actions</th>
+                <th></th>
             </tr>
         </thead>
         <tbody></tbody>

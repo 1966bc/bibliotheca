@@ -59,6 +59,18 @@ class Category
         return $this->db->update($sql, [':name' => $name, ':id' => $id]);
     }
 
+    public function hasBooks(int $id): bool
+    {
+        $sql = "SELECT COUNT(*) AS total
+                FROM book
+                WHERE category_id = :id
+                AND status = 1";
+
+        $row = $this->db->fetchOne($sql, [':id' => $id]);
+
+        return $row['total'] > 0;
+    }
+
     public function delete(int $id): int
     {
         $sql = "UPDATE category

@@ -9,6 +9,10 @@ INSERT INTO publisher (name) VALUES ('Laterza');
 INSERT INTO publisher (name) VALUES ('Penguin Books');
 INSERT INTO publisher (name) VALUES ('Addison-Wesley');
 INSERT INTO publisher (name) VALUES ('Gallimard');
+INSERT INTO publisher (name) VALUES ('O''Reilly Media');
+INSERT INTO publisher (name) VALUES ('Secker & Warburg');
+INSERT INTO publisher (name) VALUES ('Houghton Mifflin');
+INSERT INTO publisher (name) VALUES ('Bompiani');
 
 -- Categories
 INSERT INTO category (name) VALUES ('Fiction');
@@ -16,6 +20,7 @@ INSERT INTO category (name) VALUES ('Science');
 INSERT INTO category (name) VALUES ('Philosophy');
 INSERT INTO category (name) VALUES ('History');
 INSERT INTO category (name) VALUES ('Computer Science');
+INSERT INTO category (name) VALUES ('Poetry');
 
 -- Authors
 INSERT INTO author (first_name, last_name, birthdate) VALUES ('Italo', 'Calvino', '1923-10-15');
@@ -27,6 +32,26 @@ INSERT INTO author (first_name, last_name, birthdate) VALUES ('George', 'Orwell'
 INSERT INTO author (first_name, last_name, birthdate) VALUES ('Albert', 'Camus', '1913-11-07');
 INSERT INTO author (first_name, last_name, birthdate) VALUES ('Brian', 'Kernighan', '1942-01-01');
 INSERT INTO author (first_name, last_name, birthdate) VALUES ('Dennis', 'Ritchie', '1941-09-09');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('Gabriel', 'Garcia Marquez', '1927-03-06');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('Jorge Luis', 'Borges', '1899-08-24');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('Dante', 'Alighieri', '1265-06-01');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('Fyodor', 'Dostoevsky', '1821-11-11');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('Douglas', 'Adams', '1952-03-11');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('Isaac', 'Asimov', '1920-01-02');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('J.R.R.', 'Tolkien', '1892-01-03');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('Franz', 'Kafka', '1883-07-03');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('Ernest', 'Hemingway', '1899-07-21');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('Andrew', 'Hunt', '1964-01-01');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('David', 'Thomas', '1956-01-01');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('Carl', 'Sagan', '1934-11-09');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('Arthur C.', 'Clarke', '1917-12-16');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('Martin', 'Fowler', '1963-12-18');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('Robert C.', 'Martin', '1952-12-05');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('Erich', 'Gamma', '1961-03-13');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('Richard', 'Helm', '1960-01-01');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('Ralph', 'Johnson', '1955-01-01');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('John', 'Vlissides', '1961-08-02');
+INSERT INTO author (first_name, last_name, birthdate) VALUES ('Frederick', 'Brooks', '1931-04-19');
 
 -- Books
 INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (2, 1, 'Il sentiero dei nidi di ragno', 153, 1947);
@@ -37,6 +62,29 @@ INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (7,
 INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (6, 1, '1984', 328, 1949);
 INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (8, 3, 'Le Mythe de Sisyphe', 195, 1942);
 INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (7, 5, 'The C Programming Language', 228, 1978);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (3, 1, 'Cent''anni di solitudine', 471, 1967);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (1, 1, 'Finzioni', 174, 1944);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (4, 6, 'La Divina Commedia', 798, 1472);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (3, 1, 'Delitto e castigo', 671, 1866);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (6, 1, 'The Hitchhiker''s Guide to the Galaxy', 215, 1979);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (4, 2, 'Foundation', 244, 1951);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (11, 1, 'The Lord of the Rings', 1178, 1954);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (1, 1, 'Il processo', 286, 1925);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (2, 1, 'Il barone rampante', 254, 1957);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (10, 1, 'Animal Farm', 112, 1945);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (1, 3, 'L''uomo in rivolta', 384, 1951);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (2, 1, 'Il sistema periodico', 233, 1975);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (7, 5, 'The Pragmatic Programmer', 352, 1999);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (12, 1, 'Il pendolo di Foucault', 509, 1988);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (1, 2, 'L''ordine del tempo', 160, 2017);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (6, 1, 'The Old Man and the Sea', 127, 1952);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (6, 2, 'Contact', 432, 1985);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (4, 2, 'Nightfall', 334, 1990);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (6, 1, '2001: A Space Odyssey', 297, 1968);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (7, 5, 'Refactoring', 431, 1999);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (7, 5, 'Clean Code', 464, 2008);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (7, 5, 'Design Patterns', 395, 1994);
+INSERT INTO book (publisher_id, category_id, title, pages, published) VALUES (7, 5, 'The Mythical Man-Month', 322, 1975);
 
 -- Book-Author relationships
 INSERT INTO book_author (book_id, author_id) VALUES (1, 1);
@@ -48,3 +96,30 @@ INSERT INTO book_author (book_id, author_id) VALUES (6, 6);
 INSERT INTO book_author (book_id, author_id) VALUES (7, 7);
 INSERT INTO book_author (book_id, author_id) VALUES (8, 8);
 INSERT INTO book_author (book_id, author_id) VALUES (8, 9);
+INSERT INTO book_author (book_id, author_id) VALUES (9, 10);
+INSERT INTO book_author (book_id, author_id) VALUES (10, 11);
+INSERT INTO book_author (book_id, author_id) VALUES (11, 12);
+INSERT INTO book_author (book_id, author_id) VALUES (12, 13);
+INSERT INTO book_author (book_id, author_id) VALUES (13, 14);
+INSERT INTO book_author (book_id, author_id) VALUES (14, 15);
+INSERT INTO book_author (book_id, author_id) VALUES (15, 16);
+INSERT INTO book_author (book_id, author_id) VALUES (16, 17);
+INSERT INTO book_author (book_id, author_id) VALUES (17, 1);
+INSERT INTO book_author (book_id, author_id) VALUES (18, 6);
+INSERT INTO book_author (book_id, author_id) VALUES (19, 7);
+INSERT INTO book_author (book_id, author_id) VALUES (20, 2);
+INSERT INTO book_author (book_id, author_id) VALUES (21, 19);
+INSERT INTO book_author (book_id, author_id) VALUES (21, 20);
+INSERT INTO book_author (book_id, author_id) VALUES (22, 3);
+INSERT INTO book_author (book_id, author_id) VALUES (23, 4);
+INSERT INTO book_author (book_id, author_id) VALUES (24, 18);
+INSERT INTO book_author (book_id, author_id) VALUES (25, 21);
+INSERT INTO book_author (book_id, author_id) VALUES (26, 15);
+INSERT INTO book_author (book_id, author_id) VALUES (27, 22);
+INSERT INTO book_author (book_id, author_id) VALUES (28, 23);
+INSERT INTO book_author (book_id, author_id) VALUES (29, 24);
+INSERT INTO book_author (book_id, author_id) VALUES (30, 25);
+INSERT INTO book_author (book_id, author_id) VALUES (30, 26);
+INSERT INTO book_author (book_id, author_id) VALUES (30, 27);
+INSERT INTO book_author (book_id, author_id) VALUES (30, 28);
+INSERT INTO book_author (book_id, author_id) VALUES (31, 29);

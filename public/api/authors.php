@@ -83,6 +83,12 @@ if ($method === 'GET') {
         exit;
     }
 
+    if ($author->hasBooks($id)) {
+        http_response_code(409);
+        echo json_encode(['error' => 'Cannot delete: author has associated books']);
+        exit;
+    }
+
     $author->delete($id);
     echo json_encode(['deleted' => true]);
 

@@ -76,6 +76,19 @@ class Author
         ]);
     }
 
+    public function hasBooks(int $id): bool
+    {
+        $sql = "SELECT COUNT(*) AS total
+                FROM book_author ba
+                JOIN book b ON ba.book_id = b.book_id
+                WHERE ba.author_id = :id
+                AND b.status = 1";
+
+        $row = $this->db->fetchOne($sql, [':id' => $id]);
+
+        return $row['total'] > 0;
+    }
+
     public function delete(int $id): int
     {
         $sql = "UPDATE author

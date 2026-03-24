@@ -79,6 +79,12 @@ if ($method === 'GET') {
         exit;
     }
 
+    if ($category->hasBooks($id)) {
+        http_response_code(409);
+        echo json_encode(['error' => 'Cannot delete: category has associated books']);
+        exit;
+    }
+
     $category->delete($id);
     echo json_encode(['deleted' => true]);
 

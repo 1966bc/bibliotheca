@@ -1,6 +1,8 @@
 <section>
-    <h2>Books</h2>
-    <p><a href="/bibliotheca/public/book">Add new book</a></p>
+    <div class="section-header">
+        <h2>Books</h2>
+        <a href="/bibliotheca/public/book" class="btn">Add new book</a>
+    </div>
     <table id="book-table">
         <thead>
             <tr>
@@ -8,7 +10,8 @@
                 <th>Publisher</th>
                 <th>Category</th>
                 <th>Pages</th>
-                <th>Actions</th>
+                <th>Published</th>
+                <th></th>
             </tr>
         </thead>
         <tbody></tbody>

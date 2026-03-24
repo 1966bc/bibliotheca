@@ -25,20 +25,24 @@ class PublishersView {
             row.appendChild(nameCell);
 
             const actionsCell = document.createElement('td');
+            const actionsDiv = document.createElement('div');
+            actionsDiv.className = 'actions';
 
             const editBtn = document.createElement('button');
             editBtn.textContent = 'Edit';
             editBtn.addEventListener('click', () => {
                 window.location.href = '/bibliotheca/public/publisher?id=' + publisher.publisher_id;
             });
-            actionsCell.appendChild(editBtn);
+            actionsDiv.appendChild(editBtn);
 
             const deleteBtn = document.createElement('button');
             deleteBtn.textContent = 'Delete';
+            deleteBtn.className = 'btn-delete';
             deleteBtn.addEventListener('click', () => {
                 this.remove(publisher.publisher_id);
             });
-            actionsCell.appendChild(deleteBtn);
+            actionsDiv.appendChild(deleteBtn);
+            actionsCell.appendChild(actionsDiv);
 
             row.appendChild(actionsCell);
             this.table.appendChild(row);
@@ -50,11 +54,17 @@ class PublishersView {
             return;
         }
 
-        await fetch(this.API, {
+        const response = await fetch(this.API, {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({publisher_id: id}),
         });
+
+        if (!response.ok) {
+            const result = await response.json();
+            alert(result.error);
+            return;
+        }
 
         this.load();
     }

@@ -79,6 +79,12 @@ if ($method === 'GET') {
         exit;
     }
 
+    if ($publisher->hasBooks($id)) {
+        http_response_code(409);
+        echo json_encode(['error' => 'Cannot delete: publisher has associated books']);
+        exit;
+    }
+
     $publisher->delete($id);
     echo json_encode(['deleted' => true]);
 

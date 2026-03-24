@@ -35,25 +35,25 @@ if (!is_file($page)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/bibliotheca/public/favicon.svg">
     <title>Bibliotheca</title>
     <link rel="stylesheet" href="/bibliotheca/public/css/style.css">
 </head>
 <body>
     <header>
-        <h1><a href="/bibliotheca/public/">Bibliotheca</a></h1>
+        <h1><a href="/bibliotheca/public/">Bibliotheca</a> <span class="subtitle">A didactic book catalog for studying web programming.</span></h1>
         <nav>
             <a href="/bibliotheca/public/">Home</a>
             <a href="/bibliotheca/public/publishers">Publishers</a>
             <a href="/bibliotheca/public/categories">Categories</a>
             <a href="/bibliotheca/public/authors">Authors</a>
-            <a href="/bibliotheca/public/books">Books</a>
         </nav>
     </header>
     <main>
         <?php require $page; ?>
     </main>
     <footer>
-        <p>Bibliotheca — A didactic project</p>
+        <p>Bibliotheca — A didactic project — Copyleft 2026</p>
     </footer>
 </body>
 </html>
