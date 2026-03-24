@@ -2,8 +2,8 @@
 
 ## Ten Brief Lessons on Web Programming
 
-> "First, solve the problem. Then, write the code."
-> — John Johnson
+> *To the next generation of programmers:
+> before you let the machine write, learn to read.*
 
 ## Why Bibliotheca?
 
