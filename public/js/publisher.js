@@ -56,16 +56,25 @@ class PublisherForm {
      * @returns {Promise<void>}
      */
     async loadRecord(id) {
-        const response = await fetch(this.API + '?id=' + id);
-        const publisher = await response.json();
+        try {
+            const response = await fetch(this.API + '?id=' + id);
 
-        this.inputId.value = publisher.publisher_id;
-        this.inputName.value = publisher.name;
-        this.inputStatus.checked = publisher.status === 1;
-        this.statusGroup.hidden = false;
-        this.btnDelete.hidden = false;
-        this.title.textContent = 'Edit Publisher';
-        this.inputName.focus();
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            }
+
+            const publisher = await response.json();
+
+            this.inputId.value = publisher.publisher_id;
+            this.inputName.value = publisher.name;
+            this.inputStatus.checked = publisher.status === 1;
+            this.statusGroup.hidden = false;
+            this.btnDelete.hidden = false;
+            this.title.textContent = 'Edit Publisher';
+            this.inputName.focus();
+        } catch (error) {
+            alert('Unable to load record. Please try again later.');
+        }
     }
 
     /**
@@ -127,33 +136,38 @@ class PublisherForm {
 
         const id = this.inputId.value;
         const name = this.inputName.value.trim();
-        let response;
 
-        if (id === '') {
-            response = await fetch(this.API, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({name: name}),
-            });
-        } else {
-            response = await fetch(this.API, {
-                method: 'PUT',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    publisher_id: parseInt(id),
-                    name: name,
-                    status: this.inputStatus.checked ? 1 : 0,
-                }),
-            });
+        try {
+            let response;
+
+            if (id === '') {
+                response = await fetch(this.API, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({name: name}),
+                });
+            } else {
+                response = await fetch(this.API, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        publisher_id: parseInt(id),
+                        name: name,
+                        status: this.inputStatus.checked ? 1 : 0,
+                    }),
+                });
+            }
+
+            if (!response.ok) {
+                const result = await response.json();
+                this.showError('publisher-name', result.error);
+                return;
+            }
+
+            window.location.href = '/bibliotheca/public/publishers';
+        } catch (error) {
+            alert('Unable to save. Please try again later.');
         }
-
-        if (!response.ok) {
-            const result = await response.json();
-            this.showError('publisher-name', result.error);
-            return;
-        }
-
-        window.location.href = '/bibliotheca/public/publishers';
     }
 
     /**
@@ -169,19 +183,23 @@ class PublisherForm {
 
         const id = this.inputId.value;
 
-        const response = await fetch(this.API, {
-            method: 'DELETE',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({publisher_id: parseInt(id)}),
-        });
+        try {
+            const response = await fetch(this.API, {
+                method: 'DELETE',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({publisher_id: parseInt(id)}),
+            });
 
-        if (!response.ok) {
-            const result = await response.json();
-            alert(result.error);
-            return;
+            if (!response.ok) {
+                const result = await response.json();
+                alert(result.error);
+                return;
+            }
+
+            window.location.href = '/bibliotheca/public/publishers';
+        } catch (error) {
+            alert('Unable to delete. Please try again later.');
         }
-
-        window.location.href = '/bibliotheca/public/publishers';
     }
 }
 

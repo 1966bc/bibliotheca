@@ -24,9 +24,24 @@ class BooksView {
      * @returns {Promise<void>}
      */
     async load() {
-        const response = await fetch(this.API);
-        const books = await response.json();
-        this.render(books);
+        try {
+            const response = await fetch(this.API);
+
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            }
+
+            const books = await response.json();
+            this.render(books);
+        } catch (error) {
+            this.table.textContent = '';
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
+            cell.colSpan = 7;
+            cell.textContent = 'Unable to load data. Please try again later.';
+            row.appendChild(cell);
+            this.table.appendChild(row);
+        }
     }
 
     /**

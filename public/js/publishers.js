@@ -24,9 +24,24 @@ class PublishersView {
      * @returns {Promise<void>}
      */
     async load() {
-        const response = await fetch(this.API);
-        const publishers = await response.json();
-        this.render(publishers);
+        try {
+            const response = await fetch(this.API);
+
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            }
+
+            const publishers = await response.json();
+            this.render(publishers);
+        } catch (error) {
+            this.table.textContent = '';
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
+            cell.colSpan = 2;
+            cell.textContent = 'Unable to load data. Please try again later.';
+            row.appendChild(cell);
+            this.table.appendChild(row);
+        }
     }
 
     /**

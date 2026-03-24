@@ -64,27 +64,41 @@ class BookForm {
      * @returns {Promise<void>}
      */
     async loadSelects() {
-        const publisherRes = await fetch('/bibliotheca/public/api/publishers.php?active=1');
-        const publishers = await publisherRes.json();
+        try {
+            const publisherRes = await fetch('/bibliotheca/public/api/publishers.php?active=1');
 
-        for (const publisher of publishers) {
-            const option = document.createElement('option');
-            option.value = publisher.publisher_id;
-            option.textContent = publisher.name;
-            this.selectPublisher.appendChild(option);
+            if (!publisherRes.ok) {
+                throw new Error(publisherRes.statusText);
+            }
+
+            const publishers = await publisherRes.json();
+
+            for (const publisher of publishers) {
+                const option = document.createElement('option');
+                option.value = publisher.publisher_id;
+                option.textContent = publisher.name;
+                this.selectPublisher.appendChild(option);
+            }
+
+            const categoryRes = await fetch('/bibliotheca/public/api/categories.php?active=1');
+
+            if (!categoryRes.ok) {
+                throw new Error(categoryRes.statusText);
+            }
+
+            const categories = await categoryRes.json();
+
+            for (const category of categories) {
+                const option = document.createElement('option');
+                option.value = category.category_id;
+                option.textContent = category.name;
+                this.selectCategory.appendChild(option);
+            }
+
+            this.checkEdit();
+        } catch (error) {
+            alert('Unable to load form data. Please try again later.');
         }
-
-        const categoryRes = await fetch('/bibliotheca/public/api/categories.php?active=1');
-        const categories = await categoryRes.json();
-
-        for (const category of categories) {
-            const option = document.createElement('option');
-            option.value = category.category_id;
-            option.textContent = category.name;
-            this.selectCategory.appendChild(option);
-        }
-
-        this.checkEdit();
     }
 
     /**
@@ -106,20 +120,29 @@ class BookForm {
      * @returns {Promise<void>}
      */
     async loadRecord(id) {
-        const response = await fetch(this.API + '?id=' + id);
-        const book = await response.json();
+        try {
+            const response = await fetch(this.API + '?id=' + id);
 
-        this.inputId.value = book.book_id;
-        this.inputTitle.value = book.title;
-        this.selectPublisher.value = book.publisher_id;
-        this.selectCategory.value = book.category_id;
-        this.inputPages.value = book.pages || '';
-        this.inputPublished.value = book.published || '';
-        this.inputStatus.checked = book.status === 1;
-        this.statusGroup.hidden = false;
-        this.btnDelete.hidden = false;
-        this.title.textContent = 'Edit Book';
-        this.inputTitle.focus();
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            }
+
+            const book = await response.json();
+
+            this.inputId.value = book.book_id;
+            this.inputTitle.value = book.title;
+            this.selectPublisher.value = book.publisher_id;
+            this.selectCategory.value = book.category_id;
+            this.inputPages.value = book.pages || '';
+            this.inputPublished.value = book.published || '';
+            this.inputStatus.checked = book.status === 1;
+            this.statusGroup.hidden = false;
+            this.btnDelete.hidden = false;
+            this.title.textContent = 'Edit Book';
+            this.inputTitle.focus();
+        } catch (error) {
+            alert('Unable to load record. Please try again later.');
+        }
     }
 
     /**
@@ -231,31 +254,35 @@ class BookForm {
             published: published,
         };
 
-        let response;
+        try {
+            let response;
 
-        if (id === '') {
-            response = await fetch(this.API, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(payload),
-            });
-        } else {
-            payload.book_id = parseInt(id);
-            payload.status = this.inputStatus.checked ? 1 : 0;
-            response = await fetch(this.API, {
-                method: 'PUT',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(payload),
-            });
+            if (id === '') {
+                response = await fetch(this.API, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload),
+                });
+            } else {
+                payload.book_id = parseInt(id);
+                payload.status = this.inputStatus.checked ? 1 : 0;
+                response = await fetch(this.API, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload),
+                });
+            }
+
+            if (!response.ok) {
+                const result = await response.json();
+                this.showError('book-title', result.error);
+                return;
+            }
+
+            window.location.href = '/bibliotheca/public/books';
+        } catch (error) {
+            alert('Unable to save. Please try again later.');
         }
-
-        if (!response.ok) {
-            const result = await response.json();
-            this.showError('book-title', result.error);
-            return;
-        }
-
-        window.location.href = '/bibliotheca/public/books';
     }
 
     /**
@@ -271,19 +298,23 @@ class BookForm {
 
         const id = this.inputId.value;
 
-        const response = await fetch(this.API, {
-            method: 'DELETE',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({book_id: parseInt(id)}),
-        });
+        try {
+            const response = await fetch(this.API, {
+                method: 'DELETE',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({book_id: parseInt(id)}),
+            });
 
-        if (!response.ok) {
-            const result = await response.json();
-            alert(result.error);
-            return;
+            if (!response.ok) {
+                const result = await response.json();
+                alert(result.error);
+                return;
+            }
+
+            window.location.href = '/bibliotheca/public/books';
+        } catch (error) {
+            alert('Unable to delete. Please try again later.');
         }
-
-        window.location.href = '/bibliotheca/public/books';
     }
 }
 

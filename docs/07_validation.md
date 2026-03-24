@@ -71,6 +71,60 @@ if (!response.ok) {
 Same pattern, same place, whether the error comes from the client
 or the server.
 
+## Exceptions: who catches what
+
+Validation handles *expected* problems — empty fields, duplicates.
+But what about *unexpected* failures? The database file is corrupted.
+The disk is full. A table was dropped. These are exceptions.
+
+In PHP, PDO is configured with `ERRMODE_EXCEPTION`: when something
+goes wrong, it throws a `PDOException`. The question is: who catches it?
+
+**Not DBMS.** The database wrapper does not know *how* to handle the error.
+Should it return null? An empty array? Log something? It depends on
+who is calling. A web API needs a JSON response. A CLI script needs
+a console message. A test needs an assertion failure. DBMS cannot
+know any of this, so it lets the exception rise.
+
+**Not the Model.** Publisher, Book, Author — they have the same problem.
+They do not know the context. They pass the exception upward.
+
+**The API endpoint catches it.** This is the only place that knows
+it must respond with JSON and an HTTP status code:
+
+```php
+try {
+    $db = new DBMS(__DIR__ . '/../../sql/bibliotheca.db');
+    $publisher = new Publisher($db);
+    // ... all the logic ...
+} catch (\Exception $e) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Internal server error']);
+}
+```
+
+**JavaScript catches it too.** Network failures (server down, timeout)
+throw exceptions at the `fetch()` level:
+
+```javascript
+try {
+    const response = await fetch(this.API);
+    if (!response.ok) {
+        throw new Error(response.statusText);
+    }
+    const data = await response.json();
+    this.render(data);
+} catch (error) {
+    // show a message to the user
+}
+```
+
+The principle: **catch where you can act.** The lower layers report
+the problem (by throwing). The upper layers handle it (by catching).
+An exception is a signal that travels upward — like pain traveling
+from an organ to the brain. The kidney does not decide how to inform
+the patient. The brain does.
+
 ## Next
 
 [Chapter 08 — Permissions](08_permissions.md)

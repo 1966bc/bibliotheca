@@ -24,9 +24,24 @@ class AuthorsView {
      * @returns {Promise<void>}
      */
     async load() {
-        const response = await fetch(this.API);
-        const authors = await response.json();
-        this.render(authors);
+        try {
+            const response = await fetch(this.API);
+
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            }
+
+            const authors = await response.json();
+            this.render(authors);
+        } catch (error) {
+            this.table.textContent = '';
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
+            cell.colSpan = 3;
+            cell.textContent = 'Unable to load data. Please try again later.';
+            row.appendChild(cell);
+            this.table.appendChild(row);
+        }
     }
 
     /**

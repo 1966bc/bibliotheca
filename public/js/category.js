@@ -55,16 +55,25 @@ class CategoryForm {
      * @returns {Promise<void>}
      */
     async loadRecord(id) {
-        const response = await fetch(this.API + '?id=' + id);
-        const category = await response.json();
+        try {
+            const response = await fetch(this.API + '?id=' + id);
 
-        this.inputId.value = category.category_id;
-        this.inputName.value = category.name;
-        this.inputStatus.checked = category.status === 1;
-        this.statusGroup.hidden = false;
-        this.btnDelete.hidden = false;
-        this.title.textContent = 'Edit Category';
-        this.inputName.focus();
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            }
+
+            const category = await response.json();
+
+            this.inputId.value = category.category_id;
+            this.inputName.value = category.name;
+            this.inputStatus.checked = category.status === 1;
+            this.statusGroup.hidden = false;
+            this.btnDelete.hidden = false;
+            this.title.textContent = 'Edit Category';
+            this.inputName.focus();
+        } catch (error) {
+            alert('Unable to load record. Please try again later.');
+        }
     }
 
     /**
@@ -124,33 +133,38 @@ class CategoryForm {
 
         const id = this.inputId.value;
         const name = this.inputName.value.trim();
-        let response;
 
-        if (id === '') {
-            response = await fetch(this.API, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({name: name}),
-            });
-        } else {
-            response = await fetch(this.API, {
-                method: 'PUT',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    category_id: parseInt(id),
-                    name: name,
-                    status: this.inputStatus.checked ? 1 : 0,
-                }),
-            });
+        try {
+            let response;
+
+            if (id === '') {
+                response = await fetch(this.API, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({name: name}),
+                });
+            } else {
+                response = await fetch(this.API, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        category_id: parseInt(id),
+                        name: name,
+                        status: this.inputStatus.checked ? 1 : 0,
+                    }),
+                });
+            }
+
+            if (!response.ok) {
+                const result = await response.json();
+                this.showError('category-name', result.error);
+                return;
+            }
+
+            window.location.href = '/bibliotheca/public/categories';
+        } catch (error) {
+            alert('Unable to save. Please try again later.');
         }
-
-        if (!response.ok) {
-            const result = await response.json();
-            this.showError('category-name', result.error);
-            return;
-        }
-
-        window.location.href = '/bibliotheca/public/categories';
     }
 
     /**
@@ -165,19 +179,23 @@ class CategoryForm {
 
         const id = this.inputId.value;
 
-        const response = await fetch(this.API, {
-            method: 'DELETE',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({category_id: parseInt(id)}),
-        });
+        try {
+            const response = await fetch(this.API, {
+                method: 'DELETE',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({category_id: parseInt(id)}),
+            });
 
-        if (!response.ok) {
-            const result = await response.json();
-            alert(result.error);
-            return;
+            if (!response.ok) {
+                const result = await response.json();
+                alert(result.error);
+                return;
+            }
+
+            window.location.href = '/bibliotheca/public/categories';
+        } catch (error) {
+            alert('Unable to delete. Please try again later.');
         }
-
-        window.location.href = '/bibliotheca/public/categories';
     }
 }
 
