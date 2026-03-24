@@ -2,6 +2,9 @@
 
 **Ten Brief Lessons on Web Programming**
 
+> *To the next generation of programmers:
+> learn to read, write and compute — before it's too late.*
+
 A didactic web application for studying web programming, built from
 scratch with pure PHP, JavaScript, HTML, CSS and SQLite. No frameworks,
 no libraries, no magic. Just code.
