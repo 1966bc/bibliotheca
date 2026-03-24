@@ -22,6 +22,12 @@
             <span class="error" id="book-category-error"></span>
         </div>
         <div>
+            <label for="book-authors">Authors</label>
+            <select id="book-authors" multiple>
+            </select>
+            <span class="error" id="book-authors-error"></span>
+        </div>
+        <div>
             <label for="book-pages">Pages</label>
             <input type="number" id="book-pages" min="1" max="99999" required>
             <span class="error" id="book-pages-error"></span>

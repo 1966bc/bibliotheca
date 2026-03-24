@@ -4,6 +4,15 @@ Terms you will encounter in this book, in alphabetical order.
 
 ---
 
+**`.htaccess`** —
+A configuration file read by Apache on every request to the
+directory where it lives. The dot prefix makes it hidden on
+Unix systems. In Bibliotheca, `.htaccess` contains a single
+rewrite rule: any URL that does not match an existing file is
+forwarded to `index.php?route=...`, enabling clean URLs like
+`/publishers` instead of `index.php?route=publishers`. Requires
+Apache's `mod_rewrite` module to be enabled.
+
 **API (Application Programming Interface)** —
 A set of endpoints that a program can call to exchange data. In
 Bibliotheca, the files in `public/api/` are the API: JavaScript
@@ -118,6 +127,13 @@ uses:
 - **409** — Conflict (duplicate record)
 - **500** — Internal Server Error
 
+**Index (database)** —
+A data structure that speeds up lookups on a column, like
+a book index speeds up finding a topic. SQLite creates indexes
+automatically for primary keys, but foreign key columns need
+explicit `CREATE INDEX` statements. Without an index, the database
+must scan every row (full table scan) to find a match.
+
 **`innerHTML` (avoid)** —
 A DOM property that parses a string as HTML. If the string contains
 user input, this is an XSS vulnerability. Bibliotheca uses
@@ -215,6 +231,13 @@ Bibliotheca uses both: the status toggle disables a record
 (greyed out in the list), while the Delete button removes it
 permanently.
 
+**SPA (Single Page Application)** —
+A web application where the browser loads one HTML page and
+JavaScript handles all navigation and data updates via `fetch`
+calls to the API. The page never fully reloads — only the
+content changes. Bibliotheca follows this pattern: `index.php`
+serves the shell, JavaScript builds the interface.
+
 **SQL injection** —
 An attack where user input is inserted into a SQL query, changing
 its meaning. Example: entering `'; DROP TABLE book; --` as a name.
@@ -229,9 +252,22 @@ configuration. The file `sql/bibliotheca.db` is the entire database.
 type checking. Passing a string where an int is expected throws a
 TypeError instead of silently converting.
 
+**tail** —
+A Unix command that shows the last lines of a file. Essential
+for reading logs: `sudo tail -20 /var/log/apache2/error.log`
+shows the 20 most recent entries. Use `tail -f` to follow a
+log file in real time as new entries appear.
+
 **`textContent`** —
 A DOM property that sets or gets the text of an element. Unlike
 `innerHTML`, it never interprets HTML — safe by design.
+
+**Transaction** —
+A group of database operations that must succeed together or
+fail together. Wrapped in `beginTransaction()` / `commit()` /
+`rollBack()`. In Bibliotheca, `Book::delete()` uses a
+transaction: deleting the `book_author` records and the `book`
+record must be atomic — if one fails, neither should persist.
 
 **URL rewriting** —
 Transforming `/publishers` into `index.php?route=publishers` so

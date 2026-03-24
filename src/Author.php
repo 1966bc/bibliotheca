@@ -40,6 +40,21 @@ class Author
     }
 
     /**
+     * Get only active authors, ordered by last name, then first name.
+     *
+     * @return array List of active authors (each with author_id, first_name, last_name)
+     */
+    public function getActive(): array
+    {
+        return $this->db->query(
+            "SELECT author_id, first_name, last_name
+             FROM author
+             WHERE status = 1
+             ORDER BY last_name, first_name"
+        );
+    }
+
+    /**
      * Find an author by its primary key.
      *
      * @param  int        $id Author ID

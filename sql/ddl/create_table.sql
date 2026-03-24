@@ -40,3 +40,9 @@ CREATE TABLE IF NOT EXISTS book_author (
     FOREIGN KEY (book_id) REFERENCES book (book_id),
     FOREIGN KEY (author_id) REFERENCES author (author_id)
 );
+
+-- Indexes for foreign keys and frequent lookups
+CREATE INDEX IF NOT EXISTS idx_book_publisher ON book (publisher_id);
+CREATE INDEX IF NOT EXISTS idx_book_category ON book (category_id);
+CREATE INDEX IF NOT EXISTS idx_book_author_book ON book_author (book_id);
+CREATE INDEX IF NOT EXISTS idx_book_author_author ON book_author (author_id);

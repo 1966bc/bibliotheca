@@ -90,6 +90,40 @@ class Book
     }
 
     /**
+     * Replace all authors for a book (delete + insert in a transaction).
+     *
+     * @param  int   $bookId    Book ID
+     * @param  array $authorIds List of author IDs to associate
+     * @return void
+     */
+    public function setAuthors(int $bookId, array $authorIds): void
+    {
+        $this->db->beginTransaction();
+
+        try {
+            $this->db->delete(
+                "DELETE FROM book_author WHERE book_id = :book_id",
+                [':book_id' => $bookId]
+            );
+
+            $sql = "INSERT INTO book_author (book_id, author_id)
+                    VALUES (:book_id, :author_id)";
+
+            foreach ($authorIds as $authorId) {
+                $this->db->insert($sql, [
+                    ':book_id'   => $bookId,
+                    ':author_id' => (int) $authorId,
+                ]);
+            }
+
+            $this->db->commit();
+        } catch (\Exception $e) {
+            $this->db->rollBack();
+            throw $e;
+        }
+    }
+
+    /**
      * Create a new book.
      *
      * @param  int      $publisherId Foreign key to publisher table

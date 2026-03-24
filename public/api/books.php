@@ -24,6 +24,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../../src/DBMS.php';
 require_once __DIR__ . '/../../src/Book.php';
+require_once __DIR__ . '/../../src/Author.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -65,6 +66,11 @@ try {
         }
 
         $id = $book->insert($publisherId, $categoryId, $title, $pages, $published);
+
+        if (!empty($data['author_ids'])) {
+            $book->setAuthors($id, $data['author_ids']);
+        }
+
         echo json_encode(['book_id' => $id, 'title' => $title]);
 
     } elseif ($method === 'PUT') {
@@ -85,6 +91,11 @@ try {
         }
 
         $book->update($id, $publisherId, $categoryId, $title, $pages, $published, $status);
+
+        if (isset($data['author_ids'])) {
+            $book->setAuthors($id, $data['author_ids']);
+        }
+
         echo json_encode(['book_id' => $id, 'title' => $title, 'status' => $status]);
 
     } elseif ($method === 'DELETE') {

@@ -22,6 +22,7 @@ class BookForm {
         this.inputTitle = document.querySelector('#book-title');
         this.selectPublisher = document.querySelector('#book-publisher');
         this.selectCategory = document.querySelector('#book-category');
+        this.selectAuthors = document.querySelector('#book-authors');
         this.inputPages = document.querySelector('#book-pages');
         this.inputPublished = document.querySelector('#book-published');
         this.inputStatus = document.querySelector('#book-status');
@@ -95,6 +96,21 @@ class BookForm {
                 this.selectCategory.appendChild(option);
             }
 
+            const authorRes = await fetch('/bibliotheca/public/api/authors.php?active=1');
+
+            if (!authorRes.ok) {
+                throw new Error(authorRes.statusText);
+            }
+
+            const authors = await authorRes.json();
+
+            for (const author of authors) {
+                const option = document.createElement('option');
+                option.value = author.author_id;
+                option.textContent = author.last_name + ', ' + author.first_name;
+                this.selectAuthors.appendChild(option);
+            }
+
             this.checkEdit();
         } catch (error) {
             alert('Unable to load form data. Please try again later.');
@@ -135,6 +151,13 @@ class BookForm {
             this.selectCategory.value = book.category_id;
             this.inputPages.value = book.pages || '';
             this.inputPublished.value = book.published || '';
+            if (book.authors) {
+                const authorIds = book.authors.map(a => String(a.author_id));
+                for (const option of this.selectAuthors.options) {
+                    option.selected = authorIds.includes(option.value);
+                }
+            }
+
             this.inputStatus.checked = book.status === 1;
             this.statusGroup.hidden = false;
             this.btnDelete.hidden = false;
@@ -246,12 +269,18 @@ class BookForm {
         const pages = this.inputPages.value;
         const published = this.inputPublished.value;
 
+        const authorIds = [];
+        for (const option of this.selectAuthors.selectedOptions) {
+            authorIds.push(parseInt(option.value));
+        }
+
         const payload = {
             publisher_id: publisherId,
             category_id: categoryId,
             title: title,
             pages: pages,
             published: published,
+            author_ids: authorIds,
         };
 
         try {

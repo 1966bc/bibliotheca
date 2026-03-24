@@ -72,6 +72,47 @@ php /var/www/html/bibliotheca/public/api/publishers.php
 This bypasses Apache and permissions. If it works here but not
 in the browser, the problem is Apache configuration or permissions.
 
+## SQLite from the command line
+
+You can inspect the database directly with the `sqlite3` command:
+
+```bash
+sqlite3 sql/bibliotheca.db
+```
+
+Useful commands inside the SQLite shell:
+
+```sql
+-- List all tables
+.tables
+
+-- Show the schema of a table (columns, types, constraints)
+PRAGMA table_info(book);
+
+-- Show all indexes in the database
+.indices
+
+-- Show the indexes of a specific table
+PRAGMA index_list(book);
+
+-- Show which columns an index covers
+PRAGMA index_info(idx_book_publisher);
+
+-- Check if foreign keys are enforced
+PRAGMA foreign_keys;
+
+-- Show the CREATE statement for a table
+.schema book
+
+-- Run a quick query
+SELECT * FROM publisher ORDER BY name;
+```
+
+`PRAGMA table_info` is especially useful: it shows the column name,
+type, whether it allows NULL, its default value, and whether it is
+part of the primary key. Learn to use it — it is faster than reading
+the schema file.
+
 ## The golden rule
 
 When something breaks, do not guess. Read the error. Follow the

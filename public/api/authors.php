@@ -45,6 +45,8 @@ try {
                 http_response_code(404);
                 echo json_encode(['error' => 'Not found']);
             }
+        } elseif (isset($_GET['active'])) {
+            echo json_encode($author->getActive());
         } else {
             echo json_encode($author->getAll());
         }

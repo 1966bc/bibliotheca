@@ -304,6 +304,10 @@ tr.row-disabled:hover td {
     margin-top: 0.3rem;
 }
 
+select[multiple] {
+    min-height: 120px;
+}
+
 input.invalid,
 select.invalid {
     border-color: #c0392b;

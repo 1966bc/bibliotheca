@@ -374,6 +374,19 @@ $t->test('Author: delete removes record', function () use ($t) {
     $t->assertNull($auth->getById($id));
 });
 
+$t->test('Author: getActive excludes disabled', function () use ($t) {
+    $db = createTestDb();
+    $auth = new Author($db);
+
+    $id1 = $auth->insert('Active', 'Author', null);
+    $id2 = $auth->insert('Disabled', 'Author2', null);
+    $auth->update($id2, 'Disabled', 'Author2', null, 0);
+
+    $active = $auth->getActive();
+    $t->assertCount(1, $active);
+    $t->assertEqual('Author', $active[0]['last_name']);
+});
+
 // ---------------------------------------------------------------------------
 // Book tests
 // ---------------------------------------------------------------------------
@@ -455,6 +468,50 @@ $t->test('Book: getAuthors returns linked authors', function () use ($t) {
 
     $authors = $book->getAuthors($bookId);
     $t->assertCount(2, $authors);
+});
+
+$t->test('Book: setAuthors replaces existing authors', function () use ($t) {
+    $db = createTestDb();
+    $pub = new Publisher($db);
+    $cat = new Category($db);
+    $auth = new Author($db);
+    $book = new Book($db);
+
+    $pubId = $pub->insert('Publisher');
+    $catId = $cat->insert('Category');
+    $a1 = $auth->insert('Author', 'One', null);
+    $a2 = $auth->insert('Author', 'Two', null);
+    $a3 = $auth->insert('Author', 'Three', null);
+    $bookId = $book->insert($pubId, $catId, 'Test Book', 100, 2020);
+
+    // Set initial authors
+    $book->setAuthors($bookId, [$a1, $a2]);
+    $t->assertCount(2, $book->getAuthors($bookId));
+
+    // Replace with different authors
+    $book->setAuthors($bookId, [$a3]);
+    $authors = $book->getAuthors($bookId);
+    $t->assertCount(1, $authors);
+    $t->assertEqual('Three', $authors[0]['last_name']);
+});
+
+$t->test('Book: setAuthors with empty array clears authors', function () use ($t) {
+    $db = createTestDb();
+    $pub = new Publisher($db);
+    $cat = new Category($db);
+    $auth = new Author($db);
+    $book = new Book($db);
+
+    $pubId = $pub->insert('Publisher');
+    $catId = $cat->insert('Category');
+    $a1 = $auth->insert('Author', 'One', null);
+    $bookId = $book->insert($pubId, $catId, 'Test Book', 100, 2020);
+
+    $book->setAuthors($bookId, [$a1]);
+    $t->assertCount(1, $book->getAuthors($bookId));
+
+    $book->setAuthors($bookId, []);
+    $t->assertCount(0, $book->getAuthors($bookId));
 });
 
 $t->test('Book: update changes data', function () use ($t) {
