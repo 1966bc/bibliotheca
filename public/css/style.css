@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    margin-bottom: 2rem;
+}
+
+header h1 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+nav {
+    margin-top: 0.5rem;
+}
+
+nav a {
+    margin-right: 1rem;
+    text-decoration: none;
+    color: #333;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+h2 {
+    margin-bottom: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    font-weight: bold;
+}
+
+form {
+    margin-bottom: 2rem;
+    max-width: 400px;
+}
+
+form div {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 0.4rem;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.form-actions a {
+    color: #333;
+}
+
+button {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #ccc;
+    background: #f5f5f5;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+button:hover {
+    background: #e0e0e0;
+}
+
+td button {
+    margin-right: 0.3rem;
+}
+
+.error {
+    display: block;
+    color: #c00;
+    font-size: 0.85rem;
+    margin-top: 0.2rem;
+}
+
+input.invalid,
+select.invalid {
+    border-color: #c00;
+}
