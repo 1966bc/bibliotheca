@@ -15,6 +15,7 @@ $allowed = [
     'categories', 'category',
     'authors', 'author',
     'books', 'book',
+    'about',
 ];
 
 if (!in_array($route, $allowed, true)) {
@@ -38,22 +39,24 @@ if (!is_file($page)) {
     <link rel="icon" type="image/svg+xml" href="/bibliotheca/public/favicon.svg">
     <title>Bibliotheca</title>
     <link rel="stylesheet" href="/bibliotheca/public/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <header>
-        <h1><a href="/bibliotheca/public/">Bibliotheca</a> <span class="subtitle">A didactic book catalog for studying web programming.</span></h1>
+        <a href="/bibliotheca/public/" class="logo">Bibliotheca</a>
         <nav>
             <a href="/bibliotheca/public/">Home</a>
             <a href="/bibliotheca/public/publishers">Publishers</a>
             <a href="/bibliotheca/public/categories">Categories</a>
             <a href="/bibliotheca/public/authors">Authors</a>
+            <a href="/bibliotheca/public/about" title="About"><i class="fas fa-circle-info"></i></a>
         </nav>
     </header>
     <main>
         <?php require $page; ?>
     </main>
     <footer>
-        <p>Bibliotheca — A didactic project — Copyleft 2026</p>
+        <p>Bibliotheca — A didactic project — Copyleft 2026<?= date('Y') !== '2026' ? '-' . date('Y') : '' ?></p>
     </footer>
 </body>
 </html>

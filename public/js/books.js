@@ -28,6 +28,10 @@ class BooksView {
             titleCell.textContent = book.title;
             row.appendChild(titleCell);
 
+            const authorsCell = document.createElement('td');
+            authorsCell.textContent = book.authors || '';
+            row.appendChild(authorsCell);
+
             const publisherCell = document.createElement('td');
             publisherCell.textContent = book.publisher;
             row.appendChild(publisherCell);

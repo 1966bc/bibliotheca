@@ -3,7 +3,7 @@
 ## What is Bibliotheca?
 
 Bibliotheca is a didactic web application for studying web programming.
-Not just learning — studying. Immersing yourself in the art of code.
+Not just learning — studying. Dive into the art of code.
 
 ## Philosophy
 

@@ -14,10 +14,14 @@ class Book
     public function getAll(): array
     {
         $sql = "SELECT b.book_id, b.title, b.pages, b.published, b.status,
-                       p.name AS publisher, c.name AS category
+                       p.name AS publisher, c.name AS category,
+                       GROUP_CONCAT(a.first_name || ' ' || a.last_name, ', ') AS authors
                 FROM book b
                 JOIN publisher p ON b.publisher_id = p.publisher_id
                 JOIN category c ON b.category_id = c.category_id
+                LEFT JOIN book_author ba ON b.book_id = ba.book_id
+                LEFT JOIN author a ON ba.author_id = a.author_id
+                GROUP BY b.book_id
                 ORDER BY b.title";
 
         return $this->db->fetchAll($sql);

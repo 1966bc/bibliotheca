@@ -7,6 +7,7 @@
         <thead>
             <tr>
                 <th>Title</th>
+                <th>Authors</th>
                 <th>Publisher</th>
                 <th>Category</th>
                 <th>Pages</th>
