@@ -4,7 +4,7 @@
         <input type="hidden" id="author-id" value="">
         <div>
             <label for="author-first-name">First name</label>
-            <input type="text" id="author-first-name" maxlength="100" required>
+            <input type="text" id="author-first-name" maxlength="100" required autofocus>
             <span class="error" id="author-first-name-error"></span>
         </div>
         <div>
@@ -17,8 +17,16 @@
             <input type="date" id="author-birthdate">
             <span class="error" id="author-birthdate-error"></span>
         </div>
+        <div id="status-group" class="checkbox-group" hidden>
+            <label>
+                <input type="checkbox" id="author-status" checked>
+                Active
+            </label>
+            <span class="error" id="author-status-error"></span>
+        </div>
         <div class="form-actions">
             <button type="submit">Save</button>
+            <button type="button" id="btn-delete" class="btn-delete" hidden>Delete</button>
             <a href="/bibliotheca/public/authors">Cancel</a>
         </div>
     </form>

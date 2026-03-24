@@ -15,6 +15,15 @@ class Publisher
     {
         $sql = "SELECT publisher_id, name, status
                 FROM publisher
+                ORDER BY name";
+
+        return $this->db->fetchAll($sql);
+    }
+
+    public function getActive(): array
+    {
+        $sql = "SELECT publisher_id, name, status
+                FROM publisher
                 WHERE status = 1
                 ORDER BY name";
 
@@ -50,21 +59,24 @@ class Publisher
         return $this->db->insert($sql, [':name' => $name]);
     }
 
-    public function update(int $id, string $name): int
+    public function update(int $id, string $name, int $status): int
     {
         $sql = "UPDATE publisher
-                SET name = :name
+                SET name = :name, status = :status
                 WHERE publisher_id = :id";
 
-        return $this->db->update($sql, [':name' => $name, ':id' => $id]);
+        return $this->db->update($sql, [':name' => $name, ':status' => $status, ':id' => $id]);
     }
 
-    public function hasBooks(int $id): bool
+    public function hasBooks(int $id, bool $activeOnly = true): bool
     {
         $sql = "SELECT COUNT(*) AS total
                 FROM book
-                WHERE publisher_id = :id
-                AND status = 1";
+                WHERE publisher_id = :id";
+
+        if ($activeOnly) {
+            $sql .= " AND status = 1";
+        }
 
         $row = $this->db->fetchOne($sql, [':id' => $id]);
 
@@ -73,10 +85,9 @@ class Publisher
 
     public function delete(int $id): int
     {
-        $sql = "UPDATE publisher
-                SET status = 0
+        $sql = "DELETE FROM publisher
                 WHERE publisher_id = :id";
 
-        return $this->db->update($sql, [':id' => $id]);
+        return $this->db->delete($sql, [':id' => $id]);
     }
 }

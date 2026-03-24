@@ -56,6 +56,7 @@ if ($method === 'GET') {
     $firstName = ucwords(strtolower(trim($data['first_name'] ?? '')));
     $lastName = ucwords(strtolower(trim($data['last_name'] ?? '')));
     $birthdate = trim($data['birthdate'] ?? '') ?: null;
+    $status = (int) ($data['status'] ?? 1);
 
     if ($id === 0 || $firstName === '' || $lastName === '') {
         http_response_code(400);
@@ -69,8 +70,14 @@ if ($method === 'GET') {
         exit;
     }
 
-    $author->update($id, $firstName, $lastName, $birthdate);
-    echo json_encode(['author_id' => $id, 'first_name' => $firstName, 'last_name' => $lastName]);
+    if ($status === 0 && $author->hasBooks($id)) {
+        http_response_code(409);
+        echo json_encode(['error' => 'Cannot disable: author has associated books']);
+        exit;
+    }
+
+    $author->update($id, $firstName, $lastName, $birthdate, $status);
+    echo json_encode(['author_id' => $id, 'first_name' => $firstName, 'last_name' => $lastName, 'status' => $status]);
 
 } elseif ($method === 'DELETE') {
 
@@ -83,7 +90,7 @@ if ($method === 'GET') {
         exit;
     }
 
-    if ($author->hasBooks($id)) {
+    if ($author->hasBooks($id, false)) {
         http_response_code(409);
         echo json_encode(['error' => 'Cannot delete: author has associated books']);
         exit;

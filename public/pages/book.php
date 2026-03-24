@@ -4,7 +4,7 @@
         <input type="hidden" id="book-id" value="">
         <div>
             <label for="book-title">Title</label>
-            <input type="text" id="book-title" required>
+            <input type="text" id="book-title" required autofocus>
             <span class="error" id="book-title-error"></span>
         </div>
         <div>
@@ -31,8 +31,16 @@
             <input type="number" id="book-published" min="1450" required>
             <span class="error" id="book-published-error"></span>
         </div>
+        <div id="status-group" class="checkbox-group" hidden>
+            <label>
+                <input type="checkbox" id="book-status" checked>
+                Active
+            </label>
+            <span class="error" id="book-status-error"></span>
+        </div>
         <div class="form-actions">
             <button type="submit">Save</button>
+            <button type="button" id="btn-delete" class="btn-delete" hidden>Delete</button>
             <a href="/bibliotheca/public/books">Cancel</a>
         </div>
     </form>

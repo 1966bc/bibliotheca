@@ -51,6 +51,13 @@ Open `http://localhost/bibliotheca/public/` in your browser.
 | 08 | [Permissions](docs/08_permissions.md)            |
 | 09 | [Debugging](docs/09_debugging.md)                |
 
+## Appendices
+
+| Topic                                        |
+|----------------------------------------------|
+| [How It Works](docs/how_it_works.md)         |
+| [Glossary](docs/glossary.md)                 |
+
 ## Conventions
 
 See [CONVENTIONS.md](CONVENTIONS.md) for coding standards and

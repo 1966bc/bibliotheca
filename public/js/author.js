@@ -9,11 +9,18 @@ class AuthorForm {
         this.inputFirstName = document.querySelector('#author-first-name');
         this.inputLastName = document.querySelector('#author-last-name');
         this.inputBirthdate = document.querySelector('#author-birthdate');
+        this.inputStatus = document.querySelector('#author-status');
+        this.statusGroup = document.querySelector('#status-group');
+        this.btnDelete = document.querySelector('#btn-delete');
         this.title = document.querySelector('#form-title');
 
         this.form.addEventListener('submit', (e) => {
             e.preventDefault();
             this.save();
+        });
+
+        this.btnDelete.addEventListener('click', () => {
+            this.remove();
         });
 
         this.checkEdit();
@@ -36,6 +43,9 @@ class AuthorForm {
         this.inputFirstName.value = author.first_name;
         this.inputLastName.value = author.last_name;
         this.inputBirthdate.value = author.birthdate || '';
+        this.inputStatus.checked = author.status === 1;
+        this.statusGroup.hidden = false;
+        this.btnDelete.hidden = false;
         this.title.textContent = 'Edit Author';
         this.inputFirstName.focus();
     }
@@ -115,6 +125,7 @@ class AuthorForm {
             });
         } else {
             payload.author_id = parseInt(id);
+            payload.status = this.inputStatus.checked ? 1 : 0;
             response = await fetch(this.API, {
                 method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
@@ -125,6 +136,28 @@ class AuthorForm {
         if (!response.ok) {
             const result = await response.json();
             this.showError('author-last-name', result.error);
+            return;
+        }
+
+        window.location.href = '/bibliotheca/public/authors';
+    }
+
+    async remove() {
+        if (!confirm('Permanently delete this author? This cannot be undone.')) {
+            return;
+        }
+
+        const id = this.inputId.value;
+
+        const response = await fetch(this.API, {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({author_id: parseInt(id)}),
+        });
+
+        if (!response.ok) {
+            const result = await response.json();
+            alert(result.error);
             return;
         }
 

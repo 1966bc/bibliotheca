@@ -11,11 +11,18 @@ class BookForm {
         this.selectCategory = document.querySelector('#book-category');
         this.inputPages = document.querySelector('#book-pages');
         this.inputPublished = document.querySelector('#book-published');
+        this.inputStatus = document.querySelector('#book-status');
+        this.statusGroup = document.querySelector('#status-group');
+        this.btnDelete = document.querySelector('#btn-delete');
         this.title = document.querySelector('#form-title');
 
         this.form.addEventListener('submit', (e) => {
             e.preventDefault();
             this.save();
+        });
+
+        this.btnDelete.addEventListener('click', () => {
+            this.remove();
         });
 
         // Allow only digits in numeric fields
@@ -38,7 +45,7 @@ class BookForm {
     }
 
     async loadSelects() {
-        const publisherRes = await fetch('/bibliotheca/public/api/publishers.php');
+        const publisherRes = await fetch('/bibliotheca/public/api/publishers.php?active=1');
         const publishers = await publisherRes.json();
 
         for (const publisher of publishers) {
@@ -48,7 +55,7 @@ class BookForm {
             this.selectPublisher.appendChild(option);
         }
 
-        const categoryRes = await fetch('/bibliotheca/public/api/categories.php');
+        const categoryRes = await fetch('/bibliotheca/public/api/categories.php?active=1');
         const categories = await categoryRes.json();
 
         for (const category of categories) {
@@ -80,6 +87,9 @@ class BookForm {
         this.selectCategory.value = book.category_id;
         this.inputPages.value = book.pages || '';
         this.inputPublished.value = book.published || '';
+        this.inputStatus.checked = book.status === 1;
+        this.statusGroup.hidden = false;
+        this.btnDelete.hidden = false;
         this.title.textContent = 'Edit Book';
         this.inputTitle.focus();
     }
@@ -166,19 +176,50 @@ class BookForm {
             published: published,
         };
 
+        let response;
+
         if (id === '') {
-            await fetch(this.API, {
+            response = await fetch(this.API, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(payload),
             });
         } else {
             payload.book_id = parseInt(id);
-            await fetch(this.API, {
+            payload.status = this.inputStatus.checked ? 1 : 0;
+            response = await fetch(this.API, {
                 method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(payload),
             });
+        }
+
+        if (!response.ok) {
+            const result = await response.json();
+            this.showError('book-title', result.error);
+            return;
+        }
+
+        window.location.href = '/bibliotheca/public/books';
+    }
+
+    async remove() {
+        if (!confirm('Permanently delete this book? This cannot be undone.')) {
+            return;
+        }
+
+        const id = this.inputId.value;
+
+        const response = await fetch(this.API, {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({book_id: parseInt(id)}),
+        });
+
+        if (!response.ok) {
+            const result = await response.json();
+            alert(result.error);
+            return;
         }
 
         window.location.href = '/bibliotheca/public/books';

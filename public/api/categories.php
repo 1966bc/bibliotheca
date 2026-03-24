@@ -23,6 +23,8 @@ if ($method === 'GET') {
             http_response_code(404);
             echo json_encode(['error' => 'Not found']);
         }
+    } elseif (isset($_GET['active'])) {
+        echo json_encode($category->getActive());
     } else {
         echo json_encode($category->getAll());
     }
@@ -52,6 +54,7 @@ if ($method === 'GET') {
     $data = json_decode(file_get_contents('php://input'), true);
     $id = (int) ($data['category_id'] ?? 0);
     $name = ucwords(strtolower(trim($data['name'] ?? '')));
+    $status = (int) ($data['status'] ?? 1);
 
     if ($id === 0 || $name === '') {
         http_response_code(400);
@@ -65,8 +68,14 @@ if ($method === 'GET') {
         exit;
     }
 
-    $category->update($id, $name);
-    echo json_encode(['category_id' => $id, 'name' => $name]);
+    if ($status === 0 && $category->hasBooks($id)) {
+        http_response_code(409);
+        echo json_encode(['error' => 'Cannot disable: category has associated books']);
+        exit;
+    }
+
+    $category->update($id, $name, $status);
+    echo json_encode(['category_id' => $id, 'name' => $name, 'status' => $status]);
 
 } elseif ($method === 'DELETE') {
 
@@ -79,7 +88,7 @@ if ($method === 'GET') {
         exit;
     }
 
-    if ($category->hasBooks($id)) {
+    if ($category->hasBooks($id, false)) {
         http_response_code(409);
         echo json_encode(['error' => 'Cannot delete: category has associated books']);
         exit;

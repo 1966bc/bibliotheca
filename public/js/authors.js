@@ -20,6 +20,10 @@ class AuthorsView {
         for (const author of authors) {
             const row = document.createElement('tr');
 
+            if (author.status === 0) {
+                row.className = 'row-disabled';
+            }
+
             const nameCell = document.createElement('td');
             nameCell.textContent = author.last_name + ', ' + author.first_name;
             row.appendChild(nameCell);
@@ -39,38 +43,10 @@ class AuthorsView {
             });
             actionsDiv.appendChild(editBtn);
 
-            const deleteBtn = document.createElement('button');
-            deleteBtn.textContent = 'Delete';
-            deleteBtn.className = 'btn-delete';
-            deleteBtn.addEventListener('click', () => {
-                this.remove(author.author_id);
-            });
-            actionsDiv.appendChild(deleteBtn);
             actionsCell.appendChild(actionsDiv);
-
             row.appendChild(actionsCell);
             this.table.appendChild(row);
         }
-    }
-
-    async remove(id) {
-        if (!confirm('Delete this author?')) {
-            return;
-        }
-
-        const response = await fetch(this.API, {
-            method: 'DELETE',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({author_id: id}),
-        });
-
-        if (!response.ok) {
-            const result = await response.json();
-            alert(result.error);
-            return;
-        }
-
-        this.load();
     }
 }
 

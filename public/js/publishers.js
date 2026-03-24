@@ -20,6 +20,10 @@ class PublishersView {
         for (const publisher of publishers) {
             const row = document.createElement('tr');
 
+            if (publisher.status === 0) {
+                row.className = 'row-disabled';
+            }
+
             const nameCell = document.createElement('td');
             nameCell.textContent = publisher.name;
             row.appendChild(nameCell);
@@ -35,38 +39,10 @@ class PublishersView {
             });
             actionsDiv.appendChild(editBtn);
 
-            const deleteBtn = document.createElement('button');
-            deleteBtn.textContent = 'Delete';
-            deleteBtn.className = 'btn-delete';
-            deleteBtn.addEventListener('click', () => {
-                this.remove(publisher.publisher_id);
-            });
-            actionsDiv.appendChild(deleteBtn);
             actionsCell.appendChild(actionsDiv);
-
             row.appendChild(actionsCell);
             this.table.appendChild(row);
         }
-    }
-
-    async remove(id) {
-        if (!confirm('Delete this publisher?')) {
-            return;
-        }
-
-        const response = await fetch(this.API, {
-            method: 'DELETE',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({publisher_id: id}),
-        });
-
-        if (!response.ok) {
-            const result = await response.json();
-            alert(result.error);
-            return;
-        }
-
-        this.load();
     }
 }
 

@@ -55,6 +55,7 @@ if ($method === 'GET') {
     $title = trim($data['title'] ?? '');
     $pages = isset($data['pages']) && $data['pages'] !== '' ? (int) $data['pages'] : null;
     $published = isset($data['published']) && $data['published'] !== '' ? (int) $data['published'] : null;
+    $status = (int) ($data['status'] ?? 1);
 
     if ($id === 0 || $publisherId === 0 || $categoryId === 0 || $title === '') {
         http_response_code(400);
@@ -62,8 +63,8 @@ if ($method === 'GET') {
         exit;
     }
 
-    $book->update($id, $publisherId, $categoryId, $title, $pages, $published);
-    echo json_encode(['book_id' => $id, 'title' => $title]);
+    $book->update($id, $publisherId, $categoryId, $title, $pages, $published, $status);
+    echo json_encode(['book_id' => $id, 'title' => $title, 'status' => $status]);
 
 } elseif ($method === 'DELETE') {
 

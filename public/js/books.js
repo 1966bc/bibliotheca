@@ -20,6 +20,10 @@ class BooksView {
         for (const book of books) {
             const row = document.createElement('tr');
 
+            if (book.status === 0) {
+                row.className = 'row-disabled';
+            }
+
             const titleCell = document.createElement('td');
             titleCell.textContent = book.title;
             row.appendChild(titleCell);
@@ -51,38 +55,10 @@ class BooksView {
             });
             actionsDiv.appendChild(editBtn);
 
-            const deleteBtn = document.createElement('button');
-            deleteBtn.textContent = 'Delete';
-            deleteBtn.className = 'btn-delete';
-            deleteBtn.addEventListener('click', () => {
-                this.remove(book.book_id);
-            });
-            actionsDiv.appendChild(deleteBtn);
             actionsCell.appendChild(actionsDiv);
-
             row.appendChild(actionsCell);
             this.table.appendChild(row);
         }
-    }
-
-    async remove(id) {
-        if (!confirm('Delete this book?')) {
-            return;
-        }
-
-        const response = await fetch(this.API, {
-            method: 'DELETE',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({book_id: id}),
-        });
-
-        if (!response.ok) {
-            const result = await response.json();
-            alert(result.error);
-            return;
-        }
-
-        this.load();
     }
 }
 

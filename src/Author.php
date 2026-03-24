@@ -15,7 +15,6 @@ class Author
     {
         $sql = "SELECT author_id, first_name, last_name, birthdate, status
                 FROM author
-                WHERE status = 1
                 ORDER BY last_name, first_name";
 
         return $this->db->fetchAll($sql);
@@ -60,29 +59,34 @@ class Author
         ]);
     }
 
-    public function update(int $id, string $firstName, string $lastName, ?string $birthdate): int
+    public function update(int $id, string $firstName, string $lastName, ?string $birthdate, int $status): int
     {
         $sql = "UPDATE author
                 SET first_name = :first_name,
                     last_name = :last_name,
-                    birthdate = :birthdate
+                    birthdate = :birthdate,
+                    status = :status
                 WHERE author_id = :id";
 
         return $this->db->update($sql, [
             ':first_name' => $firstName,
             ':last_name'  => $lastName,
             ':birthdate'  => $birthdate,
+            ':status'     => $status,
             ':id'         => $id,
         ]);
     }
 
-    public function hasBooks(int $id): bool
+    public function hasBooks(int $id, bool $activeOnly = true): bool
     {
         $sql = "SELECT COUNT(*) AS total
                 FROM book_author ba
                 JOIN book b ON ba.book_id = b.book_id
-                WHERE ba.author_id = :id
-                AND b.status = 1";
+                WHERE ba.author_id = :id";
+
+        if ($activeOnly) {
+            $sql .= " AND b.status = 1";
+        }
 
         $row = $this->db->fetchOne($sql, [':id' => $id]);
 
@@ -91,10 +95,9 @@ class Author
 
     public function delete(int $id): int
     {
-        $sql = "UPDATE author
-                SET status = 0
+        $sql = "DELETE FROM author
                 WHERE author_id = :id";
 
-        return $this->db->update($sql, [':id' => $id]);
+        return $this->db->delete($sql, [':id' => $id]);
     }
 }
