@@ -29,9 +29,7 @@ HTTP method → Controller → Model → SQL.
 | Create    | POST   | INSERT   |
 | Read      | GET    | SELECT   |
 | Update    | PUT    | UPDATE   |
-| Delete    | DELETE | UPDATE*  |
-
-*Soft delete — see below.
+| Delete    | DELETE | DELETE   |
 
 **Controller** —
 The PHP script in `public/api/` that receives an HTTP request,
@@ -180,14 +178,35 @@ An Apache directive in `.htaccess` that transforms URLs before they
 reach PHP. The rule `^(.*)$ index.php?route=$1` captures the URL
 path and passes it as a parameter to the router.
 
+**REST (Representational State Transfer)** —
+An architectural style for web APIs, defined by Roy Fielding in 2000.
+The idea is simple: use what HTTP already gives you.
+- **Resources have URLs.** Each entity lives at its own address:
+  `/api/books.php`, `/api/publishers.php`.
+- **Verbs come from HTTP.** The method *is* the action: GET reads,
+  POST creates, PUT updates, DELETE removes. No need for
+  `?action=delete` in the URL.
+- **Responses are representations.** The server returns data (JSON),
+  not pages. The client decides how to display it.
+- **Each request is self-contained.** The server does not remember
+  previous requests. Every call carries all the information it needs.
+
+Before REST, web services used complex protocols like SOAP — XML-heavy,
+with action names buried inside the message body. REST replaced all of
+that with what the web already had: URLs for nouns, HTTP methods for
+verbs, and JSON for data. Bibliotheca follows this style.
+
 **SoC (Separation of Concerns)** —
 Each part of the code has one job. Backend serves data, frontend
 presents it. Model queries, Controller routes, View displays.
 
-**Soft delete** —
-Instead of removing a row from the database (`DELETE FROM`), we
-set `status = 0`. The record is invisible to the application but
-still exists. This prevents data loss and orphan references.
+**Soft delete vs hard delete** —
+Two strategies for removing data. Soft delete sets a flag
+(`status = 0`) — the record stays in the database but appears
+disabled. Hard delete runs `DELETE FROM` — the record is gone.
+Bibliotheca uses both: the status toggle disables a record
+(greyed out in the list), while the Delete button removes it
+permanently.
 
 **SQL injection** —
 An attack where user input is inserted into a SQL query, changing
