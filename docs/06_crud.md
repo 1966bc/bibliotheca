@@ -48,7 +48,8 @@ PUT    /api/books.php   → update
 DELETE /api/books.php   → delete
 ```
 
-Same URL, different verb. The method *is* the intention — no extra
+Same URL, different verb. *In the beginning was the Verb* — and in
+REST, the verb is what gives meaning to every request. No extra
 parameters, no ambiguity. Anyone reading the code knows immediately
 what the request does.
 
