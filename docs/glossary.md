@@ -36,6 +36,13 @@ The PHP script in `public/api/` that receives an HTTP request,
 calls the Model, and returns JSON. It decides *what to do* but
 does not know *how to query* or *how to display*.
 
+**curl** —
+A command-line tool for making HTTP requests. Useful for testing
+APIs without a browser. In Bibliotheca, `curl` lets you call the
+API endpoints directly from the terminal:
+`curl http://localhost/bibliotheca/public/api/publishers.php`.
+The name stands for "Client URL".
+
 **DDL / DML / DQL** —
 Three categories of SQL:
 - **DDL** (Data Definition Language) — `CREATE TABLE`, `ALTER TABLE`
