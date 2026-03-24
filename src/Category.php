@@ -31,11 +31,11 @@ class Category
      */
     public function getAll(): array
     {
-        $sql = "SELECT category_id, name, status
-                FROM category
-                ORDER BY name";
-
-        return $this->db->fetchAll($sql);
+        return $this->db->query(
+            "SELECT category_id, name, status
+             FROM category
+             ORDER BY name"
+        );
     }
 
     /**
@@ -47,12 +47,12 @@ class Category
      */
     public function getActive(): array
     {
-        $sql = "SELECT category_id, name, status
-                FROM category
-                WHERE status = 1
-                ORDER BY name";
-
-        return $this->db->fetchAll($sql);
+        return $this->db->query(
+            "SELECT category_id, name, status
+             FROM category
+             WHERE status = 1
+             ORDER BY name"
+        );
     }
 
     /**

@@ -6,8 +6,14 @@ declare(strict_types=1);
  * Database Management System — PDO wrapper for SQLite.
  *
  * Provides a thin abstraction over PDO with convenience methods for
- * common database operations (fetch, insert, update, delete).
- * All queries use prepared statements with named parameters to prevent SQL injection.
+ * common database operations (query, fetch, insert, update, delete).
+ *
+ * PDO offers two ways to execute SQL:
+ * - query()   — for fixed SQL with no parameters (e.g. SELECT * FROM publisher)
+ * - prepare() + execute() — for SQL with user input bound via named parameters
+ *
+ * This class exposes both so the developer learns when to use each.
+ * Rule of thumb: if the SQL has parameters, always use prepare().
  *
  * Usage:
  *     $db = new DBMS('/path/to/database.db');
@@ -38,6 +44,84 @@ class DBMS
         ]);
 
         $this->pdo->exec('PRAGMA foreign_keys = ON');
+    }
+
+    /**
+     * Execute a fixed SQL query with no parameters.
+     *
+     * Use this for simple queries where no user input is involved.
+     * For queries with parameters, use fetchOne() or fetchAll() instead,
+     * which use prepared statements.
+     *
+     * @param  string $sql SQL query without placeholders
+     * @return array       Array of associative arrays (one per row)
+     */
+    public function query(string $sql): array
+    {
+        if (preg_match('/:[a-zA-Z_]/', $sql)) {
+            throw new \InvalidArgumentException(
+                'query() does not accept parameters. Use fetchAll() or fetchOne() with prepared statements instead.'
+            );
+        }
+
+        $stmt = $this->pdo->query($sql);
+
+        return $stmt->fetchAll();
+    }
+
+    /**
+     * Execute a SQL statement that does not return rows.
+     *
+     * Use this for DDL statements (CREATE TABLE, DROP TABLE) and
+     * commands like PRAGMA. Returns the number of affected rows,
+     * which is 0 for DDL.
+     *
+     * @param  string $sql SQL statement without placeholders
+     * @return int         Number of affected rows
+     */
+    public function exec(string $sql): int
+    {
+        if (preg_match('/:[a-zA-Z_]/', $sql)) {
+            throw new \InvalidArgumentException(
+                'exec() does not accept parameters. Use insert(), update() or delete() with prepared statements instead.'
+            );
+        }
+
+        return (int) $this->pdo->exec($sql);
+    }
+
+    /**
+     * Begin a database transaction.
+     *
+     * All statements after this call will be held in a pending state
+     * until commit() is called. If an error occurs, call rollBack()
+     * to undo everything since beginTransaction().
+     *
+     * @return void
+     */
+    public function beginTransaction(): void
+    {
+        $this->pdo->beginTransaction();
+    }
+
+    /**
+     * Commit the current transaction, making all changes permanent.
+     *
+     * @return void
+     */
+    public function commit(): void
+    {
+        $this->pdo->commit();
+    }
+
+    /**
+     * Roll back the current transaction, undoing all changes.
+     *
+     * @return void
+     */
+    public function rollBack(): void
+    {
+        $this->pdo->rollBack();
     }
 
     /**

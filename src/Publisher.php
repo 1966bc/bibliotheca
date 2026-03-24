@@ -31,11 +31,11 @@ class Publisher
      */
     public function getAll(): array
     {
-        $sql = "SELECT publisher_id, name, status
-                FROM publisher
-                ORDER BY name";
-
-        return $this->db->fetchAll($sql);
+        return $this->db->query(
+            "SELECT publisher_id, name, status
+             FROM publisher
+             ORDER BY name"
+        );
     }
 
     /**
@@ -48,12 +48,12 @@ class Publisher
      */
     public function getActive(): array
     {
-        $sql = "SELECT publisher_id, name, status
-                FROM publisher
-                WHERE status = 1
-                ORDER BY name";
-
-        return $this->db->fetchAll($sql);
+        return $this->db->query(
+            "SELECT publisher_id, name, status
+             FROM publisher
+             WHERE status = 1
+             ORDER BY name"
+        );
     }
 
     /**

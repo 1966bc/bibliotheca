@@ -106,6 +106,62 @@ $t->test('DBMS: delete returns affected row count', function () use ($t) {
     $t->assertEqual(1, $count);
 });
 
+$t->test('DBMS: query returns rows without parameters', function () use ($t) {
+    $db = createTestDb();
+    $db->insert("INSERT INTO publisher (name) VALUES (:name)", [':name' => 'Adelphi']);
+    $db->insert("INSERT INTO publisher (name) VALUES (:name)", [':name' => 'Einaudi']);
+    $rows = $db->query("SELECT name FROM publisher ORDER BY name");
+    $t->assertCount(2, $rows);
+    $t->assertEqual('Adelphi', $rows[0]['name']);
+});
+
+$t->test('DBMS: query rejects SQL with named parameters', function () use ($t) {
+    $db = createTestDb();
+    $caught = false;
+    try {
+        $db->query("SELECT * FROM publisher WHERE name = :name");
+    } catch (\InvalidArgumentException $e) {
+        $caught = true;
+    }
+    $t->assertTrue($caught);
+});
+
+$t->test('DBMS: exec executes DDL statements', function () use ($t) {
+    $db = createTestDb();
+    $db->exec("CREATE TABLE test_exec (id INTEGER PRIMARY KEY)");
+    $rows = $db->query("SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'test_exec'");
+    $t->assertCount(1, $rows);
+});
+
+$t->test('DBMS: exec rejects SQL with named parameters', function () use ($t) {
+    $db = createTestDb();
+    $caught = false;
+    try {
+        $db->exec("DELETE FROM publisher WHERE name = :name");
+    } catch (\InvalidArgumentException $e) {
+        $caught = true;
+    }
+    $t->assertTrue($caught);
+});
+
+$t->test('DBMS: transaction commit persists changes', function () use ($t) {
+    $db = createTestDb();
+    $db->beginTransaction();
+    $db->insert("INSERT INTO publisher (name) VALUES (:name)", [':name' => 'Committed']);
+    $db->commit();
+    $row = $db->fetchOne("SELECT name FROM publisher WHERE name = :name", [':name' => 'Committed']);
+    $t->assertNotNull($row);
+});
+
+$t->test('DBMS: transaction rollBack discards changes', function () use ($t) {
+    $db = createTestDb();
+    $db->beginTransaction();
+    $db->insert("INSERT INTO publisher (name) VALUES (:name)", [':name' => 'RolledBack']);
+    $db->rollBack();
+    $row = $db->fetchOne("SELECT name FROM publisher WHERE name = :name", [':name' => 'RolledBack']);
+    $t->assertNull($row);
+});
+
 // ---------------------------------------------------------------------------
 // Publisher tests
 // ---------------------------------------------------------------------------

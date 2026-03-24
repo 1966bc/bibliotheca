@@ -32,11 +32,11 @@ class Author
      */
     public function getAll(): array
     {
-        $sql = "SELECT author_id, first_name, last_name, birthdate, status
-                FROM author
-                ORDER BY last_name, first_name";
-
-        return $this->db->fetchAll($sql);
+        return $this->db->query(
+            "SELECT author_id, first_name, last_name, birthdate, status
+             FROM author
+             ORDER BY last_name, first_name"
+        );
     }
 
     /**
