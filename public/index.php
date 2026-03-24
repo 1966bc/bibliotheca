@@ -1,5 +1,22 @@
 <?php
 
+/**
+ * Front controller — single entry point for all page requests.
+ *
+ * All URLs are rewritten to this file by .htaccess. The `?route=` GET parameter
+ * determines which page template to load from `pages/`.
+ *
+ * Flow:
+ *   1. Extract and sanitize the route parameter
+ *   2. Validate against the allowed routes whitelist
+ *   3. Load the corresponding page template inside the HTML layout
+ *
+ * If the route is not in the whitelist or the file does not exist,
+ * a 404 error page is served.
+ *
+ * @see .htaccess URL rewriting rules
+ */
+
 declare(strict_types=1);
 
 $route = $_GET['route'] ?? 'home';

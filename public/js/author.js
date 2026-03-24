@@ -1,7 +1,18 @@
 'use strict';
 
+/**
+ * Author add/edit form — handles creating and updating authors.
+ *
+ * Instantiated automatically on the author form page.
+ * Detects edit mode from the `?id=` URL parameter.
+ * Validates first name, last name (required), and birthdate (optional, year >= 1000, not future).
+ * Sends POST (create) or PUT (update) to the REST API.
+ */
 class AuthorForm {
 
+    /**
+     * Initialize form references, bind event listeners, and check for edit mode.
+     */
     constructor() {
         this.API = '/bibliotheca/public/api/authors.php';
         this.form = document.querySelector('#author-form');
@@ -26,6 +37,9 @@ class AuthorForm {
         this.checkEdit();
     }
 
+    /**
+     * Check if the URL contains an `?id=` parameter to enter edit mode.
+     */
     checkEdit() {
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id');
@@ -35,6 +49,12 @@ class AuthorForm {
         }
     }
 
+    /**
+     * Fetch an author by ID and populate the form fields for editing.
+     *
+     * @param {number} id - Author ID to load
+     * @returns {Promise<void>}
+     */
     async loadRecord(id) {
         const response = await fetch(this.API + '?id=' + id);
         const author = await response.json();
@@ -50,6 +70,16 @@ class AuthorForm {
         this.inputFirstName.focus();
     }
 
+    /**
+     * Validate the form fields.
+     *
+     * Rules:
+     *   - First name: required
+     *   - Last name: required
+     *   - Birthdate: optional, but if set, year must be >= 1000 and not in the future
+     *
+     * @returns {boolean} True if all validations pass
+     */
     validate() {
         this.clearErrors();
         let valid = true;
@@ -80,6 +110,12 @@ class AuthorForm {
         return valid;
     }
 
+    /**
+     * Display a validation error on a specific form field.
+     *
+     * @param {string} fieldId - The DOM ID of the input element
+     * @param {string} message - The error message to display
+     */
     showError(fieldId, message) {
         const input = document.querySelector('#' + fieldId);
         const error = document.querySelector('#' + fieldId + '-error');
@@ -87,6 +123,9 @@ class AuthorForm {
         error.textContent = message;
     }
 
+    /**
+     * Clear all validation errors and remove 'invalid' CSS classes.
+     */
     clearErrors() {
         const errors = this.form.querySelectorAll('.error');
         for (const error of errors) {
@@ -99,6 +138,12 @@ class AuthorForm {
         }
     }
 
+    /**
+     * Save the author: POST for new, PUT for existing.
+     * On success, redirects to the authors list.
+     *
+     * @returns {Promise<void>}
+     */
     async save() {
         if (!this.validate()) {
             return;
@@ -142,6 +187,11 @@ class AuthorForm {
         window.location.href = '/bibliotheca/public/authors';
     }
 
+    /**
+     * Delete the author after user confirmation.
+     *
+     * @returns {Promise<void>}
+     */
     async remove() {
         if (!confirm('Permanently delete this author? This cannot be undone.')) {
             return;

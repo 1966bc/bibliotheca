@@ -1,19 +1,42 @@
 'use strict';
 
+/**
+ * Authors list view — fetches and renders the authors table.
+ *
+ * Instantiated automatically when the authors list page loads.
+ * Fetches all authors from the API and renders them as table rows
+ * with columns for name (Last, First), birthdate, and actions.
+ */
 class AuthorsView {
 
+    /**
+     * Initialize the view, grab the table body reference, and load data.
+     */
     constructor() {
         this.API = '/bibliotheca/public/api/authors.php';
         this.table = document.querySelector('#author-table tbody');
         this.load();
     }
 
+    /**
+     * Fetch all authors from the REST API.
+     *
+     * @returns {Promise<void>}
+     */
     async load() {
         const response = await fetch(this.API);
         const authors = await response.json();
         this.render(authors);
     }
 
+    /**
+     * Render author rows into the table body.
+     *
+     * Each row shows "Last, First" name, birthdate, and an Edit button.
+     * Disabled authors (status === 0) get the 'row-disabled' class.
+     *
+     * @param {Array<Object>} authors - Array of author objects from the API
+     */
     render(authors) {
         this.table.textContent = '';
 

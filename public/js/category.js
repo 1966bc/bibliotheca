@@ -1,7 +1,18 @@
 'use strict';
 
+/**
+ * Category add/edit form — handles creating and updating categories.
+ *
+ * Instantiated automatically on the category form page.
+ * Detects edit mode from the `?id=` URL parameter.
+ * Validates input client-side, then sends POST (create) or PUT (update)
+ * requests to the REST API. Also handles hard-delete with confirmation.
+ */
 class CategoryForm {
 
+    /**
+     * Initialize form references, bind event listeners, and check for edit mode.
+     */
     constructor() {
         this.API = '/bibliotheca/public/api/categories.php';
         this.form = document.querySelector('#category-form');
@@ -24,6 +35,10 @@ class CategoryForm {
         this.checkEdit();
     }
 
+    /**
+     * Check if the URL contains an `?id=` parameter to enter edit mode.
+     * If present, loads the existing record into the form.
+     */
     checkEdit() {
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id');
@@ -33,6 +48,12 @@ class CategoryForm {
         }
     }
 
+    /**
+     * Fetch a category by ID and populate the form fields for editing.
+     *
+     * @param {number} id - Category ID to load
+     * @returns {Promise<void>}
+     */
     async loadRecord(id) {
         const response = await fetch(this.API + '?id=' + id);
         const category = await response.json();
@@ -46,6 +67,11 @@ class CategoryForm {
         this.inputName.focus();
     }
 
+    /**
+     * Validate the form: name must not be empty.
+     *
+     * @returns {boolean} True if the form is valid
+     */
     validate() {
         this.clearErrors();
 
@@ -57,6 +83,12 @@ class CategoryForm {
         return true;
     }
 
+    /**
+     * Display a validation error on a specific form field.
+     *
+     * @param {string} fieldId - The DOM ID of the input element
+     * @param {string} message - The error message to display
+     */
     showError(fieldId, message) {
         const input = document.querySelector('#' + fieldId);
         const error = document.querySelector('#' + fieldId + '-error');
@@ -64,6 +96,9 @@ class CategoryForm {
         error.textContent = message;
     }
 
+    /**
+     * Clear all validation errors and remove 'invalid' CSS classes.
+     */
     clearErrors() {
         const errors = this.form.querySelectorAll('.error');
         for (const error of errors) {
@@ -76,6 +111,12 @@ class CategoryForm {
         }
     }
 
+    /**
+     * Save the category: POST for new, PUT for existing.
+     * On success, redirects to the categories list.
+     *
+     * @returns {Promise<void>}
+     */
     async save() {
         if (!this.validate()) {
             return;
@@ -112,6 +153,11 @@ class CategoryForm {
         window.location.href = '/bibliotheca/public/categories';
     }
 
+    /**
+     * Delete the category after user confirmation.
+     *
+     * @returns {Promise<void>}
+     */
     async remove() {
         if (!confirm('Permanently delete this category? This cannot be undone.')) {
             return;

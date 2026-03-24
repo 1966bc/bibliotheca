@@ -1,7 +1,20 @@
 'use strict';
 
+/**
+ * Book add/edit form — handles creating and updating books.
+ *
+ * Instantiated automatically on the book form page.
+ * Detects edit mode from the `?id=` URL parameter.
+ * Loads publisher and category dropdowns from the API (active records only),
+ * applies numeric-only input filters on pages/published fields,
+ * validates all fields, and sends POST/PUT/DELETE to the REST API.
+ */
 class BookForm {
 
+    /**
+     * Initialize form references, bind event listeners, set up numeric filters,
+     * and start loading the select dropdowns.
+     */
     constructor() {
         this.API = '/bibliotheca/public/api/books.php';
         this.form = document.querySelector('#book-form');
@@ -44,6 +57,12 @@ class BookForm {
         this.loadSelects();
     }
 
+    /**
+     * Fetch active publishers and categories from the API and populate
+     * their respective `<select>` dropdowns. Then check for edit mode.
+     *
+     * @returns {Promise<void>}
+     */
     async loadSelects() {
         const publisherRes = await fetch('/bibliotheca/public/api/publishers.php?active=1');
         const publishers = await publisherRes.json();
@@ -68,6 +87,9 @@ class BookForm {
         this.checkEdit();
     }
 
+    /**
+     * Check if the URL contains an `?id=` parameter to enter edit mode.
+     */
     checkEdit() {
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id');
@@ -77,6 +99,12 @@ class BookForm {
         }
     }
 
+    /**
+     * Fetch a book by ID and populate the form fields for editing.
+     *
+     * @param {number} id - Book ID to load
+     * @returns {Promise<void>}
+     */
     async loadRecord(id) {
         const response = await fetch(this.API + '?id=' + id);
         const book = await response.json();
@@ -94,6 +122,18 @@ class BookForm {
         this.inputTitle.focus();
     }
 
+    /**
+     * Validate all form fields.
+     *
+     * Rules:
+     *   - Title: required
+     *   - Publisher: required (select)
+     *   - Category: required (select)
+     *   - Pages: required, between 1 and 99999
+     *   - Published: required, between 1450 (invention of printing press) and next year
+     *
+     * @returns {boolean} True if all validations pass
+     */
     validate() {
         this.clearErrors();
         let valid = true;
@@ -137,6 +177,12 @@ class BookForm {
         return valid;
     }
 
+    /**
+     * Display a validation error on a specific form field.
+     *
+     * @param {string} fieldId - The DOM ID of the input/select element
+     * @param {string} message - The error message to display
+     */
     showError(fieldId, message) {
         const input = document.querySelector('#' + fieldId);
         const error = document.querySelector('#' + fieldId + '-error');
@@ -144,6 +190,9 @@ class BookForm {
         error.textContent = message;
     }
 
+    /**
+     * Clear all validation errors and remove 'invalid' CSS classes.
+     */
     clearErrors() {
         const errors = this.form.querySelectorAll('.error');
         for (const error of errors) {
@@ -156,6 +205,12 @@ class BookForm {
         }
     }
 
+    /**
+     * Save the book: POST for new, PUT for existing.
+     * On success, redirects to the books list.
+     *
+     * @returns {Promise<void>}
+     */
     async save() {
         if (!this.validate()) {
             return;
@@ -203,6 +258,12 @@ class BookForm {
         window.location.href = '/bibliotheca/public/books';
     }
 
+    /**
+     * Delete the book after user confirmation.
+     * Also removes associated book_author junction records on the server side.
+     *
+     * @returns {Promise<void>}
+     */
     async remove() {
         if (!confirm('Permanently delete this book? This cannot be undone.')) {
             return;

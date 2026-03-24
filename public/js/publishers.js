@@ -1,19 +1,42 @@
 'use strict';
 
+/**
+ * Publishers list view — fetches and renders the publishers table.
+ *
+ * Instantiated automatically when the publishers list page loads.
+ * Fetches all publishers from the API and renders them as table rows,
+ * marking disabled publishers with the 'row-disabled' CSS class.
+ */
 class PublishersView {
 
+    /**
+     * Initialize the view, grab the table body reference, and load data.
+     */
     constructor() {
         this.API = '/bibliotheca/public/api/publishers.php';
         this.table = document.querySelector('#publisher-table tbody');
         this.load();
     }
 
+    /**
+     * Fetch all publishers from the REST API.
+     *
+     * @returns {Promise<void>}
+     */
     async load() {
         const response = await fetch(this.API);
         const publishers = await response.json();
         this.render(publishers);
     }
 
+    /**
+     * Render publisher rows into the table body.
+     *
+     * Each row contains the publisher name and an Edit button.
+     * Disabled publishers (status === 0) get the 'row-disabled' class.
+     *
+     * @param {Array<Object>} publishers - Array of publisher objects from the API
+     */
     render(publishers) {
         this.table.textContent = '';
 

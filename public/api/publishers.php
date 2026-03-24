@@ -1,5 +1,26 @@
 <?php
 
+/**
+ * Publisher REST API endpoint.
+ *
+ * Handles HTTP methods:
+ *   GET    — List all publishers, active only (?active=1), or one by ID (?id=N)
+ *   POST   — Create a new publisher (body: {name})
+ *   PUT    — Update a publisher (body: {publisher_id, name, status})
+ *   DELETE — Hard-delete a publisher (body: {publisher_id})
+ *
+ * Responses are JSON with appropriate HTTP status codes:
+ *   200 OK, 400 Bad Request, 404 Not Found, 405 Method Not Allowed, 409 Conflict
+ *
+ * Business rules:
+ *   - Names are normalized with ucwords(strtolower()) before storage
+ *   - Duplicate names (case-insensitive) are rejected with 409
+ *   - Cannot disable a publisher that has active books (409)
+ *   - Cannot delete a publisher that has any books at all (409)
+ *
+ * @see Publisher The model class used for database operations
+ */
+
 declare(strict_types=1);
 
 require_once __DIR__ . '/../../src/DBMS.php';

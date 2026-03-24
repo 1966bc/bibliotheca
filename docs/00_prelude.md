@@ -50,4 +50,4 @@ sudo apt install apache2 php libapache2-mod-php php-sqlite3
 
 ## Let the show begin.
 
-[Chapter 01 — Introduction](01_introduction.md)
+[Chapter 00 — Introduction](01_introduction.md)

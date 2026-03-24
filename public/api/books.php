@@ -1,5 +1,25 @@
 <?php
 
+/**
+ * Book REST API endpoint.
+ *
+ * Handles HTTP methods:
+ *   GET    — List all books (with authors), or one by ID (?id=N) with authors array
+ *   POST   — Create a new book (body: {publisher_id, category_id, title, pages?, published?})
+ *   PUT    — Update a book (body: {book_id, publisher_id, category_id, title, pages?, published?, status})
+ *   DELETE — Hard-delete a book and its book_author records (body: {book_id})
+ *
+ * Responses are JSON with appropriate HTTP status codes:
+ *   200 OK, 400 Bad Request, 404 Not Found, 405 Method Not Allowed
+ *
+ * Business rules:
+ *   - Title, publisher_id, and category_id are required for create/update
+ *   - Pages and published year are optional (nullable integers)
+ *   - Deletion cascades to the book_author junction table
+ *
+ * @see Book The model class used for database operations
+ */
+
 declare(strict_types=1);
 
 require_once __DIR__ . '/../../src/DBMS.php';

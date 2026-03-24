@@ -1,19 +1,42 @@
 'use strict';
 
+/**
+ * Books list view — fetches and renders the books table.
+ *
+ * Instantiated automatically when the books/home page loads.
+ * Fetches all books from the API and renders them as table rows
+ * with columns for title, authors, publisher, category, pages, published, and actions.
+ */
 class BooksView {
 
+    /**
+     * Initialize the view, grab the table body reference, and load data.
+     */
     constructor() {
         this.API = '/bibliotheca/public/api/books.php';
         this.table = document.querySelector('#book-table tbody');
         this.load();
     }
 
+    /**
+     * Fetch all books from the REST API.
+     *
+     * @returns {Promise<void>}
+     */
     async load() {
         const response = await fetch(this.API);
         const books = await response.json();
         this.render(books);
     }
 
+    /**
+     * Render book rows into the table body.
+     *
+     * Each row shows title, authors, publisher, category, pages, published year,
+     * and an Edit button. Disabled books (status === 0) get the 'row-disabled' class.
+     *
+     * @param {Array<Object>} books - Array of book objects from the API
+     */
     render(books) {
         this.table.textContent = '';
 

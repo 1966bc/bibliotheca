@@ -2,15 +2,37 @@
 
 declare(strict_types=1);
 
+/**
+ * Book model — manages book records in the database.
+ *
+ * Handles CRUD operations for the `book` table.
+ * Each book belongs to one publisher and one category (foreign keys).
+ * Authors are linked via the `book_author` junction table (many-to-many).
+ * Deletion cascades to `book_author` records to maintain referential integrity.
+ *
+ * @see DBMS The database wrapper used for all queries
+ */
 class Book
 {
+    /** @var DBMS Database connection instance */
     private DBMS $db;
 
+    /**
+     * @param DBMS $db Database connection instance
+     */
     public function __construct(DBMS $db)
     {
         $this->db = $db;
     }
 
+    /**
+     * Get all books with their publisher, category, and concatenated author names.
+     *
+     * Uses JOINs to resolve foreign keys and GROUP_CONCAT to merge
+     * multiple authors into a single comma-separated string.
+     *
+     * @return array List of books (each with book_id, title, pages, published, status, publisher, category, authors)
+     */
     public function getAll(): array
     {
         $sql = "SELECT b.book_id, b.title, b.pages, b.published, b.status,
@@ -27,6 +49,14 @@ class Book
         return $this->db->fetchAll($sql);
     }
 
+    /**
+     * Find a book by its primary key, including publisher and category names.
+     *
+     * Does not include authors — use getAuthors() separately.
+     *
+     * @param  int        $id Book ID
+     * @return array|null     Book data with publisher/category names, or null
+     */
     public function getById(int $id): ?array
     {
         $sql = "SELECT b.book_id, b.publisher_id, b.category_id,
@@ -40,6 +70,14 @@ class Book
         return $this->db->fetchOne($sql, [':id' => $id]);
     }
 
+    /**
+     * Get all authors associated with a book, ordered by last name.
+     *
+     * Queries the book_author junction table to resolve the many-to-many relationship.
+     *
+     * @param  int   $bookId Book ID
+     * @return array         List of authors (each with author_id, first_name, last_name)
+     */
     public function getAuthors(int $bookId): array
     {
         $sql = "SELECT a.author_id, a.first_name, a.last_name
@@ -51,6 +89,16 @@ class Book
         return $this->db->fetchAll($sql, [':book_id' => $bookId]);
     }
 
+    /**
+     * Create a new book.
+     *
+     * @param  int      $publisherId Foreign key to publisher table
+     * @param  int      $categoryId  Foreign key to category table
+     * @param  string   $title       Book title
+     * @param  int|null $pages       Number of pages, or null if unknown
+     * @param  int|null $published   Publication year, or null if unknown
+     * @return int                   The auto-generated book_id
+     */
     public function insert(int $publisherId, int $categoryId, string $title, ?int $pages, ?int $published): int
     {
         $sql = "INSERT INTO book (publisher_id, category_id, title, pages, published)
@@ -65,6 +113,18 @@ class Book
         ]);
     }
 
+    /**
+     * Update an existing book's data.
+     *
+     * @param  int      $id          Book ID
+     * @param  int      $publisherId New publisher foreign key
+     * @param  int      $categoryId  New category foreign key
+     * @param  string   $title       New title
+     * @param  int|null $pages       New page count, or null
+     * @param  int|null $published   New publication year, or null
+     * @param  int      $status      New status (1 = active, 0 = disabled)
+     * @return int                   Number of rows affected (0 or 1)
+     */
     public function update(int $id, int $publisherId, int $categoryId, string $title, ?int $pages, ?int $published, int $status): int
     {
         $sql = "UPDATE book
@@ -87,6 +147,16 @@ class Book
         ]);
     }
 
+    /**
+     * Permanently delete a book and its book_author junction records (hard delete).
+     *
+     * First removes all entries from book_author for this book,
+     * then deletes the book itself. This two-step approach ensures
+     * referential integrity without relying on ON DELETE CASCADE.
+     *
+     * @param  int $id Book ID
+     * @return int     Number of book rows deleted (0 or 1)
+     */
     public function delete(int $id): int
     {
         $this->db->delete(

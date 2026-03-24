@@ -1,7 +1,18 @@
 'use strict';
 
+/**
+ * Publisher add/edit form — handles creating and updating publishers.
+ *
+ * Instantiated automatically on the publisher form page.
+ * Detects edit mode from the `?id=` URL parameter.
+ * Validates input client-side, then sends POST (create) or PUT (update)
+ * requests to the REST API. Also handles hard-delete with confirmation.
+ */
 class PublisherForm {
 
+    /**
+     * Initialize form references, bind event listeners, and check for edit mode.
+     */
     constructor() {
         this.API = '/bibliotheca/public/api/publishers.php';
         this.form = document.querySelector('#publisher-form');
@@ -24,6 +35,10 @@ class PublisherForm {
         this.checkEdit();
     }
 
+    /**
+     * Check if the URL contains an `?id=` parameter to enter edit mode.
+     * If present, loads the existing record into the form.
+     */
     checkEdit() {
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id');
@@ -33,6 +48,13 @@ class PublisherForm {
         }
     }
 
+    /**
+     * Fetch a publisher by ID and populate the form fields for editing.
+     * Shows the status checkbox and delete button (hidden in create mode).
+     *
+     * @param {number} id - Publisher ID to load
+     * @returns {Promise<void>}
+     */
     async loadRecord(id) {
         const response = await fetch(this.API + '?id=' + id);
         const publisher = await response.json();
@@ -46,6 +68,11 @@ class PublisherForm {
         this.inputName.focus();
     }
 
+    /**
+     * Validate the form: name must not be empty.
+     *
+     * @returns {boolean} True if the form is valid
+     */
     validate() {
         this.clearErrors();
 
@@ -57,6 +84,13 @@ class PublisherForm {
         return true;
     }
 
+    /**
+     * Display a validation error on a specific form field.
+     * Adds the 'invalid' CSS class and sets the error message.
+     *
+     * @param {string} fieldId - The DOM ID of the input element
+     * @param {string} message - The error message to display
+     */
     showError(fieldId, message) {
         const input = document.querySelector('#' + fieldId);
         const error = document.querySelector('#' + fieldId + '-error');
@@ -64,6 +98,9 @@ class PublisherForm {
         error.textContent = message;
     }
 
+    /**
+     * Clear all validation errors and remove 'invalid' CSS classes.
+     */
     clearErrors() {
         const errors = this.form.querySelectorAll('.error');
         for (const error of errors) {
@@ -76,6 +113,13 @@ class PublisherForm {
         }
     }
 
+    /**
+     * Save the publisher: POST for new, PUT for existing.
+     * On success, redirects to the publishers list.
+     * On API error (e.g. duplicate name), shows the error on the form.
+     *
+     * @returns {Promise<void>}
+     */
     async save() {
         if (!this.validate()) {
             return;
@@ -112,6 +156,12 @@ class PublisherForm {
         window.location.href = '/bibliotheca/public/publishers';
     }
 
+    /**
+     * Delete the publisher after user confirmation.
+     * Sends a DELETE request to the API. On error (e.g. has books), shows an alert.
+     *
+     * @returns {Promise<void>}
+     */
     async remove() {
         if (!confirm('Permanently delete this publisher? This cannot be undone.')) {
             return;
