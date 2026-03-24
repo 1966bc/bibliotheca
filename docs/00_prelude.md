@@ -3,7 +3,7 @@
 ## Ten Brief Lessons on Web Programming
 
 > *To the next generation of programmers:
-> before you let the machine write, learn to read.*
+> learn to read, write and compute — before it's too late.*
 
 ## Why Bibliotheca?
 
