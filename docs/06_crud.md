@@ -1,6 +1,6 @@
 # Chapter 06 — CRUD
 
-## The four operations
+## The sign of the four
 
 CRUD stands for Create, Read, Update, Delete. Every data-driven
 application does these four things. Nothing more, nothing less.
@@ -17,7 +17,7 @@ Disabling a record is an Update (PUT), not a Delete — the record stays
 in the database but appears greyed out in the list. Deleting is permanent:
 `DELETE FROM` removes the record entirely.
 
-## From two methods to four
+## From two methods to four and return
 
 If you have only used HTML forms, you know two HTTP methods:
 
@@ -73,7 +73,7 @@ That is why Bibliotheca has no traditional `<form>` elements that
 submit to a new page. Every form is intercepted by JavaScript, which
 calls `fetch` with the appropriate method, and the page never reloads.
 
-## The complete flow
+## The dance
 
 **Create:**
 1. User fills the form and clicks Save.

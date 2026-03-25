@@ -1,6 +1,7 @@
 # The Apocryphal Chapter — Beyond the Launch
 
-> *For those who still want to know what happens under the hood.*
+> *And now for something completely different.*
+> — Monty Python
 
 You made it through ten lessons. You built a web application from
 scratch — database, backend, API, frontend — with nothing between
