@@ -11,7 +11,7 @@ Bibliotheca is a didactic web application (book catalog) built with a pure stack
 MVC pattern with a front-controller router:
 
 - **Router**: `public/index.php` — dispatches on `?route=` GET parameter; `.htaccess` rewrites all URLs through it
-- **Models**: `src/*.php` — PHP classes (Book, Author, Category, Publisher) that use `src/DBMS.php` (PDO wrapper with `fetchOne`, `fetchAll`, `insert`, `update`, `delete`)
+- **Models**: `src/*.php` — PHP classes (Book, Author, Category, Publisher) that use `src/DBMS.php` (PDO wrapper: `query` for fixed SQL, `fetchOne`/`fetchAll` for parameterized reads, `insert`/`update`/`delete` for writes, `exec` for DDL, `beginTransaction`/`commit`/`rollBack` for atomic operations)
 - **API endpoints**: `public/api/*.php` — REST-style JSON controllers (GET/POST/PUT/DELETE); these call models and return JSON with HTTP status codes
 - **Views**: `public/pages/*.php` — thin HTML templates that load JS classes from `public/js/*.js`
 - **Frontend JS**: ES6 classes in pairs — `*View` (list/table rendering) and `*Form` (add/edit form + validation)
@@ -26,7 +26,8 @@ The `src/` directory is outside the document root and not web-accessible. Only `
 - 5 tables: `publisher`, `category`, `author`, `book`, `book_author` (many-to-many junction)
 - `status` column (1=active, 0=disabled) for toggling visibility; deletes are hard (`DELETE FROM`)
 - Foreign keys enforced (`PRAGMA foreign_keys = ON` in DBMS.php)
-- Rebuild DB: `cat sql/ddl/create_table.sql sql/dml/insert.sql | sqlite3 sql/bibliotheca.db`
+- Indexes on foreign key columns (`idx_book_publisher`, `idx_book_category`, `idx_book_author_book`, `idx_book_author_author`)
+- Rebuild DB: `rm sql/bibliotheca.db && cat sql/ddl/create_table.sql sql/dml/insert.sql | sqlite3 sql/bibliotheca.db` (then fix permissions for www-data)
 
 ## Commands
 
@@ -44,7 +45,8 @@ No build step, no linter, no package manager. Requires Apache2 with mod_rewrite,
 - **JS**: ES6 classes, `'use strict';`, async/await (never `.then()`), semicolons required, 4-space indent
 - **SQL**: UPPERCASE keywords, snake_case identifiers, prepared statements with named parameters (`:id`, `:name`)
 - **HTML/CSS**: semantic tags, 4-space indent, kebab-case IDs and classes
-- **Security**: parameterized queries only (no string interpolation in SQL), `textContent` in JS (never `innerHTML`), `htmlspecialchars()` in PHP, server-side validation is authoritative
+- **Security**: parameterized queries only (no string interpolation in SQL), `textContent` in JS (never `innerHTML`), `htmlspecialchars()` in PHP, server-side validation is authoritative, all string inputs sanitized with `strip_tags()` + `trim()` + `mb_substr()` in API endpoints
+- **DBMS discipline**: `query()`/`exec()` reject SQL containing named parameters (`:name`) — forces use of prepared statements for any parameterized query
 - **Git**: imperative mood, English, one logical change per commit
 
 ## Development
@@ -55,4 +57,4 @@ Adding a new entity requires touching all layers: model (`src/`), API endpoint (
 
 ## Lessons
 
-Ten lessons in `docs/` (00–09) covering database, structure, backend, frontend, CRUD, validation, permissions, and debugging.
+Ten lessons in `docs/` (00–09) covering database, structure, backend, frontend, CRUD, validation, permissions, and debugging. Plus appendices: How It Works, Glossary, and The Apocryphal Chapter (what comes next).
