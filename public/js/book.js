@@ -282,6 +282,9 @@ class BookForm {
             published: published,
             author_ids: authorIds,
         };
+        
+        //console.log(payload);
+        //return;
 
         try {
             let response;

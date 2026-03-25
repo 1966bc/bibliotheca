@@ -123,9 +123,14 @@ class PublisherForm {
     }
 
     /**
-     * Save the publisher: POST for new, PUT for existing.
-     * On success, redirects to the publishers list.
-     * On API error (e.g. duplicate name), shows the error on the form.
+     * Save the publisher to the server via the REST API.
+     *
+     * Validates the form first. If the hidden field publisher-id is empty,
+     * if (id === '') sends a POST request (create new). 
+     * If it has a value, sends a PUT
+     * request (update existing). On success, redirects to the publishers
+     * list. On API error (e.g. duplicate name, 409), shows the server
+     * error message on the form field.
      *
      * @returns {Promise<void>}
      */
