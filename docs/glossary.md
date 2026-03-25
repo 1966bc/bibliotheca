@@ -4,6 +4,13 @@ Terms you will encounter in this book, in alphabetical order.
 
 ---
 
+**42** —
+The answer to the ultimate question of life, the universe, and
+everything. From Douglas Adams' *The Hitchhiker's Guide to the
+Galaxy* (1979). The joke is that nobody knows the question. In
+programming, it is a reminder that knowing the answer is useless
+if you do not understand the problem.
+
 **`.htaccess`** —
 A configuration file read by Apache on every request to the
 directory where it lives. The dot prefix makes it hidden on
