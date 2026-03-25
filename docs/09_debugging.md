@@ -118,3 +118,7 @@ the schema file.
 When something breaks, do not guess. Read the error. Follow the
 trail: browser console, network tab, Apache log, PHP command line.
 The answer is always there — you just have to look in the right place.
+
+## Next
+
+[The Apocryphal Chapter — Beyond the Launch](apocrypha.md)

@@ -52,6 +52,41 @@ bibliotheca/
   JavaScript, and the API endpoints.
 - **Private** (`src/`, `sql/`) — what only PHP can reach.
 
+## .htaccess — the invisible gatekeeper
+
+See `public/.htaccess`.
+
+When the browser requests `/publishers`, Apache looks for a file
+or directory called `publishers` inside `public/`. It does not exist.
+Without `.htaccess`, Apache would return a 404.
+
+The rewrite rule changes this:
+
+```apache
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]
+```
+
+Line by line:
+
+1. **RewriteEngine On** — enable URL rewriting.
+2. **RewriteCond !-f** — only rewrite if the request is NOT an existing file
+   (so `style.css` and `book.js` are served normally).
+3. **RewriteCond !-d** — only rewrite if the request is NOT an existing directory.
+4. **RewriteRule** — capture the entire URL path and pass it to
+   `index.php` as the `route` parameter. `[L]` means stop processing
+   rules. `[QSA]` means append any existing query string (so
+   `/book?id=3` becomes `index.php?route=book&id=3`).
+
+The result: the user sees clean URLs (`/publishers`, `/book?id=3`),
+but every request actually goes through `index.php` — the front
+controller. This is the foundation of all modern web routing.
+
+Note: `.htaccess` requires Apache's `mod_rewrite` module. If clean
+URLs do not work, run `sudo a2enmod rewrite` and restart Apache.
+
 ## Naming convention
 
 Plural for collections, singular for single entity:
@@ -61,7 +96,7 @@ Plural for collections, singular for single entity:
 
 This applies to pages, JavaScript files, and API endpoints.
 
-## How the pieces connect
+## The route to you
 
 ```
 Browser                          Server

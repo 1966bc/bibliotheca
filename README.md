@@ -56,10 +56,11 @@ Open `http://localhost/bibliotheca/public/` in your browser.
 
 ## Appendices
 
-| Topic                                        |
-|----------------------------------------------|
-| [How It Works](docs/how_it_works.md)         |
-| [Glossary](docs/glossary.md)                 |
+| Topic                                              |
+|------------------------------------------------------|
+| [How It Works](docs/how_it_works.md)                 |
+| [Glossary](docs/glossary.md)                         |
+| [The Apocryphal Chapter](docs/apocrypha.md)          |
 
 ## Conventions
 
