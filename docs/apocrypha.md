@@ -107,10 +107,10 @@ it is correct, and know when to throw it away and start over.
 
 *Learn to read, write and compute — before it's too late.*
 
-## One more thing
+## 42
 
 The code you wrote in these lessons is yours. Read it again in six
 months. You will understand it differently — not because the code
 changed, but because you did.
 
-That is the real lesson.
+That is the answer.
