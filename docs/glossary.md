@@ -164,6 +164,13 @@ HTML IDs, CSS classes, and git branch names.
 Always choose the simplest solution that works. Complexity is the
 enemy of understanding.
 
+**`mod_rewrite`** —
+An Apache module that rewrites URLs before they reach your code.
+Without it, `.htaccess` rewrite rules are silently ignored. Enable
+it with `sudo a2enmod rewrite` and restart Apache. It is what makes
+clean URLs possible — turning `/publishers` into
+`index.php?route=publishers` behind the scenes.
+
 **Model** —
 A PHP class in `src/` that knows how to query one entity. It
 receives the DBMS via dependency injection and provides methods
