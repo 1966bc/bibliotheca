@@ -54,8 +54,8 @@ try {
     } elseif ($method === 'POST') {
 
         $data = json_decode(file_get_contents('php://input'), true);
-        $firstName = ucwords(strtolower(trim($data['first_name'] ?? '')));
-        $lastName = ucwords(strtolower(trim($data['last_name'] ?? '')));
+        $firstName = mb_substr(ucwords(strtolower(trim(strip_tags($data['first_name'] ?? '')))), 0, 100);
+        $lastName = mb_substr(ucwords(strtolower(trim(strip_tags($data['last_name'] ?? '')))), 0, 100);
         $birthdate = trim($data['birthdate'] ?? '') ?: null;
 
         if ($firstName === '' || $lastName === '') {
@@ -77,8 +77,8 @@ try {
 
         $data = json_decode(file_get_contents('php://input'), true);
         $id = (int) ($data['author_id'] ?? 0);
-        $firstName = ucwords(strtolower(trim($data['first_name'] ?? '')));
-        $lastName = ucwords(strtolower(trim($data['last_name'] ?? '')));
+        $firstName = mb_substr(ucwords(strtolower(trim(strip_tags($data['first_name'] ?? '')))), 0, 100);
+        $lastName = mb_substr(ucwords(strtolower(trim(strip_tags($data['last_name'] ?? '')))), 0, 100);
         $birthdate = trim($data['birthdate'] ?? '') ?: null;
         $status = (int) ($data['status'] ?? 1);
 

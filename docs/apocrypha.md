@@ -37,11 +37,6 @@ you do? Login forms, password hashing (`password_hash` in PHP),
 session tokens, role-based access. Right now, anyone can delete
 anything.
 
-**Input sanitization.** We validate, but we do not sanitize
-aggressively. A production app would strip HTML tags, limit
-string lengths at the database level, and validate MIME types
-for file uploads.
-
 **Pagination.** Our lists load everything. With ten publishers,
 that is fine. With ten thousand books, the browser chokes. SQL
 gives you `LIMIT` and `OFFSET`. The frontend needs page controls.

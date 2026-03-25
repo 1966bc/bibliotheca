@@ -35,6 +35,29 @@ The server normalizes input before saving:
 
 The user types whatever they want. The server stores it correctly.
 
+## Sanitization
+
+Formatting makes input look right. Sanitization makes it *safe*.
+
+Every string that enters the API goes through three filters before
+anything else happens:
+
+```php
+$name = mb_substr(strip_tags(trim($data['name'] ?? '')), 0, 100);
+```
+
+- **`strip_tags()`** — removes any HTML or PHP tags. A name like
+  `<script>alert('xss')</script>` becomes `alert('xss')`. The
+  dangerous part is gone before the value reaches the database.
+- **`trim()`** — removes leading and trailing whitespace.
+- **`mb_substr()`** — enforces a maximum length. Names are capped
+  at 100 characters, titles at 255. Even if someone sends a megabyte
+  of text, only the first 100 characters survive.
+
+The order matters: strip first, trim second, truncate last.
+And this happens on the server — never trust the client's
+`maxlength` attribute alone.
+
 ## Error display
 
 No `alert()` — that is from the 1990s. We use inline messages:

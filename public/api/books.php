@@ -55,7 +55,7 @@ try {
         $data = json_decode(file_get_contents('php://input'), true);
         $publisherId = (int) ($data['publisher_id'] ?? 0);
         $categoryId = (int) ($data['category_id'] ?? 0);
-        $title = trim($data['title'] ?? '');
+        $title = mb_substr(trim(strip_tags($data['title'] ?? '')), 0, 255);
         $pages = isset($data['pages']) && $data['pages'] !== '' ? (int) $data['pages'] : null;
         $published = isset($data['published']) && $data['published'] !== '' ? (int) $data['published'] : null;
 
@@ -79,7 +79,7 @@ try {
         $id = (int) ($data['book_id'] ?? 0);
         $publisherId = (int) ($data['publisher_id'] ?? 0);
         $categoryId = (int) ($data['category_id'] ?? 0);
-        $title = trim($data['title'] ?? '');
+        $title = mb_substr(trim(strip_tags($data['title'] ?? '')), 0, 255);
         $pages = isset($data['pages']) && $data['pages'] !== '' ? (int) $data['pages'] : null;
         $published = isset($data['published']) && $data['published'] !== '' ? (int) $data['published'] : null;
         $status = (int) ($data['status'] ?? 1);

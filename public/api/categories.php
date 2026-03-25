@@ -54,7 +54,7 @@ try {
     } elseif ($method === 'POST') {
 
         $data = json_decode(file_get_contents('php://input'), true);
-        $name = ucwords(strtolower(trim($data['name'] ?? '')));
+        $name = mb_substr(ucwords(strtolower(trim(strip_tags($data['name'] ?? '')))), 0, 100);
 
         if ($name === '') {
             http_response_code(400);
@@ -75,7 +75,7 @@ try {
 
         $data = json_decode(file_get_contents('php://input'), true);
         $id = (int) ($data['category_id'] ?? 0);
-        $name = ucwords(strtolower(trim($data['name'] ?? '')));
+        $name = mb_substr(ucwords(strtolower(trim(strip_tags($data['name'] ?? '')))), 0, 100);
         $status = (int) ($data['status'] ?? 1);
 
         if ($id === 0 || $name === '') {
