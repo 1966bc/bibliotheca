@@ -18,6 +18,7 @@ require_once __DIR__ . '/../src/Publisher.php';
 require_once __DIR__ . '/../src/Category.php';
 require_once __DIR__ . '/../src/Author.php';
 require_once __DIR__ . '/../src/Book.php';
+require_once __DIR__ . '/../src/Csrf.php';
 
 /**
  * Create an in-memory database with the full schema for testing.
@@ -584,6 +585,32 @@ $t->test('Author: hasBooks detects linked books via junction', function () use (
 
     $t->assertTrue($auth->hasBooks($authId));
     $t->assertTrue($auth->hasBooks($authId, false));
+});
+
+// ---------------------------------------------------------------------------
+// Csrf tests
+// ---------------------------------------------------------------------------
+
+$t->test('Csrf: token generates a 64-char hex string', function () use ($t) {
+    $_SESSION = [];
+    $token = Csrf::token();
+    $t->assertEqual(64, strlen($token));
+    $t->assertTrue(ctype_xdigit($token));
+});
+
+$t->test('Csrf: token returns same value within session', function () use ($t) {
+    $_SESSION = [];
+    $token1 = Csrf::token();
+    $token2 = Csrf::token();
+    $t->assertEqual($token1, $token2);
+});
+
+$t->test('Csrf: token changes with new session', function () use ($t) {
+    $_SESSION = [];
+    $token1 = Csrf::token();
+    $_SESSION = [];
+    $token2 = Csrf::token();
+    $t->assertTrue($token1 !== $token2);
 });
 
 // ---------------------------------------------------------------------------

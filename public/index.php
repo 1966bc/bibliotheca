@@ -19,6 +19,9 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/../src/Csrf.php';
+Csrf::start();
+
 $route = $_GET['route'] ?? 'home';
 $route = trim($route, '/');
 
@@ -53,6 +56,7 @@ if (!is_file($page)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="<?= htmlspecialchars(Csrf::token()) ?>">
     <link rel="icon" type="image/svg+xml" href="/bibliotheca/public/favicon.svg">
     <title>Bibliotheca</title>
     <link rel="stylesheet" href="/bibliotheca/public/css/style.css">

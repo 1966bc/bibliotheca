@@ -140,13 +140,13 @@ class CategoryForm {
             if (id === '') {
                 response = await fetch(this.API, {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
+                    headers: {'Content-Type': 'application/json', 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content},
                     body: JSON.stringify({name: name}),
                 });
             } else {
                 response = await fetch(this.API, {
                     method: 'PUT',
-                    headers: {'Content-Type': 'application/json'},
+                    headers: {'Content-Type': 'application/json', 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content},
                     body: JSON.stringify({
                         category_id: parseInt(id),
                         name: name,
@@ -182,7 +182,7 @@ class CategoryForm {
         try {
             const response = await fetch(this.API, {
                 method: 'DELETE',
-                headers: {'Content-Type': 'application/json'},
+                headers: {'Content-Type': 'application/json', 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content},
                 body: JSON.stringify({category_id: parseInt(id)}),
             });
 

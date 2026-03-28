@@ -292,7 +292,7 @@ class BookForm {
             if (id === '') {
                 response = await fetch(this.API, {
                     method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
+                    headers: {'Content-Type': 'application/json', 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content},
                     body: JSON.stringify(payload),
                 });
             } else {
@@ -300,7 +300,7 @@ class BookForm {
                 payload.status = this.inputStatus.checked ? 1 : 0;
                 response = await fetch(this.API, {
                     method: 'PUT',
-                    headers: {'Content-Type': 'application/json'},
+                    headers: {'Content-Type': 'application/json', 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content},
                     body: JSON.stringify(payload),
                 });
             }
@@ -333,7 +333,7 @@ class BookForm {
         try {
             const response = await fetch(this.API, {
                 method: 'DELETE',
-                headers: {'Content-Type': 'application/json'},
+                headers: {'Content-Type': 'application/json', 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content},
                 body: JSON.stringify({book_id: parseInt(id)}),
             });
 

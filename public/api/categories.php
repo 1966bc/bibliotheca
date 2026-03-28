@@ -25,6 +25,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../../src/DBMS.php';
 require_once __DIR__ . '/../../src/Category.php';
+require_once __DIR__ . '/../../src/Csrf.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -33,6 +34,11 @@ try {
     $category = new Category($db);
 
     $method = $_SERVER['REQUEST_METHOD'];
+
+    if (in_array($method, ['POST', 'PUT', 'DELETE'], true)) {
+        Csrf::start();
+        Csrf::verify();
+    }
 
     if ($method === 'GET') {
 

@@ -10,7 +10,7 @@ Bibliotheca is a didactic web application (book catalog) built with a pure stack
 
 MVC pattern with a front-controller router:
 
-- **Router**: `public/index.php` — dispatches on `?route=` GET parameter; `.htaccess` rewrites all URLs through it
+- **Router + Layout**: `public/index.php` — dispatches on `?route=` GET parameter and wraps every page in the shared HTML shell (header, nav, footer); `.htaccess` rewrites all URLs through it
 - **Models**: `src/*.php` — PHP classes (Book, Author, Category, Publisher) that use `src/DBMS.php` (PDO wrapper: `query` for fixed SQL, `fetchOne`/`fetchAll` for parameterized reads, `insert`/`update`/`delete` for writes, `exec` for DDL, `beginTransaction`/`commit`/`rollBack` for atomic operations)
 - **API endpoints**: `public/api/*.php` — REST-style JSON controllers that dispatch on `$_SERVER['REQUEST_METHOD']` (GET/POST/PUT/DELETE), return JSON with HTTP status codes (200, 400, 404, 405, 409). Each file requires models from `src/` via `require_once __DIR__ . '/../../src/...'`
 - **Views**: `public/pages/*.php` — thin HTML templates that load JS classes from `public/js/*.js`
@@ -51,7 +51,7 @@ No build step, no linter, no package manager. Requires Apache2 with mod_rewrite,
 - **JS**: ES6 classes, `'use strict';`, async/await (never `.then()`), semicolons required, 4-space indent
 - **SQL**: UPPERCASE keywords, snake_case identifiers, prepared statements with named parameters (`:id`, `:name`)
 - **HTML/CSS**: semantic tags, 4-space indent, kebab-case IDs and classes
-- **Security**: parameterized queries only (no string interpolation in SQL), `textContent` in JS (never `innerHTML`), `htmlspecialchars()` in PHP, server-side validation is authoritative, all string inputs sanitized with `strip_tags()` + `trim()` + `mb_substr()` in API endpoints
+- **Security**: parameterized queries only (no string interpolation in SQL), `textContent` in JS (never `innerHTML`), `htmlspecialchars()` in PHP, server-side validation is authoritative, all string inputs sanitized with `strip_tags()` + `trim()` + `mb_substr()` in API endpoints, CSRF token on all POST/PUT/DELETE via `src/Csrf.php` (token in `<meta>` tag, verified from `X-CSRF-Token` header)
 - **DBMS discipline**: `query()`/`exec()` reject SQL containing named parameters (`:name`) — forces use of prepared statements for any parameterized query
 - **Git**: imperative mood, English, one logical change per commit
 
@@ -65,6 +65,7 @@ Base URL: `http://localhost/bibliotheca/public/`
 - **Detail/edit pages**: `/bibliotheca/public/publisher?id=3` → `pages/publisher.php` (JS reads `id` from query string); without `?id=` it becomes an "Add new" form
 - **API**: `/bibliotheca/public/api/publishers.php` — real file, no rewrite; JS calls it via `fetch()`
 - **Home**: `/bibliotheca/public/` shows the book list (same content as `/books`); books have no nav link — they're the landing page
+- **About**: `/bibliotheca/public/about` — static info page
 - **Pattern for all entities**: list at `/entities`, add at `/entity`, edit at `/entity?id=N`
 
 Routes must be in the `$allowed` array in `public/index.php` or they return 404.
