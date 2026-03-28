@@ -52,7 +52,7 @@ bibliotheca/
   JavaScript, and the API endpoints.
 - **Private** (`src/`, `sql/`) — what only PHP can reach.
 
-## .htaccess — the invisible gatekeeper
+## The Stargate
 
 See `public/.htaccess`.
 

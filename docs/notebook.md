@@ -1,4 +1,26 @@
-## First things first
+# Bibliotheca
+
+### *Liber Rerum Cognitarum*
+
+## *Praeludium*
+
+This notebook tells how Bibliotheca works from the inside —
+not *what* it does (you see that by using it), but *how* it does
+it and *why* it is built this way. The goal is to understand web
+programming through a real project: ours.
+
+Bibliotheca is a *pure-stack* application: PHP, JavaScript,
+HTML, CSS, SQLite. No frameworks, no Composer, no sessions,
+no login. Every line of code is written by us — and every line
+is here for a reason.
+
+Each concept is explained at the point where it is needed, not
+before. This is not a manual to read in pieces — it is a journey,
+and each stop builds on the previous one.
+
+---
+
+## *Fundamenta* — Project structure
 
 Before following the journey of a request, you need to know the
 directory structure where the application files live — and
@@ -56,6 +78,194 @@ modern website. Clean URLs are more readable, easier to remember, and
 hide the underlying technology: the user does not know whether the
 server uses PHP, Python, or something else. But that is another story;
 we will see it in the journey of a request.
+
+## *Lingua Universalis* — HTTP, the web protocol
+
+When you type a URL in the browser and press Enter, something
+surprisingly simple happens: the browser sends a **text message**
+to the server, and the server replies with another **text message**.
+These messages follow a precise format called **HTTP** (HyperText
+Transfer Protocol).
+
+With `curl` we can talk directly to the server, without a browser —
+and see exactly what travels over the network:
+
+```bash
+# The full dialogue: request AND response (without the HTML body)
+curl -v -o /dev/null http://localhost/bibliotheca/public/publishers 2>&1
+```
+
+The output has three sections, marked with different symbols:
+
+```
+* Trying 127.0.0.1:80...                      ← * = curl's own info
+* Connected to localhost (127.0.0.1) port 80
+
+> GET /bibliotheca/public/publishers HTTP/1.1  ← > = what you SEND
+> Host: localhost                                    (the request)
+> User-Agent: curl/7.88.1
+> Accept: */*
+
+< HTTP/1.1 200 OK                             ← < = what you RECEIVE
+< Content-Type: text/html; charset=UTF-8             (the response)
+< Content-Length: 1495
+```
+
+Three symbols, three actors: `*` is curl telling you what it is
+doing, `>` is what leaves your machine towards the server, `<` is
+what comes back from the server towards you. The HTML body is not
+shown because `-o /dev/null` discards it — for now we only care
+about the headers.
+
+An HTTP request looks like this:
+
+```
+GET /bibliotheca/public/publishers HTTP/1.1
+Host: localhost
+Accept: text/html
+```
+
+The first line has three parts:
+- **The method** (`GET`) — what you want to do. GET = "give me something"
+- **The path** (`/bibliotheca/public/publishers`) — what you want
+- **The version** (`HTTP/1.1`) — which dialect we speak
+
+Then come the **headers** — metadata about the request:
+- `Host` — which site I am talking to (a server can host many)
+- `Accept` — what kind of response I prefer (HTML, JSON, etc.)
+
+An empty line separates the headers from the **body** — the
+message content. In a GET the body is empty (you are asking, not
+sending). In a POST the body contains the data you are sending.
+
+The server's response has the same structure:
+
+```
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html>
+<html>...the entire HTML page...</html>
+```
+
+And you can simulate a POST — what JavaScript does with `fetch`
+when you submit a form:
+
+```bash
+# -X POST = POST method
+# -H = additional header
+# -d = body (the JSON payload)
+curl -v -X POST http://localhost/bibliotheca/public/api/publishers.php \
+     -H "Content-Type: application/json" \
+     -d '{"name": "Feltrinelli"}'
+```
+
+If you try an unsupported method, the server responds with
+`405 Method Not Allowed`. Try it:
+
+```bash
+# PATCH on an endpoint that does not support it → 405
+curl -s -o /dev/null -w "%{http_code}\n" \
+     -X PATCH http://localhost/bibliotheca/public/api/publishers.php
+# Prints: 405
+```
+
+This is REST in action: the same URL behaves differently depending
+on the HTTP method. The API decides what to accept.
+
+### The four methods we use
+
+| Method | Meaning | Has a body? | Example |
+|--------|---------|------------|---------|
+| `GET` | Read | No | Open the publishers list |
+| `POST` | Create | Yes (new data) | Create a publisher |
+| `PUT` | Update | Yes (updated data) | Modify a publisher |
+| `DELETE` | Delete | Yes (the id) | Delete a publisher |
+
+This scheme — one method per operation, the same URL — is called
+**REST** (Representational State Transfer). It is not a technology,
+it is a convention: we agree that `GET` reads, `POST` creates,
+`PUT` updates, `DELETE` deletes.
+
+HTTP is **stateless** — without state. Every request is independent:
+the server does not "remember" who you are between requests.
+Bibliotheca has no sessions and no login — it is stateless all the
+way through. Every request is truly independent from the others.
+
+Everything on the web — pages, APIs, images, video — travels over
+HTTP. There is nothing else. Once we understand how Bibliotheca
+builds HTTP requests and responses, we will understand how it works.
+
+### HTTP status codes
+
+The first line of the response carries the **status code** — a
+number that says how things went:
+
+| Code | Meaning | Analogy |
+|------|---------|---------|
+| `200 OK` | All good, here is what you asked for | "Sure, here you go" |
+| `201 Created` | I created what you asked for | "Done, here is the new one" |
+| `400 Bad Request` | I cannot understand your request | "What you said makes no sense" |
+| `404 Not Found` | Does not exist | "I do not know what you are talking about" |
+| `405 Not Allowed` | Wrong method | "You cannot knock like that" |
+| `409 Conflict` | Conflict (e.g. duplicate name, has children) | "I cannot, there is a problem" |
+| `500 Server Error` | Something broke inside | "Sorry, I had a problem" |
+
+### *Instrumenta* — The toolbox
+
+Every command we have seen so far is a tool. They are all free,
+all already installed, and in ten years they will still work the
+same way. Here they are at a glance:
+
+```bash
+# ─── Talking to the server (HTTP) ───────────────────────
+
+curl -v URL                    # raw request + response
+curl -s URL | head -20         # body only, first 20 lines
+curl -s -D - -o /dev/null URL  # response headers only
+curl -s -o /dev/null -w "%{http_code}" URL  # status code only (200, 404...)
+curl -s -o /dev/null -w "%{time_total}s" URL  # response time
+curl -X POST -H "Content-Type: application/json" -d '{}' URL  # simulate a POST
+
+# ─── Talking to the database (SQL) ──────────────────────
+
+sqlite3 sql/bibliotheca.db                    # interactive session
+sqlite3 sql/bibliotheca.db ".tables"          # list all tables
+sqlite3 sql/bibliotheca.db ".schema book"     # show table structure
+sqlite3 sql/bibliotheca.db "SELECT COUNT(*) FROM book"  # single query
+sqlite3 sql/bibliotheca.db < file.sql         # run a SQL script
+
+# ─── Reading logs ────────────────────────────────────────
+
+tail -f /var/log/apache2/error.log        # Apache errors in real time
+
+# ─── Inspecting files and code ───────────────────────────
+
+cat -n src/Publisher.php          # read a file with line numbers
+head -50 src/Publisher.php        # first 50 lines
+grep -r "fetchAll" src/           # search a string in all files
+find public/js -name "*.js"       # find files by name
+wc -l src/*.php                   # count lines of code
+diff file1 file2                  # compare two files
+
+# ─── Checking the network ────────────────────────────────
+
+ss -tlnp | grep :80              # who is listening on port 80?
+ping localhost                   # is the server alive?
+```
+
+`curl` is the most useful tool for API debugging: if something
+is not working, remove the browser and JavaScript from the
+equation and talk directly to the server. If `curl` works but
+the browser does not, the problem is in JavaScript. If `curl`
+does not work, the problem is on the server.
+
+A good programmer uses the terminal for everything — it is the
+place where you see things for what they are, without interfaces
+that hide, without rendering that embellishes. Raw text, raw data,
+the truth.
+
+---
 
 ## The journey of a request
 
@@ -1650,3 +1860,315 @@ id="publisher-id" value="">`:
 Same HTML file, same JavaScript file. The hidden field is the key
 that decides the behavior — and JavaScript shows or hides the
 elements accordingly.
+
+## *Custos Secreti* — CSRF, the security ticket
+
+There is a hidden danger that affects all web applications —
+even those without login like Bibliotheca. It is called **CSRF**
+(Cross-Site Request Forgery).
+
+### The problem
+
+Imagine you have Bibliotheca open in the browser. In another
+tab you visit a malicious website. That site could contain:
+
+```html
+<script>
+fetch('http://localhost/bibliotheca/public/api/publishers.php', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: '{"name": "HACKED"}'
+});
+</script>
+```
+
+The browser would send the POST — and the server would execute it.
+The malicious site created a publisher in our database without us
+doing anything.
+
+### The solution — a secret token
+
+The defense is a **CSRF token**: a secret code that only *our*
+pages know. The malicious site cannot read it.
+
+When PHP renders the page, it puts the token in the HTML:
+
+```html
+<meta name="csrf-token" content="a7f3b9c2e1d4...">
+```
+
+The token comes from `$_SESSION['csrf_token']` — generated with
+`bin2hex(random_bytes(32))`, 64 random hex characters. It lives
+in the session (on the server) AND in the HTML (in the browser).
+Only our pages have it.
+
+When JavaScript sends a POST/PUT/DELETE, it includes the token:
+
+```javascript
+headers: {
+    'Content-Type': 'application/json',
+    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+}
+```
+
+The API verifies it:
+
+```php
+if (in_array($method, ['POST', 'PUT', 'DELETE'], true)) {
+    Csrf::start();
+    Csrf::verify();  // 403 if token is wrong or missing
+}
+```
+
+`Csrf::verify()` compares the token received in the header with
+the one in `$_SESSION`. If they match, the request is legitimate —
+it comes from our page. If they do not match (or the token is
+missing), someone is trying to make a request from outside —
+403 Forbidden.
+
+### Why the malicious site cannot read the token
+
+The browser forbids it. The **Same-Origin Policy** prevents one
+site from reading the content of another site. The malicious site
+can *send* a request to our server, but it cannot *read* our pages
+to extract the token from the `<meta>` tag. Without the token, the
+server refuses.
+
+### But Bibliotheca has no login!
+
+True — and classic CSRF exploits authenticated sessions. But the
+principle applies even without login: protect write operations from
+unwanted requests. In a didactic project this is essential: it
+teaches the concept *before* sessions are needed, so when they
+arrive (as in VirtUaLab) the mechanism will already be familiar.
+
+### Try it yourself
+
+```bash
+# Without token → 403 Forbidden
+curl -s -o /dev/null -w "%{http_code}" -X POST \
+     http://localhost/bibliotheca/public/api/publishers.php \
+     -H "Content-Type: application/json" \
+     -d '{"name": "Test"}'
+# Prints: 403
+
+# With token → 200 OK (get the token from the page)
+TOKEN=$(curl -s -c /tmp/c.txt \
+    http://localhost/bibliotheca/public/ \
+    | grep csrf-token | sed 's/.*content="\([^"]*\)".*/\1/')
+curl -s -o /dev/null -w "%{http_code}" -b /tmp/c.txt -X POST \
+     http://localhost/bibliotheca/public/api/publishers.php \
+     -H "Content-Type: application/json" \
+     -H "X-CSRF-Token: $TOKEN" \
+     -d '{"name": "Test"}'
+# Prints: 200
+```
+
+Note that the second curl uses `-c` (save cookies) and `-b`
+(send cookies) — the token in the PHP session is tied to the
+`PHPSESSID` cookie. Without the cookie, the server does not
+recognize the session and the token does not match.
+
+---
+
+## *Tabula Itineris* — The complete map
+
+```
+Browser                          Server (Apache + PHP)
+───────                          ────────────────────
+1. Click "Publishers"
+   GET /bibliotheca/public/publishers ──→
+                                    2. Apache → .htaccess → index.php
+                                    3. index.php matches "publishers"
+                                       in the $allowed list
+                                    4. Loads pages/publishers.php
+                                       - HTML layout (header, nav, footer)
+                                       - <table> with empty <tbody>
+                                       - <script src="js/publishers.js">
+                                    5. PHP → HTML → Apache
+                              ←── full HTML response
+
+6. Browser renders HTML
+   (header, empty table)
+7. Executes publishers.js
+   new PublishersView()
+   → constructor()
+   → load()
+   GET /bibliotheca/public/api/publishers.php ──→
+                                    8. Apache serves api/publishers.php
+                                       (real file, no rewrite)
+                                       - require_once DBMS.php, Publisher.php
+                                       - $db = new DBMS(...)
+                                       - $publisher = new Publisher($db)
+                                    9. $publisher->getAll()
+                                       - DBMS → SQLite → SQL query
+                                       - rows → PHP array
+                                   10. json_encode() → JSON response
+                              ←── JSON response
+
+11. response.json() → JS object
+12. this.render()
+    → createElement for each row
+    → appendChild into <tbody>
+13. Rendering engine redraws
+    → the table appears with data
+```
+
+Two trips to the server: the first for the HTML skeleton, the
+second for the JSON data. The first produces the structure, the
+second fills it. The user sees the page appear (header, empty
+table) and then the rows populate — on localhost it is so fast
+it looks instantaneous.
+
+## *Tria Officia* — Model, View, Controller
+
+What we followed is the **Model-View-Controller** pattern:
+
+| Component | File | Responsibility |
+|-----------|------|----------------|
+| **Model** | `src/Publisher.php` | Talks to the database. SQL queries, nothing else. Knows nothing about HTTP or HTML |
+| **Controller** | `public/api/publishers.php` | Receives the HTTP request, calls the Model, returns JSON. Knows nothing about HTML or SQL |
+| **View** | `public/pages/publishers.php` + `public/js/publishers.js` | HTML for the skeleton, JavaScript to fill it. Knows nothing about SQL |
+
+Each piece does one thing. If the SQL query is wrong, the
+problem is in the Model. If the JSON response is malformed, the
+problem is in the Controller. If the table does not fill, the
+problem is in the View. Each actor has its moment — and its errors.
+
+## *Quis Legit Quid* — Who reads what, and when
+
+| Who reads | What it reads | When |
+|-----------|--------------|------|
+| Apache | `.htaccess` | when it cannot find the requested file |
+| PHP | `index.php` | on every page request — dispatches the route |
+| PHP | `pages/*.php`, layout in `index.php` | when the route is valid |
+| PHP | `api/*.php`, `src/*.php` | when JavaScript asks for data |
+| SQLite | SQL queries | when DBMS executes them |
+| Rendering engine | the HTML produced by PHP | when the response arrives at the browser |
+| V8 (JavaScript) | `js/*.js` | when the rendering engine encounters `<script>` |
+
+Knowing who reads what and when is the foundation of **debugging**:
+if the page does not load, the problem is in Apache or `.htaccess`.
+If the HTML is wrong, the problem is in PHP. If the table stays
+empty, the problem is in JavaScript or the API. If the query returns
+no data, the problem is in the Model or the database.
+
+## *Ubi Stat Res* — Where state lives
+
+A web application has a problem that a desktop program does not:
+**state** — the information needed to function — is scattered
+across different places. Understanding where each piece lives is
+the key to not getting lost.
+
+### The three containers
+
+Bibliotheca has no sessions and no login — it is simpler than an
+enterprise application. State lives in three places:
+
+| Where | What lives there | Duration | Who accesses it |
+|-------|-----------------|----------|-----------------|
+| **Database** (SQLite) | Permanent data: publishers, categories, authors, books | Forever (until you delete them) | Only PHP (via DBMS) |
+| **DOM** (the HTML document) | What you see: tables, forms, buttons | While the page is open | JavaScript (and the rendering engine) |
+| **JavaScript variables** | Temporary data: `this.API`, `this.table` | While the page is open | Only JavaScript |
+
+These three containers **do not talk to each other directly**. The
+database does not know what is in the DOM. JavaScript does not know
+what is in the database. To move information from one container to
+another you need explicit steps:
+
+```
+Database ←──SQL──→ PHP ←──JSON/HTTP──→ JavaScript ←──DOM API──→ Screen
+
+$db->query()              fetch()              createElement()
+$db->insert()             JSON.stringify()     textContent
+                          response.json()      appendChild()
+```
+
+### The concrete example
+
+When you load the publishers list, data makes this journey:
+
+1. **Database → PHP**: `$publisher->getAll()` runs a SELECT and
+   gets a PHP array
+2. **PHP → HTTP**: `json_encode()` transforms the array into a
+   JSON string that travels in the response
+3. **HTTP → JavaScript**: `response.json()` transforms the string
+   into an array of JavaScript objects
+4. **JavaScript → DOM**: `createElement()` + `textContent` +
+   `appendChild()` transform the data into visible elements
+
+Each step is a **format transformation**: SQL row → PHP array →
+JSON string → JS object → DOM element. The data is always the
+same, the clothing changes.
+
+### State that gets lost
+
+There is a crucial asymmetry: the database is **permanent**,
+everything else is **temporary**.
+
+If the user closes the browser: DOM disappears, JavaScript
+variables disappear. The database stays forever.
+
+If the user reloads the page (F5): DOM rebuilt from scratch,
+JavaScript restarted from scratch, database intact. That is why
+`this.load()` is in the constructor — every time the page loads,
+JavaScript must go fetch the data again.
+
+There is no "memory" in the browser. Every page starts from zero
+and rebuilds its state from the server. The only thing that
+survives between pages is the database on disk.
+
+## *Ars Venandi* — Bug hunting
+
+Web programming is debugging. Not because the code is fragile,
+but because there are many pieces that must cooperate — and when
+one breaks, the effects show up elsewhere. The secret is knowing
+**where to look**.
+
+### The tools
+
+| Tool | Where | What it tells you |
+|------|-------|-------------------|
+| **Browser Console** | F12 → Console | JavaScript errors, `console.log()` |
+| **Network tab** | F12 → Network | HTTP requests, responses, timing |
+| **Elements tab** | F12 → Elements | The current DOM (after JS modifications) |
+| **Apache log** | `/var/log/apache2/error.log` | Server errors (404, 500, permissions) |
+| **SQLite** | `sqlite3 sql/bibliotheca.db` | Direct queries, data verification |
+
+### The mental map — what is not working?
+
+```
+The page does not load at all?
+  → Apache log + .htaccess
+  → Is the server running? Is the route in $allowed?
+
+The page loads but is empty/broken?
+  → View source (Ctrl+U): did PHP produce HTML?
+  → Apache log: is there a Fatal Error?
+
+The page loads but the table is empty?
+  → Network tab: does the API call fire?
+  → If yes: what does it respond? (200 with data? 404? 500?)
+  → If 500: Apache log
+  → If 200 but empty data: wrong query
+    → test in sqlite3: sqlite3 sql/bibliotheca.db
+      "SELECT * FROM publisher"
+
+The page works but saving fails?
+  → Network tab: does the POST fire? What does it respond?
+  → Console: JavaScript errors?
+  → If 400: validation failed → read the message
+  → If 409: duplicate data
+  → If 500: Apache log → error in the Model
+
+CSS is not applied?
+  → Browser cache → Ctrl+Shift+R (hard reload)
+```
+
+### The golden rule
+
+**Follow the data.** When something is not working, start from the
+source (the database or the user input) and follow the data through
+every step until where it gets lost. Do not guess — check every
+junction. The bug is always in the passage between two layers that
+are not talking to each other as they should.

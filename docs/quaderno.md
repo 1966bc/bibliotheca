@@ -1,4 +1,26 @@
-## Prima di tutto
+# Bibliotheca
+
+### *Liber Rerum Cognitarum*
+
+## *Praeludium*
+
+Questo quaderno racconta come funziona Bibliotheca dall'interno —
+non *cosa* fa (quello lo vedi usandolo), ma *come* lo fa e
+*perché* è fatto così. Lo scopo è capire la programmazione web
+attraverso un progetto reale: il nostro.
+
+Bibliotheca è un'applicazione *pure-stack*: PHP, JavaScript,
+HTML, CSS, SQLite. Niente framework, niente Composer, niente
+sessioni, niente login. Ogni riga di codice è scritta da noi —
+e ogni riga è qui per un motivo.
+
+Ogni concetto viene spiegato nel punto in cui serve, non prima.
+Non è un manuale da leggere a pezzi — è un viaggio, e ogni tappa
+costruisce sulla precedente.
+
+---
+
+## *Fundamenta* — La struttura del progetto
 
 Prima di seguire il viaggio di una richiesta, devi conoscere la
 struttura della directory dove stanno i file dell'applicazione — e
@@ -56,6 +78,194 @@ siti moderni. Gli URL puliti sono più leggibili, più facili da
 ricordare, e nascondono la tecnologia dietro: l'utente non sa se il
 server usa PHP, Python o altro. Ma quella è un'altra storia, la
 vedremo nel viaggio di una richiesta.
+
+## *Lingua Universalis* — HTTP, il protocollo del web
+
+Quando digiti un URL nel browser e premi Invio, succede qualcosa
+di sorprendentemente semplice: il browser invia un **messaggio di
+testo** al server, e il server risponde con un altro **messaggio
+di testo**. Questi messaggi seguono un formato preciso chiamato
+**HTTP** (HyperText Transfer Protocol).
+
+Con `curl` possiamo parlare direttamente con il server, senza
+browser — e vedere esattamente cosa viaggia sulla rete:
+
+```bash
+# Il dialogo completo: richiesta E risposta (senza il body HTML)
+curl -v -o /dev/null http://localhost/bibliotheca/public/publishers 2>&1
+```
+
+L'output ha tre sezioni, marcate con simboli diversi:
+
+```
+* Trying 127.0.0.1:80...                      ← * = informazioni di curl
+* Connected to localhost (127.0.0.1) port 80
+
+> GET /bibliotheca/public/publishers HTTP/1.1  ← > = quello che INVII
+> Host: localhost                                    (la richiesta)
+> User-Agent: curl/7.88.1
+> Accept: */*
+
+< HTTP/1.1 200 OK                             ← < = quello che RICEVI
+< Content-Type: text/html; charset=UTF-8             (la risposta)
+< Content-Length: 1495
+```
+
+Tre simboli, tre attori: `*` è curl che ti racconta cosa sta
+facendo, `>` è quello che parte da te verso il server, `<` è
+quello che torna dal server verso di te. Il body HTML non si
+vede perché `-o /dev/null` lo butta via — per ora ci
+interessano solo gli header.
+
+Una richiesta HTTP è fatta così:
+
+```
+GET /bibliotheca/public/publishers HTTP/1.1
+Host: localhost
+Accept: text/html
+```
+
+La prima riga ha tre parti:
+- **Il metodo** (`GET`) — cosa vuoi fare. GET = "dammi qualcosa"
+- **Il percorso** (`/bibliotheca/public/publishers`) — cosa vuoi
+- **La versione** (`HTTP/1.1`) — quale dialetto parliamo
+
+Poi vengono gli **header** — metadati sulla richiesta:
+- `Host` — a quale sito sto parlando (un server può ospitarne molti)
+- `Accept` — che tipo di risposta preferisco (HTML, JSON, ecc.)
+
+Una riga vuota separa gli header dal **body** — il corpo del
+messaggio. In un GET il body è vuoto (stai chiedendo, non mandando).
+In un POST il body contiene i dati che invii.
+
+La risposta del server ha la stessa struttura:
+
+```
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html>
+<html>...l'intera pagina HTML...</html>
+```
+
+E puoi simulare un POST — quello che JavaScript fa con `fetch`
+quando invii un form:
+
+```bash
+# -X POST = metodo POST
+# -H = header aggiuntivo
+# -d = body (il payload JSON)
+curl -v -X POST http://localhost/bibliotheca/public/api/publishers.php \
+     -H "Content-Type: application/json" \
+     -d '{"name": "Feltrinelli"}'
+```
+
+Se provi un metodo non supportato, il server risponde con
+`405 Method Not Allowed`. Provalo:
+
+```bash
+# PATCH su un endpoint che non lo supporta → 405
+curl -s -o /dev/null -w "%{http_code}\n" \
+     -X PATCH http://localhost/bibliotheca/public/api/publishers.php
+# Stampa: 405
+```
+
+Questo è REST in azione: lo stesso URL si comporta diversamente
+a seconda del metodo HTTP. L'API decide cosa accettare.
+
+### I quattro metodi che usiamo
+
+| Metodo | Significato | Ha un body? | Esempio |
+|--------|-------------|------------|---------|
+| `GET` | Leggi | No | Apri la lista editori |
+| `POST` | Crea | Sì (i dati nuovi) | Crea un editore |
+| `PUT` | Aggiorna | Sì (i dati aggiornati) | Modifica un editore |
+| `DELETE` | Cancella | Sì (l'id) | Cancella un editore |
+
+Questo schema — un metodo per ogni operazione, lo stesso URL — si
+chiama **REST** (Representational State Transfer). Non è una
+tecnologia, è una convenzione: ci mettiamo d'accordo che `GET`
+legge, `POST` crea, `PUT` aggiorna, `DELETE` cancella.
+
+HTTP è **stateless** — senza stato. Ogni richiesta è indipendente:
+il server non "ricorda" chi sei tra una richiesta e l'altra.
+Bibliotheca non ha sessioni e non ha login — è stateless fino
+in fondo. Ogni richiesta è davvero indipendente dalle altre.
+
+Tutto il web — pagine, API, immagini, video — viaggia su HTTP. Non
+c'è nient'altro. Quando capiremo come Bibliotheca costruisce
+richieste e risposte HTTP, avremo capito come funziona.
+
+### Codici di stato HTTP
+
+La prima riga della risposta ha il **codice di stato** — un
+numero che dice com'è andata:
+
+| Codice | Significato | Analogia |
+|--------|-------------|----------|
+| `200 OK` | Tutto bene, ecco quello che hai chiesto | "Certo, eccolo" |
+| `201 Created` | Ho creato quello che mi hai chiesto | "Fatto, ecco il nuovo" |
+| `400 Bad Request` | Non capisco la tua richiesta | "Non ha senso quello che dici" |
+| `404 Not Found` | Non esiste | "Non so di cosa parli" |
+| `405 Not Allowed` | Metodo sbagliato | "Non puoi bussare così" |
+| `409 Conflict` | Conflitto (es. nome duplicato, ha figli) | "Non posso, c'è un problema" |
+| `500 Server Error` | Qualcosa si è rotto dentro | "Scusa, ho avuto un problema" |
+
+### *Instrumenta* — La cassetta degli attrezzi
+
+Ogni comando che abbiamo visto finora è un attrezzo. Sono
+tutti gratuiti, tutti già installati, e tra dieci anni
+funzioneranno uguale. Eccoli in un colpo d'occhio:
+
+```bash
+# ─── Parlare con il server (HTTP) ───────────────────────
+
+curl -v URL                    # request + response grezza
+curl -s URL | head -20         # solo il body, prime 20 righe
+curl -s -D - -o /dev/null URL  # solo gli header della response
+curl -s -o /dev/null -w "%{http_code}" URL  # solo il codice (200, 404...)
+curl -s -o /dev/null -w "%{time_total}s" URL  # tempo di risposta
+curl -X POST -H "Content-Type: application/json" -d '{}' URL  # simulare un POST
+
+# ─── Parlare con il database (SQL) ──────────────────────
+
+sqlite3 sql/bibliotheca.db                    # sessione interattiva
+sqlite3 sql/bibliotheca.db ".tables"          # elenco delle tabelle
+sqlite3 sql/bibliotheca.db ".schema book"     # struttura di una tabella
+sqlite3 sql/bibliotheca.db "SELECT COUNT(*) FROM book"  # query singola
+sqlite3 sql/bibliotheca.db < file.sql         # eseguire uno script SQL
+
+# ─── Leggere i log ──────────────────────────────────────
+
+tail -f /var/log/apache2/error.log        # errori Apache in tempo reale
+
+# ─── Ispezionare file e codice ───────────────────────────
+
+cat -n src/Publisher.php          # leggere un file con numeri di riga
+head -50 src/Publisher.php        # prime 50 righe
+grep -r "fetchAll" src/           # cercare una stringa in tutti i file
+find public/js -name "*.js"       # trovare file per nome
+wc -l src/*.php                   # contare le righe di codice
+diff file1 file2                  # confrontare due file
+
+# ─── Controllare la rete ─────────────────────────────────
+
+ss -tlnp | grep :80              # chi sta ascoltando sulla porta 80?
+ping localhost                   # il server è vivo?
+```
+
+`curl` è lo strumento più utile per il debugging delle API:
+se qualcosa non funziona, togli di mezzo il browser e JavaScript,
+e parla direttamente con il server. Se `curl` funziona ma il
+browser no, il problema è nel JavaScript. Se `curl` non funziona,
+il problema è nel server.
+
+Un bravo programmatore usa il terminale per tutto — è il posto
+dove vedi le cose per quello che sono, senza interfacce che
+nascondono, senza rendering che abbellisce. Testo grezzo, dati
+grezzi, la verità.
+
+---
 
 ## Il viaggio di una richiesta
 
@@ -1638,3 +1848,316 @@ id="publisher-id" value="">`:
 Stesso file HTML, stesso file JavaScript. Il campo nascosto è la
 chiave che decide il comportamento — e JavaScript mostra o nasconde
 gli elementi di conseguenza.
+
+## *Custos Secreti* — CSRF, il biglietto di controllo
+
+C'è un pericolo nascosto che riguarda tutte le applicazioni web —
+anche quelle senza login come Bibliotheca. Si chiama **CSRF**
+(Cross-Site Request Forgery — falsificazione di richiesta tra siti).
+
+### Il problema
+
+Immagina di avere Bibliotheca aperta nel browser. In un'altra
+scheda visiti un sito maligno. Quel sito potrebbe contenere:
+
+```html
+<script>
+fetch('http://localhost/bibliotheca/public/api/publishers.php', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: '{"name": "HACKED"}'
+});
+</script>
+```
+
+Il browser invierebbe il POST — e il server lo eseguirebbe.
+Il sito maligno ha creato un editore nel nostro database senza
+che noi facessimo niente.
+
+### La soluzione — un token segreto
+
+La difesa è un **token CSRF**: un codice segreto che solo le
+*nostre* pagine conoscono. Il sito maligno non può leggerlo.
+
+Quando PHP genera la pagina, mette il token nell'HTML:
+
+```html
+<meta name="csrf-token" content="a7f3b9c2e1d4...">
+```
+
+Il token viene da `$_SESSION['csrf_token']` — generato con
+`bin2hex(random_bytes(32))`, 64 caratteri esadecimali casuali.
+Sta nella sessione (sul server) E nell'HTML (nel browser).
+Solo le nostre pagine lo hanno.
+
+Quando JavaScript invia un POST/PUT/DELETE, include il token:
+
+```javascript
+headers: {
+    'Content-Type': 'application/json',
+    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+}
+```
+
+L'API lo verifica:
+
+```php
+if (in_array($method, ['POST', 'PUT', 'DELETE'], true)) {
+    Csrf::start();
+    Csrf::verify();  // 403 se il token è sbagliato o mancante
+}
+```
+
+`Csrf::verify()` confronta il token ricevuto nell'header con
+quello in `$_SESSION`. Se coincidono, la richiesta è legittima —
+viene dalla nostra pagina. Se non coincidono (o manca), qualcuno
+sta provando a fare una richiesta da fuori — 403 Forbidden.
+
+### Perché il sito maligno non può leggere il token?
+
+Il browser lo vieta. La **Same-Origin Policy** (politica della
+stessa origine) impedisce a un sito di leggere il contenuto di un
+altro sito. Il sito maligno può *inviare* una richiesta verso il
+nostro server, ma non può *leggere* le nostre pagine per estrarre
+il token dal `<meta>`. Senza token, il server rifiuta.
+
+### Ma Bibliotheca non ha login!
+
+Vero — e il CSRF classico sfrutta sessioni autenticate. Ma il
+principio vale anche senza login: proteggere le operazioni di
+scrittura da richieste non volute. In un progetto didattico è
+fondamentale: insegna il concetto *prima* che servano le sessioni,
+così quando arriveranno (come in VirtUaLab) il meccanismo sarà
+già familiare.
+
+### Provalo tu stesso
+
+```bash
+# Senza token → 403 Forbidden
+curl -s -o /dev/null -w "%{http_code}" -X POST \
+     http://localhost/bibliotheca/public/api/publishers.php \
+     -H "Content-Type: application/json" \
+     -d '{"name": "Test"}'
+# Stampa: 403
+
+# Con token → 200 OK (prendi il token dalla pagina)
+TOKEN=$(curl -s -c /tmp/c.txt \
+    http://localhost/bibliotheca/public/ \
+    | grep csrf-token | sed 's/.*content="\([^"]*\)".*/\1/')
+curl -s -o /dev/null -w "%{http_code}" -b /tmp/c.txt -X POST \
+     http://localhost/bibliotheca/public/api/publishers.php \
+     -H "Content-Type: application/json" \
+     -H "X-CSRF-Token: $TOKEN" \
+     -d '{"name": "Test"}'
+# Stampa: 200
+```
+
+Nota che il secondo curl usa `-c` (salva i cookie) e `-b`
+(invia i cookie) — il token nella sessione PHP è legato al
+cookie `PHPSESSID`. Senza il cookie, il server non riconosce
+la sessione e il token non corrisponde.
+
+---
+
+## *Tabula Itineris* — La mappa completa
+
+```
+Browser                          Server (Apache + PHP)
+───────                          ────────────────────
+1. Click "Publishers"
+   GET /bibliotheca/public/publishers ──→
+                                    2. Apache → .htaccess → index.php
+                                    3. index.php matcha "publishers"
+                                       nella lista $allowed
+                                    4. Carica pages/publishers.php
+                                       - layout HTML (header, nav, footer)
+                                       - <table> con <tbody> vuoto
+                                       - <script src="js/publishers.js">
+                                    5. PHP → HTML → Apache
+                              ←── risposta HTML completa
+
+6. Browser renderizza HTML
+   (header, tabella vuota)
+7. Esegue publishers.js
+   new PublishersView()
+   → constructor()
+   → load()
+   GET /bibliotheca/public/api/publishers.php ──→
+                                    8. Apache serve api/publishers.php
+                                       (file reale, niente rewrite)
+                                       - require_once DBMS.php, Publisher.php
+                                       - $db = new DBMS(...)
+                                       - $publisher = new Publisher($db)
+                                    9. $publisher->getAll()
+                                       - DBMS → SQLite → query SQL
+                                       - righe → array PHP
+                                   10. json_encode() → risposta JSON
+                              ←── risposta JSON
+
+11. response.json() → oggetto JS
+12. this.render()
+    → createElement per ogni riga
+    → appendChild nel <tbody>
+13. Motore di rendering ridisegna
+    → la tabella appare con i dati
+```
+
+Due viaggi al server: il primo per lo scheletro HTML, il secondo
+per i dati JSON. Il primo produce la struttura, il secondo la
+riempie. L'utente vede la pagina apparire (header, tabella vuota)
+e poi le righe che si popolano — su localhost è talmente veloce
+che sembra istantaneo.
+
+## *Tria Officia* — Model, View, Controller
+
+Quello che abbiamo seguito è il pattern **Model-View-Controller**:
+
+| Componente | File | Responsabilità |
+|------------|------|----------------|
+| **Model** | `src/Publisher.php` | Parla con il database. Query SQL, nient'altro. Non sa niente di HTTP o HTML |
+| **Controller** | `public/api/publishers.php` | Riceve la richiesta HTTP, chiama il Model, restituisce JSON. Non sa niente di HTML o SQL |
+| **View** | `public/pages/publishers.php` + `public/js/publishers.js` | HTML per lo scheletro, JavaScript per riempirlo. Non sa niente di SQL |
+
+Ogni pezzo fa una cosa sola. Se la query SQL è sbagliata, il
+problema è nel Model. Se la risposta JSON è malformata, il
+problema è nel Controller. Se la tabella non si riempie, il
+problema è nella View. Ogni attore ha il suo momento — e i suoi
+errori.
+
+## *Quis Legit Quid* — Chi legge cosa, e quando
+
+| Chi legge | Cosa legge | Quando |
+|-----------|-----------|--------|
+| Apache | `.htaccess` | quando non trova il file richiesto |
+| PHP | `index.php` | ad ogni richiesta di pagina — smista la rotta |
+| PHP | `pages/*.php`, layout in `index.php` | quando la rotta è valida |
+| PHP | `api/*.php`, `src/*.php` | quando JavaScript chiede dati |
+| SQLite | query SQL | quando DBMS le esegue |
+| Motore di rendering | l'HTML prodotto da PHP | quando la risposta arriva al browser |
+| V8 (JavaScript) | `js/*.js` | quando il rendering incontra `<script>` |
+
+Sapere chi legge cosa e quando è la base del **debugging**: se la
+pagina non si carica, il problema è in Apache o in `.htaccess`. Se
+l'HTML è sbagliato, il problema è in PHP. Se la tabella resta vuota,
+il problema è in JavaScript o nell'API. Se la query non restituisce
+dati, il problema è nel Model o nel database.
+
+## *Ubi Stat Res* — Dove vive lo stato
+
+Un'applicazione web ha un problema che un programma desktop non ha:
+lo **stato** — le informazioni che servono per funzionare — è
+sparpagliato in posti diversi. Capire dove sta ogni pezzo è la
+chiave per non perdersi.
+
+### I tre contenitori
+
+Bibliotheca non ha sessioni e non ha login — è più semplice di
+un'applicazione enterprise. Lo stato vive in tre posti:
+
+| Dove | Cosa ci sta | Durata | Chi ci accede |
+|------|-------------|--------|---------------|
+| **Database** (SQLite) | Dati permanenti: editori, categorie, autori, libri | Per sempre (finché non li cancelli) | Solo PHP (via DBMS) |
+| **DOM** (il documento HTML) | Cosa vedi: tabelle, form, bottoni | Finché la pagina è aperta | JavaScript (e il motore di rendering) |
+| **Variabili JavaScript** | Dati temporanei: `this.API`, `this.table` | Finché la pagina è aperta | Solo JavaScript |
+
+Questi tre contenitori **non si parlano direttamente**. Il
+database non sa cosa c'è nel DOM. JavaScript non sa cosa c'è nel
+database. Per spostare informazioni da un contenitore all'altro
+servono passaggi espliciti:
+
+```
+Database ←──SQL──→ PHP ←──JSON/HTTP──→ JavaScript ←──DOM API──→ Schermo
+
+$db->query()              fetch()              createElement()
+$db->insert()             JSON.stringify()     textContent
+                          response.json()      appendChild()
+```
+
+### L'esempio concreto
+
+Quando carichi la lista editori, i dati fanno questo viaggio:
+
+1. **Database → PHP**: `$publisher->getAll()` esegue una SELECT e
+   ottiene un array PHP
+2. **PHP → HTTP**: `json_encode()` trasforma l'array in una
+   stringa JSON che viaggia nella risposta
+3. **HTTP → JavaScript**: `response.json()` trasforma la stringa
+   in un array di oggetti JavaScript
+4. **JavaScript → DOM**: `createElement()` + `textContent` +
+   `appendChild()` trasformano i dati in elementi visibili
+
+Ogni passaggio è una **trasformazione di formato**: riga SQL →
+array PHP → stringa JSON → oggetto JS → elemento DOM. Il dato
+è sempre lo stesso, il vestito cambia.
+
+### Lo stato che si perde
+
+C'è un'asimmetria cruciale: il database è **permanente**, tutto
+il resto è **temporaneo**.
+
+Se l'utente chiude il browser: DOM sparisce, variabili JavaScript
+spariscono. Il database resta per sempre.
+
+Se l'utente ricarica la pagina (F5): DOM ricostruito da zero,
+JavaScript ripartito da zero, database intatto. Per questo
+`this.load()` è nel costruttore — ogni volta che la pagina si
+carica, JavaScript deve riandarsi a prendere i dati.
+
+Non c'è "memoria" nel browser. Ogni pagina riparte da zero e
+ricostruisce il suo stato dal server. L'unica cosa che sopravvive
+tra una pagina e l'altra è il database su disco.
+
+## *Ars Venandi* — A caccia di errori
+
+La programmazione web è debugging. Non perché il codice sia fragile,
+ma perché ci sono tanti pezzi che devono cooperare — e quando uno
+si rompe, gli effetti si vedono altrove. Il segreto è sapere
+**dove guardare**.
+
+### Gli strumenti
+
+| Strumento | Dove sta | Cosa ti dice |
+|-----------|----------|--------------|
+| **Console del browser** | F12 → Console | Errori JavaScript, `console.log()` |
+| **Tab Network** | F12 → Rete (Network) | Richieste HTTP, risposte, tempi |
+| **Tab Elements** | F12 → Elementi (Elements) | Il DOM attuale (dopo le modifiche JS) |
+| **Log di Apache** | `/var/log/apache2/error.log` | Errori del server (404, 500, permessi) |
+| **SQLite** | `sqlite3 sql/bibliotheca.db` | Query dirette, verifica dati |
+
+### La mappa mentale — cosa non funziona?
+
+```
+La pagina non si carica affatto?
+  → Log di Apache + .htaccess
+  → Il server è su? La rotta è in $allowed?
+
+La pagina si carica ma è vuota/rotta?
+  → View source (Ctrl+U): PHP ha prodotto HTML?
+  → Log di Apache: c'è un Fatal Error?
+
+La pagina si carica ma la tabella è vuota?
+  → Tab Network: la chiamata API parte?
+  → Se sì: cosa risponde? (200 con dati? 404? 500?)
+  → Se 500: log di Apache
+  → Se 200 ma dati vuoti: query sbagliata
+    → testa in sqlite3: sqlite3 sql/bibliotheca.db
+      "SELECT * FROM publisher"
+
+La pagina funziona ma il salvataggio fallisce?
+  → Tab Network: il POST parte? Cosa risponde?
+  → Console: errori JavaScript?
+  → Se 400: validazione fallita → leggi il messaggio
+  → Se 409: dato duplicato
+  → Se 500: log di Apache → errore nel Model
+
+Il CSS non si applica?
+  → Cache del browser → Ctrl+Shift+R (hard reload)
+```
+
+### La regola d'oro
+
+**Segui il dato.** Quando qualcosa non funziona, parti dalla
+sorgente (il database o l'input utente) e segui il dato attraverso
+ogni passaggio fino a dove si perde. Non tirare a indovinare —
+controlla ogni snodo. Il bug è sempre nel passaggio tra due strati
+che non si parlano come dovrebbero.
