@@ -59,6 +59,7 @@ Open `http://localhost/bibliotheca/public/` in your browser.
 | Topic                                              |
 |------------------------------------------------------|
 | [How It Works](docs/how_it_works.md)                 |
+| [Study Notebook](docs/notebook.md)                   |
 | [Glossary](docs/glossary.md)                         |
 | [The Apocryphal Chapter](docs/apocrypha.md)          |
 
