@@ -2,12 +2,12 @@
 #
 # Build the Bibliotheca book as PDF.
 #
-# Usage: bash forge/book/build.sh
-# Output: forge/book/ten_brief_lessons.pdf
+# Usage: bash docs/book/build.sh
+# Output: docs/book/ten_brief_lessons.pdf
 
 set -e
 
-BOOK_DIR="forge/book"
+BOOK_DIR="docs/book"
 DOCS_DIR="docs"
 OUTPUT="$BOOK_DIR/ten_brief_lessons.pdf"
 COMBINED="$BOOK_DIR/combined.md"
