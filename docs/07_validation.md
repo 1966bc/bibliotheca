@@ -23,7 +23,8 @@ Validation is not optional. It is part of the craft.
   from 1450 (because print wasn't invented yet) to current year + 1.
 - **Date ranges** — author birthdate between 1000 and current year.
 - **Duplicates** — server-side check with `exists()` method.
-  Returns HTTP 409 (Conflict) if the record already exists.
+  Returns HTTP 409 (Conflict) if the record already exists,
+  or 422 (Unprocessable Entity) for dependency errors.
 - **Input filtering** — numeric fields only accept digit keys.
 
 ## Formatting
@@ -80,7 +81,8 @@ Clear and immediate feedback.
 
 ## Server errors
 
-When the server returns an error (e.g., 409 for duplicates),
+When the server returns an error (e.g., 409 for duplicates,
+422 for dependency issues),
 JavaScript reads the response and shows the message inline:
 
 ```javascript

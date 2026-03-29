@@ -1,7 +1,9 @@
 <section>
     <div class="section-header">
         <h2>Publishers</h2>
+<?php if ($isLoggedIn): ?>
         <a href="/bibliotheca/public/publisher" class="btn">Add new publisher</a>
+<?php endif; ?>
     </div>
     <table id="publisher-table">
         <thead>

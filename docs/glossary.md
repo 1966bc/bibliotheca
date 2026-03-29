@@ -131,7 +131,10 @@ uses:
 - **400** — Bad Request (missing or invalid input)
 - **404** — Not Found
 - **405** — Method Not Allowed
+- **401** — Unauthorized (not authenticated)
 - **409** — Conflict (duplicate record)
+- **422** — Unprocessable Entity (dependency error, invalid data)
+- **429** — Too Many Requests (rate limiting)
 - **500** — Internal Server Error
 
 **Index (database)** —

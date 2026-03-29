@@ -1,6 +1,6 @@
 # Bibliotheca
 
-### *Liber Rerum Cognitarum*
+### *a concept notebook*
 
 ## *Praeludium*
 
@@ -10,9 +10,8 @@ it and *why* it is built this way. The goal is to understand web
 programming through a real project: ours.
 
 Bibliotheca is a *pure-stack* application: PHP, JavaScript,
-HTML, CSS, SQLite. No frameworks, no Composer, no sessions,
-no login. Every line of code is written by us — and every line
-is here for a reason.
+HTML, CSS, SQLite. No frameworks, no Composer. Every line of
+code is written by us — and every line is here for a reason.
 
 Each concept is explained at the point where it is needed, not
 before. This is not a manual to read in pieces — it is a journey,
@@ -189,8 +188,9 @@ it is a convention: we agree that `GET` reads, `POST` creates,
 
 HTTP is **stateless** — without state. Every request is independent:
 the server does not "remember" who you are between requests.
-Bibliotheca has no sessions and no login — it is stateless all the
-way through. Every request is truly independent from the others.
+Bibliotheca uses sessions for authentication and CSRF protection,
+but the underlying protocol is stateless. The session mechanism
+(cookies + server-side storage) is how we add state on top of HTTP.
 
 Everything on the web — pages, APIs, images, video — travels over
 HTTP. There is nothing else. Once we understand how Bibliotheca
@@ -208,7 +208,10 @@ number that says how things went:
 | `400 Bad Request` | I cannot understand your request | "What you said makes no sense" |
 | `404 Not Found` | Does not exist | "I do not know what you are talking about" |
 | `405 Not Allowed` | Wrong method | "You cannot knock like that" |
-| `409 Conflict` | Conflict (e.g. duplicate name, has children) | "I cannot, there is a problem" |
+| `401 Unauthorized` | Not authenticated | "Who are you? Log in first" |
+| `409 Conflict` | Conflict (e.g. duplicate name) | "I cannot, there is a conflict" |
+| `422 Unprocessable` | Dependency or validation error | "I understand, but I cannot do it" |
+| `429 Too Many Requests` | Rate limit exceeded | "Slow down, too many requests" |
 | `500 Server Error` | Something broke inside | "Sorry, I had a problem" |
 
 ### *Instrumenta* — The toolbox
@@ -1844,8 +1847,8 @@ because it is intuitive and consistent.
    they confirm, the DELETE fires.
 
 2. The API checks: does the publisher have associated books? If yes
-   → `409 Conflict` ("Cannot delete: publisher has associated
-   books"). If no → deletes it and responds `{"deleted": true}`.
+   → `422 Unprocessable Entity` ("Cannot delete: publisher has
+   associated books"). If no → deletes it and responds `{"deleted": true}`.
 
 ### One form, three operations
 
@@ -1934,13 +1937,12 @@ can *send* a request to our server, but it cannot *read* our pages
 to extract the token from the `<meta>` tag. Without the token, the
 server refuses.
 
-### But Bibliotheca has no login!
+### CSRF and authentication
 
-True — and classic CSRF exploits authenticated sessions. But the
-principle applies even without login: protect write operations from
-unwanted requests. In a didactic project this is essential: it
-teaches the concept *before* sessions are needed, so when they
-arrive (as in VirtUaLab) the mechanism will already be familiar.
+Classic CSRF exploits authenticated sessions — and Bibliotheca now
+has authentication. The CSRF token and the session cookie work
+together: the cookie proves *who* you are, the token proves *you*
+intended this request. Without both, the server refuses.
 
 ### Try it yourself
 
@@ -2062,14 +2064,14 @@ the key to not getting lost.
 
 ### The three containers
 
-Bibliotheca has no sessions and no login — it is simpler than an
-enterprise application. State lives in three places:
+State lives in four places:
 
 | Where | What lives there | Duration | Who accesses it |
 |-------|-----------------|----------|-----------------|
-| **Database** (SQLite) | Permanent data: publishers, categories, authors, books | Forever (until you delete them) | Only PHP (via DBMS) |
+| **Database** (SQLite) | Permanent data: publishers, categories, authors, books, users | Forever (until you delete them) | Only PHP (via DBMS) |
+| **Session** (`$_SESSION`) | Authentication state, CSRF token | Until logout or session expiry | Only PHP |
 | **DOM** (the HTML document) | What you see: tables, forms, buttons | While the page is open | JavaScript (and the rendering engine) |
-| **JavaScript variables** | Temporary data: `this.API`, `this.table` | While the page is open | Only JavaScript |
+| **JavaScript variables** | Temporary data: `this.API`, `this.table`, `AUTH` | While the page is open | Only JavaScript |
 
 These three containers **do not talk to each other directly**. The
 database does not know what is in the DOM. JavaScript does not know
@@ -2158,7 +2160,9 @@ The page works but saving fails?
   → Network tab: does the POST fire? What does it respond?
   → Console: JavaScript errors?
   → If 400: validation failed → read the message
+  → If 401: not logged in → redirect to /login
   → If 409: duplicate data
+  → If 422: dependency error (e.g. has associated books)
   → If 500: Apache log → error in the Model
 
 CSS is not applied?

@@ -10,13 +10,14 @@
  *   DELETE — Hard-delete an author (body: {author_id})
  *
  * Responses are JSON with appropriate HTTP status codes:
- *   200 OK, 400 Bad Request, 404 Not Found, 405 Method Not Allowed, 409 Conflict
+ *   200 OK, 400 Bad Request, 404 Not Found, 405 Method Not Allowed, 409 Conflict,
+ *   422 Unprocessable Entity
  *
  * Business rules:
  *   - Names are normalized with ucwords(strtolower()) before storage
  *   - Duplicate full names (case-insensitive) are rejected with 409
- *   - Cannot disable an author that has active books (409)
- *   - Cannot delete an author that has any books at all (409)
+ *   - Cannot disable an author that has active books (422)
+ *   - Cannot delete an author that has any books at all (422)
  *
  * @see Author The model class used for database operations
  */
@@ -26,6 +27,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/../../src/DBMS.php';
 require_once __DIR__ . '/../../src/Author.php';
 require_once __DIR__ . '/../../src/Csrf.php';
+require_once __DIR__ . '/../../src/Auth.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -38,6 +40,7 @@ try {
     if (in_array($method, ['POST', 'PUT', 'DELETE'], true)) {
         Csrf::start();
         Csrf::verify();
+        Auth::require();
     }
 
     if ($method === 'GET') {
@@ -70,6 +73,17 @@ try {
             exit;
         }
 
+        if ($birthdate !== null) {
+            $d = \DateTimeImmutable::createFromFormat('Y-m-d', $birthdate);
+            if (!$d || $d->format('Y-m-d') !== $birthdate
+                || (int) $d->format('Y') < 1000
+                || $d > new \DateTimeImmutable()) {
+                http_response_code(400);
+                echo json_encode(['error' => 'Invalid birthdate']);
+                exit;
+            }
+        }
+
         if ($author->exists($firstName, $lastName)) {
             http_response_code(409);
             echo json_encode(['error' => 'Author already exists']);
@@ -94,6 +108,17 @@ try {
             exit;
         }
 
+        if ($birthdate !== null) {
+            $d = \DateTimeImmutable::createFromFormat('Y-m-d', $birthdate);
+            if (!$d || $d->format('Y-m-d') !== $birthdate
+                || (int) $d->format('Y') < 1000
+                || $d > new \DateTimeImmutable()) {
+                http_response_code(400);
+                echo json_encode(['error' => 'Invalid birthdate']);
+                exit;
+            }
+        }
+
         if ($author->exists($firstName, $lastName, $id)) {
             http_response_code(409);
             echo json_encode(['error' => 'Author already exists']);
@@ -101,7 +126,7 @@ try {
         }
 
         if ($status === 0 && $author->hasBooks($id)) {
-            http_response_code(409);
+            http_response_code(422);
             echo json_encode(['error' => 'Cannot disable: author has associated books']);
             exit;
         }
@@ -121,7 +146,7 @@ try {
         }
 
         if ($author->hasBooks($id, false)) {
-            http_response_code(409);
+            http_response_code(422);
             echo json_encode(['error' => 'Cannot delete: author has associated books']);
             exit;
         }

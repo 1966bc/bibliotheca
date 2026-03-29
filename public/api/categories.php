@@ -10,13 +10,14 @@
  *   DELETE — Hard-delete a category (body: {category_id})
  *
  * Responses are JSON with appropriate HTTP status codes:
- *   200 OK, 400 Bad Request, 404 Not Found, 405 Method Not Allowed, 409 Conflict
+ *   200 OK, 400 Bad Request, 404 Not Found, 405 Method Not Allowed, 409 Conflict,
+ *   422 Unprocessable Entity
  *
  * Business rules:
  *   - Names are normalized with ucwords(strtolower()) before storage
  *   - Duplicate names (case-insensitive) are rejected with 409
- *   - Cannot disable a category that has active books (409)
- *   - Cannot delete a category that has any books at all (409)
+ *   - Cannot disable a category that has active books (422)
+ *   - Cannot delete a category that has any books at all (422)
  *
  * @see Category The model class used for database operations
  */
@@ -26,6 +27,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/../../src/DBMS.php';
 require_once __DIR__ . '/../../src/Category.php';
 require_once __DIR__ . '/../../src/Csrf.php';
+require_once __DIR__ . '/../../src/Auth.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -38,6 +40,7 @@ try {
     if (in_array($method, ['POST', 'PUT', 'DELETE'], true)) {
         Csrf::start();
         Csrf::verify();
+        Auth::require();
     }
 
     if ($method === 'GET') {
@@ -97,7 +100,7 @@ try {
         }
 
         if ($status === 0 && $category->hasBooks($id)) {
-            http_response_code(409);
+            http_response_code(422);
             echo json_encode(['error' => 'Cannot disable: category has associated books']);
             exit;
         }
@@ -117,7 +120,7 @@ try {
         }
 
         if ($category->hasBooks($id, false)) {
-            http_response_code(409);
+            http_response_code(422);
             echo json_encode(['error' => 'Cannot delete: category has associated books']);
             exit;
         }

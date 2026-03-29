@@ -47,7 +47,7 @@
         <div class="form-actions">
             <button type="submit">Save</button>
             <button type="button" id="btn-delete" class="btn-delete" hidden>Delete</button>
-            <a href="/bibliotheca/public/books">Cancel</a>
+            <a href="/bibliotheca/public/">Cancel</a>
         </div>
     </form>
 </section>

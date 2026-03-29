@@ -311,7 +311,7 @@ class BookForm {
                 return;
             }
 
-            window.location.href = '/bibliotheca/public/books';
+            window.location.href = '/bibliotheca/public/';
         } catch (error) {
             alert('Unable to save. Please try again later.');
         }
@@ -343,7 +343,7 @@ class BookForm {
                 return;
             }
 
-            window.location.href = '/bibliotheca/public/books';
+            window.location.href = '/bibliotheca/public/';
         } catch (error) {
             alert('Unable to delete. Please try again later.');
         }

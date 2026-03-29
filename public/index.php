@@ -20,7 +20,10 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../src/Csrf.php';
+require_once __DIR__ . '/../src/Auth.php';
 Csrf::start();
+
+$isLoggedIn = Auth::check();
 
 $route = $_GET['route'] ?? 'home';
 $route = trim($route, '/');
@@ -31,10 +34,11 @@ if ($route === '') {
 
 $allowed = [
     'home',
+    'login',
     'publishers', 'publisher',
     'categories', 'category',
     'authors', 'author',
-    'books', 'book',
+    'book',
     'about',
 ];
 
@@ -50,6 +54,13 @@ if (!is_file($page)) {
     $page = __DIR__ . '/pages/404.php';
 }
 
+// Protect form pages — redirect to login if not authenticated
+$protectedRoutes = ['publisher', 'category', 'author', 'book'];
+if (in_array($route, $protectedRoutes, true) && !$isLoggedIn) {
+    header('Location: /bibliotheca/public/login');
+    exit;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,6 +68,7 @@ if (!is_file($page)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="<?= htmlspecialchars(Csrf::token()) ?>">
+    <meta name="authenticated" content="<?= $isLoggedIn ? '1' : '0' ?>">
     <link rel="icon" type="image/svg+xml" href="/bibliotheca/public/favicon.svg">
     <title>Bibliotheca</title>
     <link rel="stylesheet" href="/bibliotheca/public/css/style.css">
@@ -71,8 +83,14 @@ if (!is_file($page)) {
             <a href="/bibliotheca/public/categories">Categories</a>
             <a href="/bibliotheca/public/authors">Authors</a>
             <a href="/bibliotheca/public/about" title="About"><i class="fas fa-circle-info"></i></a>
+<?php if ($isLoggedIn): ?>
+            <a href="#" id="logout-link" title="Logout"><i class="fas fa-right-from-bracket"></i> Logout</a>
+<?php else: ?>
+            <a href="/bibliotheca/public/login" title="Login"><i class="fas fa-right-to-bracket"></i> Login</a>
+<?php endif; ?>
         </nav>
     </header>
+    <script src="/bibliotheca/public/js/auth.js"></script>
     <main>
         <?php require $page; ?>
     </main>

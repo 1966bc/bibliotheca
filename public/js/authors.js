@@ -71,17 +71,21 @@ class AuthorsView {
             row.appendChild(birthCell);
 
             const actionsCell = document.createElement('td');
-            const actionsDiv = document.createElement('div');
-            actionsDiv.className = 'actions';
 
-            const editBtn = document.createElement('button');
-            editBtn.textContent = 'Edit';
-            editBtn.addEventListener('click', () => {
-                window.location.href = '/bibliotheca/public/author?id=' + author.author_id;
-            });
-            actionsDiv.appendChild(editBtn);
+            if (AUTH.authenticated) {
+                const actionsDiv = document.createElement('div');
+                actionsDiv.className = 'actions';
 
-            actionsCell.appendChild(actionsDiv);
+                const editBtn = document.createElement('button');
+                editBtn.textContent = 'Edit';
+                editBtn.addEventListener('click', () => {
+                    window.location.href = '/bibliotheca/public/author?id=' + author.author_id;
+                });
+                actionsDiv.appendChild(editBtn);
+
+                actionsCell.appendChild(actionsDiv);
+            }
+
             row.appendChild(actionsCell);
             this.table.appendChild(row);
         }

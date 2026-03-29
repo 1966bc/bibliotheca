@@ -53,6 +53,7 @@ Open `http://localhost/bibliotheca/public/` in your browser.
 | 07 | [Validation](docs/07_validation.md)              |
 | 08 | [Permissions](docs/08_permissions.md)            |
 | 09 | [Debugging](docs/09_debugging.md)                |
+| 10 | [Security](docs/10_security.md)                  |
 
 ## Appendices
 

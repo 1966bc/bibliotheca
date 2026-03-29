@@ -41,6 +41,12 @@ CREATE TABLE IF NOT EXISTS book_author (
     FOREIGN KEY (author_id) REFERENCES author (author_id)
 );
 
+CREATE TABLE IF NOT EXISTS user (
+    user_id INTEGER PRIMARY KEY,
+    username TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL
+);
+
 -- Indexes for foreign keys and frequent lookups
 CREATE INDEX IF NOT EXISTS idx_book_publisher ON book (publisher_id);
 CREATE INDEX IF NOT EXISTS idx_book_category ON book (category_id);

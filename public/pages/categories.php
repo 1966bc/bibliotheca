@@ -1,7 +1,9 @@
 <section>
     <div class="section-header">
         <h2>Categories</h2>
+<?php if ($isLoggedIn): ?>
         <a href="/bibliotheca/public/category" class="btn">Add new category</a>
+<?php endif; ?>
     </div>
     <table id="category-table">
         <thead>

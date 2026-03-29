@@ -368,7 +368,7 @@ when you click **Add new publisher**, or **Edit** on an existing one?
     │
  5  ├─── response ok? ──► redirect to /publishers (the list reloads)
     │
-    └─── response error (409)?
+    └─── response error (409/422)?
          │
          │  {"error":"Publisher already exists"}
          │  — or —
@@ -426,7 +426,7 @@ when you click **Add new publisher**, or **Edit** on an existing one?
          │                                                │
          │                                                ├─── yes (has books)
          │                                                │    │
-         │                                                │    │  HTTP 409
+         │                                                │    │  HTTP 422
          │                                                │    │  {"error":"Cannot delete:
          │                                                │    │   publisher has associated books"}
          │                                                │    │
@@ -443,7 +443,7 @@ when you click **Add new publisher**, or **Edit** on an existing one?
     │
     ├─── response ok? ──► redirect to /publishers
     │
-    └─── response error (409)?
+    └─── response error (409/422)?
          │
          │  alert("Cannot delete: publisher has associated books")
          │  form stays open
@@ -483,7 +483,7 @@ cannot be disabled). Then it executes the query.
 
 **Step 5 — response** — if the server returns OK, JavaScript
 redirects to the list page. If the server returns an error (e.g.,
-409 Conflict for a duplicate name, or 409 for disabling with active
+409 Conflict for a duplicate name, or 422 for disabling with active
 books), JavaScript shows the server's error message inline under
 the field.
 

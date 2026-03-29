@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../src/DBMS.php';
 require_once __DIR__ . '/../../src/Book.php';
 require_once __DIR__ . '/../../src/Author.php';
 require_once __DIR__ . '/../../src/Csrf.php';
+require_once __DIR__ . '/../../src/Auth.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -38,6 +39,7 @@ try {
     if (in_array($method, ['POST', 'PUT', 'DELETE'], true)) {
         Csrf::start();
         Csrf::verify();
+        Auth::require();
     }
 
     if ($method === 'GET') {
@@ -71,6 +73,12 @@ try {
             exit;
         }
 
+        if ($published !== null && ($published < 1000 || $published > (int) date('Y'))) {
+            http_response_code(400);
+            echo json_encode(['error' => 'Invalid publication year']);
+            exit;
+        }
+
         $id = $book->insert($publisherId, $categoryId, $title, $pages, $published);
 
         if (!empty($data['author_ids'])) {
@@ -93,6 +101,12 @@ try {
         if ($id === 0 || $publisherId === 0 || $categoryId === 0 || $title === '') {
             http_response_code(400);
             echo json_encode(['error' => 'ID, publisher, category and title are required']);
+            exit;
+        }
+
+        if ($published !== null && ($published < 1000 || $published > (int) date('Y'))) {
+            http_response_code(400);
+            echo json_encode(['error' => 'Invalid publication year']);
             exit;
         }
 
