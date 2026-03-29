@@ -5,7 +5,7 @@
 > *To the next generation of programmers:
 > learn to read, write and compute — before it's too late.*
 
-![Cover](cover.png)
+[![Cover](cover.png)](docs/book/ten_brief_lessons.pdf)
 
 **[Download the book (PDF)](docs/book/ten_brief_lessons.pdf)** — free, open source, ready to print.
 
