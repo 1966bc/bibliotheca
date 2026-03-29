@@ -29,25 +29,27 @@ of thinking:
 
 ## What Bibliotheca does not do
 
-This application is intentionally incomplete. Here is what a
-real-world project would add:
+Bibliotheca has authentication, search, pagination, sorting, CSRF
+protection, and input validation. That is more than most tutorials
+cover. But a production application would still need:
 
-**Authentication and authorization.** Who are you, and what can
-you do? Login forms, password hashing (`password_hash` in PHP),
-session tokens, role-based access. Right now, anyone can delete
-anything.
+**Multi-user roles.** We have a single admin. A real system needs
+roles (admin, editor, viewer), permissions per resource, and audit
+logs of who changed what.
 
-**Pagination.** Our lists load everything. With ten publishers,
-that is fine. With ten thousand books, the browser chokes. SQL
-gives you `LIMIT` and `OFFSET`. The frontend needs page controls.
+**Server-side pagination.** Our pagination is client-side — all data
+is loaded at once, then sliced in JavaScript. With ten thousand
+books, you need `LIMIT` and `OFFSET` in SQL, and the API must
+accept `?page=3&per_page=20`.
 
-**Search.** A `WHERE title LIKE :term` is the simplest form. Full-text
-search (`FTS5` in SQLite) is the next step. Users expect to find
-things.
+**Full-text search.** Our search filters in memory. A real search
+needs `FTS5` in SQLite (or Elasticsearch for scale), ranking,
+highlighting, and fuzzy matching.
 
-**Error handling.** We catch exceptions and return 500. A real app
-logs errors, notifies developers, and shows the user something
-helpful — not just "Internal server error".
+**Error logging and monitoring.** Our API returns appropriate
+status codes (400, 401, 409, 422) with error messages, but it
+does not log errors to a file or notify anyone. A production
+app needs structured logging, alerts, and dashboards.
 
 **Deployment.** Moving from `localhost` to a real server: domain
 names, HTTPS, firewall rules, backups, monitoring. The code is

@@ -17,6 +17,12 @@ is explained.
 Bibliotheca is a book catalog. Simple enough to hold in your head,
 rich enough to teach you the fundamentals of web development.
 
+The entire source code is on GitHub:
+https://github.com/1966bc/bibliotheca
+
+Read it. You will read more code than you write in your career —
+and reading good code is how you learn to write it.
+
 ## Who is this for?
 
 For the young programmer — or the curious one at any age — who wants

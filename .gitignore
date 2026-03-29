@@ -1,2 +1,3 @@
 *.pdf
+!forge/book/ten_brief_lessons.pdf
 CLAUDE.md

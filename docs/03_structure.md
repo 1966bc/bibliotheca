@@ -72,9 +72,11 @@ RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]
 Line by line:
 
 1. **RewriteEngine On** — enable URL rewriting.
-2. **RewriteCond !-f** — only rewrite if the request is NOT an existing file
-   (so `style.css` and `book.js` are served normally).
-3. **RewriteCond !-d** — only rewrite if the request is NOT an existing directory.
+2. **RewriteCond !-f** — only rewrite if the request is NOT an existing
+   **f**ile (so `style.css` and `book.js` are served normally).
+   The `-f` stands for *file*.
+3. **RewriteCond !-d** — only rewrite if the request is NOT an existing
+   **d**irectory. The `-d` stands for *directory*.
 4. **RewriteRule** — capture the entire URL path and pass it to
    `index.php` as the `route` parameter. `[L]` means stop processing
    rules. `[QSA]` means append any existing query string (so
@@ -95,6 +97,12 @@ Plural for collections, singular for single entity:
 - `publishers.js` / `publisher.js`
 
 This applies to pages, JavaScript files, and API endpoints.
+
+Why do we care about naming conventions? To avoid *mental mapping*.
+When a file is called `publishers.php`, you know immediately it
+handles a list. When a variable is called `publisherId`, you know
+what it holds. Consistent names mean you spend your mental energy
+on the problem, not on decoding someone else's naming choices.
 
 ## The route to you
 

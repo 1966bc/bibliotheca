@@ -1,30 +1,27 @@
-# Bibliotheca
+# Ten Brief Lessons on Web Programming
 
-**Ten Brief Lessons on Web Programming**
+*A concept notebook on web programming*
 
 > *To the next generation of programmers:
 > learn to read, write and compute — before it's too late.*
 
-A didactic web application for studying web programming, built from
-scratch with pure PHP, JavaScript, HTML, CSS and SQLite. No frameworks,
-no libraries, no magic. Just code.
+## The book
 
-## What is this?
+**[Download the PDF](forge/book/ten_brief_lessons.pdf)** — free, open source, ready to print.
 
-A book catalog — simple enough to hold in your head, rich enough to
-teach you the fundamentals of web development in anno Domini 2026.
+A complete guide to building web applications from scratch with pure
+PHP, JavaScript, HTML, CSS and SQLite. No frameworks, no libraries,
+no magic. Just code.
+
+## Bibliotheca
+
+The book is built around Bibliotheca, a book catalog application.
+Simple enough to hold in your head, rich enough to teach you the
+fundamentals of web development in anno Domini 2026.
+
+Clone the repo, follow the lessons, read the code.
 
 ![Bibliotheca](screenshot.png)
-
-## Stack
-
-| Layer    | Technology         |
-|----------|--------------------|
-| Backend  | PHP (pure)         |
-| Frontend | JavaScript (pure)  |
-| Markup   | HTML (pure)        |
-| Style    | CSS (pure)         |
-| Database | SQLite via PDO     |
 
 ## Quick start
 
@@ -63,6 +60,16 @@ Open `http://localhost/bibliotheca/public/` in your browser.
 | [Study Notebook](docs/notebook.md)                   |
 | [Glossary](docs/glossary.md)                         |
 | [The Apocryphal Chapter](docs/apocrypha.md)          |
+
+## Stack
+
+| Layer    | Technology         |
+|----------|--------------------|
+| Backend  | PHP (pure)         |
+| Frontend | JavaScript (pure)  |
+| Markup   | HTML (pure)        |
+| Style    | CSS (pure)         |
+| Database | SQLite via PDO     |
 
 ## Conventions
 

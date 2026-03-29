@@ -1,0 +1,290 @@
+\documentclass[11pt,a4paper,oneside]{book}
+
+% Encoding and fonts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Page geometry
+\usepackage[
+  top=2.5cm,
+  bottom=2.5cm,
+  left=2.5cm,
+  right=2.5cm,
+  headheight=14pt
+]{geometry}
+
+% Language
+\usepackage[english]{babel}
+
+% Colors
+\usepackage{xcolor}
+\definecolor{darkblue}{HTML}{2C3E50}
+\definecolor{codebg}{HTML}{F5F5F5}
+\definecolor{codeframe}{HTML}{DDDDDD}
+\definecolor{linkcolor}{HTML}{2C3E50}
+\definecolor{chaptercolor}{HTML}{2C3E50}
+
+% Code listings
+\usepackage{listings}
+\lstset{
+  backgroundcolor=\color{codebg},
+  frame=single,
+  rulecolor=\color{codeframe},
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=false,
+  tabsize=4,
+  showstringspaces=false,
+  numbers=none,
+  xleftmargin=0.5em,
+  xrightmargin=0.5em,
+  aboveskip=1em,
+  belowskip=1em,
+  columns=fullflexible,
+  keepspaces=true,
+  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+}
+
+% Headers and footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\itshape\leftmark}
+\fancyhead[R]{\small\thepage}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Plain pages (chapter starts)
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\small\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% Chapter and section styling
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\color{chaptercolor}}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-20pt}{30pt}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{chaptercolor}}
+  {\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{chaptercolor}}
+  {\thesubsection}{1em}{}
+
+% Links
+\usepackage[
+  colorlinks=true,
+  linkcolor=linkcolor,
+  urlcolor=linkcolor,
+  citecolor=linkcolor,
+  bookmarks=true,
+  bookmarksnumbered=true,
+  pdfstartview=FitH
+]{hyperref}
+
+% Tables
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+
+% Graphics
+\usepackage{graphicx}
+
+% Pandoc code highlighting compatibility
+\usepackage{framed}
+\usepackage{fancyvrb}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\definecolor{shadecolor}{HTML}{F5F5F5}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+  commandchars=\\\{\},
+  fontsize=\small,
+  xleftmargin=0.5em
+}
+\newcommand{\KeywordTok}[1]{\textcolor[HTML]{007020}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[HTML]{902000}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[HTML]{40A070}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[HTML]{40A070}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[HTML]{40A070}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[HTML]{880000}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[HTML]{4070A0}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[HTML]{4070A0}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[HTML]{4070A0}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[HTML]{4070A0}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[HTML]{BB6688}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[HTML]{60A0B0}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[HTML]{BA2121}{\textit{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[HTML]{60A0B0}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[HTML]{60A0B0}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[HTML]{007020}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[HTML]{06287E}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[HTML]{19177C}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[HTML]{007020}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[HTML]{666666}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[HTML]{BC7A00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[HTML]{7D9029}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[HTML]{60A0B0}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[HTML]{60A0B0}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[HTML]{FF0000}{\textbf{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[HTML]{FF0000}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+
+% Tight list (pandoc compatibility)
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Copyleft symbol (mirrored ©)
+\providecommand{\textcopyleft}{\reflectbox{\copyright}}
+
+
+% No paragraph indent, space between paragraphs
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+
+% Quote environment styling (for epigraph)
+\usepackage{etoolbox}
+\AtBeginEnvironment{quote}{%
+  \itshape\color{darkblue}%
+}
+
+% PDF metadata
+\hypersetup{
+  pdftitle={Ten Brief Lessons on Web Programming},
+  pdfauthor={Giuseppe Costanzi},
+  pdfsubject={Web Programming},
+  pdfkeywords={PHP, JavaScript, HTML, CSS, SQLite, web development}
+}
+
+\begin{document}
+
+% --- COVER PAGE ---
+\begin{titlepage}
+\newgeometry{margin=0pt}
+\pagecolor{darkblue}
+\begin{center}
+
+\vspace*{6cm}
+
+{\fontsize{28}{34}\selectfont\bfseries\color{white}
+Ten Brief Lessons\\[0.4cm]on Web Programming}
+
+\vspace{0.8cm}
+
+{\large\color{white!80}
+A concept notebook on web programming}
+
+\vspace{2cm}
+
+{\small\color{white!60}\itshape
+``There are 10 types of people in the world:\\
+those who understand binary, and those who don't.''}
+
+\vspace{0.3cm}
+
+{\small\color{white!80}
+Which side are you on?}
+
+\vspace{\fill}
+
+{\large\color{white}
+Giuseppe Costanzi}
+
+\vspace{2cm}
+
+\end{center}
+\restoregeometry
+\nopagecolor
+\end{titlepage}
+
+% --- BLANK PAGE ---
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+\textit{\color{gray}This page is intentionally left blank.}
+\end{center}
+\vspace*{\fill}
+\newpage
+
+% --- COPYRIGHT / COLOPHON ---
+\thispagestyle{empty}
+\vspace*{\fill}
+
+{\small
+
+\textbf{Ten Brief Lessons on Web Programming}\\
+\textit{A concept notebook on web programming}
+
+\vspace{1em}
+
+Copyleft \textcopyleft\ 2026 Giuseppe Costanzi \textit{aka} \texttt{1966bc}
+
+\vspace{1em}
+
+Version 1.0 --- First edition, MMXXVI AD / MMDCCLXXIX \textit{ab urbe condita}
+
+\vspace{1em}
+
+This book is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+\vspace{1em}
+
+Source code: \url{https://github.com/1966bc/bibliotheca}
+
+\vspace{1em}
+
+Built with pure PHP, JavaScript, HTML, CSS and SQLite.\\
+Typeset with \LaTeX\ via Pandoc.\\
+No frameworks were harmed in the making of this book.
+
+\vspace{1em}
+
+\texttt{giuseppe.costanzi@gmail.com}
+
+\vspace{1em}
+
+{\footnotesize\itshape
+Milky Way Galaxy, Solar System, third planet from the Sun\\
+41\textdegree{}53'35''N \enspace 12\textdegree{}28'58''E --- Roma, Italia}
+}
+
+\newpage
+
+% --- DEDICATION ---
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+\itshape\large
+To the next generation of programmers:\\
+learn to read, write and compute ---\\
+before it's too late.
+\end{center}
+\newpage
+
+% --- TABLE OF CONTENTS ---
+{
+% Add some stretch to help LaTeX distribute TOC entries better
+\setlength{\parskip}{0.1em plus 0.1em}
+\tableofcontents
+}
+\newpage
+
+% --- BODY ---
+% Start chapter numbering from 0
+\setcounter{chapter}{-1}
+
+$body$
+
+\end{document}

@@ -5,12 +5,10 @@
 CRUD stands for Create, Read, Update, Delete. Every data-driven
 application does these four things. Nothing more, nothing less.
 
-| Operation | HTTP Method | SQL       | Example                     |
-|-----------|-------------|-----------|-----------------------------|
-| Create    | POST        | INSERT    | Add a new publisher         |
-| Read      | GET         | SELECT    | List all publishers         |
-| Update    | PUT         | UPDATE    | Change a publisher's name   |
-| Delete    | DELETE       | DELETE    | Remove a publisher          |
+- **Create** — `POST` → `INSERT` — add a new publisher
+- **Read** — `GET` → `SELECT` — list all publishers
+- **Update** — `PUT` → `UPDATE` — change a publisher's name
+- **Delete** — `DELETE` → `DELETE` — remove a publisher
 
 Bibliotheca also uses a `status` column (1 = active, 0 = disabled).
 Disabling a record is an Update (PUT), not a Delete — the record stays

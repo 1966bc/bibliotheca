@@ -120,11 +120,12 @@ with `403 Forbidden`.
 
 The `Csrf` class (`src/Csrf.php`) has three methods:
 
-| Method | What it does |
-|--------|-------------|
-| `Csrf::start()` | Starts a PHP session (with secure cookie settings) |
-| `Csrf::token()` | Returns the token, generating one if needed |
-| `Csrf::verify()` | Compares the `X-CSRF-Token` header against the session; exits with 403 on mismatch |
+- `Csrf::start()` — starts a PHP session (with secure
+  cookie settings).
+- `Csrf::token()` — returns the token, generating one
+  if needed.
+- `Csrf::verify()` — compares the `X-CSRF-Token` header
+  against the session; exits with 403 on mismatch.
 
 GET requests do not need CSRF protection — they only read data, they
 never modify it. Only POST, PUT, and DELETE are checked.

@@ -29,9 +29,9 @@ session_regenerate_id(true);  // true = delete the old session file
 The `true` parameter is important. Without it, the old session file
 survives and the attacker's ID still works.
 
-In Bibliotheca we do not have authentication, but the principle
-applies to the CSRF session. Our `Csrf::start()` already calls
-`session_start()` with secure cookie settings:
+Bibliotheca calls `session_regenerate_id(true)` in `Auth::login()`
+immediately after verifying credentials. Our `Csrf::start()`
+calls `session_start()` with secure cookie settings:
 
 ```php
 session_start([
@@ -44,9 +44,6 @@ session_start([
   This blocks XSS attacks that try to steal session IDs.
 - `cookie_samesite` — the browser will not send the cookie with
   requests from other sites. This is a second layer of CSRF defense.
-
-If you add authentication later, call `session_regenerate_id(true)`
-immediately after a successful login.
 
 ## Security headers
 
@@ -150,28 +147,59 @@ Without HTTPS:
 In development on localhost, HTTP is fine. In production, HTTPS is
 mandatory. There are no exceptions.
 
-With Let's Encrypt and `certbot`, there is no excuse not to have it:
+### How it works
+
+HTTPS uses TLS (Transport Layer Security) to encrypt the connection.
+The server holds a **certificate** — a file that proves its identity.
+When the browser connects, the server presents the certificate, they
+negotiate encryption keys, and from that point every byte is encrypted.
+
+The certificate contains the domain name, the public key, the issuer,
+and an expiry date. It is signed by a **Certificate Authority** (CA)
+that the browser trusts. If the signature does not match or the
+certificate is expired, the browser shows a warning.
+
+### Where it lives
+
+On a Debian/Apache server, certificates typically live in
+`/etc/letsencrypt/live/yourdomain/`. Two files matter:
+
+- `fullchain.pem` — the certificate (public)
+- `privkey.pem` — the private key (never share this)
+
+Apache references them in the virtual host configuration:
+
+```apache
+SSLCertificateFile /etc/letsencrypt/live/yourdomain/fullchain.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/yourdomain/privkey.pem
+```
+
+### Getting a certificate
+
+With Let's Encrypt and `certbot`, it takes two commands:
 
 ```bash
 sudo apt install certbot python3-certbot-apache
 sudo certbot --apache
 ```
 
+`certbot` obtains the certificate, configures Apache, and sets up
+automatic renewal. The certificate expires every 90 days, but
+`certbot` renews it automatically via a systemd timer.
+
 ## The layers
 
 Security is not one thing. It is layers, each catching what the
 previous one missed:
 
-| Layer              | Protects against                |
-|--------------------|---------------------------------|
-| Prepared statements | SQL injection                  |
-| Output escaping    | XSS                             |
-| CSRF tokens        | Cross-site request forgery      |
-| Input validation   | Bad data, out-of-range values   |
-| Session management | Session fixation, session theft |
-| Security headers   | Clickjacking, MIME sniffing, CSP bypass |
-| Rate limiting      | Brute force, denial of service  |
-| HTTPS              | Eavesdropping, tampering        |
+- **Prepared statements** → SQL injection
+- **Output escaping** → XSS
+- **CSRF tokens** → cross-site request forgery
+- **Input validation** → bad data, out-of-range values
+- **Session management** → session fixation, session theft
+- **Security headers** → clickjacking, MIME sniffing, CSP bypass
+- **Rate limiting** → brute force, denial of service
+- **HTTPS** → eavesdropping, tampering
 
 No single layer is sufficient. Together, they make an application
 that is genuinely hard to attack.

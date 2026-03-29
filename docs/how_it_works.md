@@ -498,10 +498,10 @@ the list.
 
 The form offers two ways to remove a record:
 
-| Action      | How                   | SQL              | Reversible | Check          |
-|-------------|-----------------------|------------------|------------|----------------|
-| **Disable** | Uncheck Active, Save  | `UPDATE status=0`| Yes        | Active books   |
-| **Delete**  | Click Delete          | `DELETE FROM`    | No         | Any books      |
+- **Disable** — uncheck Active, click Save.
+  SQL: `UPDATE status=0`. Reversible. Checks for active books.
+- **Delete** — click Delete.
+  SQL: `DELETE FROM`. Permanent. Checks for any books.
 
 Disabling keeps the record in the database but grayed out in the
 list. It can be reversed by checking Active again.
@@ -527,19 +527,91 @@ again (steps 1–9 from the first diagram).
 
 All four CRUD operations, one entity, two pages:
 
-| Operation | Page | HTTP   | Trips | What the user sees                  |
-|-----------|------|--------|-------|-------------------------------------|
-| Read      | list | GET    | 2     | Table fills with data               |
-| Create    | form | POST   | 2     | Empty form → save → list            |
-| Update    | form | PUT    | 3     | Form loads record → save → list     |
-| Disable   | form | PUT    | 3     | Uncheck Active → save → gray row    |
-| Delete    | form | DELETE | 2     | Click Delete → confirm → gone       |
+- **Read** — list page, `GET`, 2 trips.
+  Table fills with data.
+- **Create** — form page, `POST`, 2 trips.
+  Empty form → save → list.
+- **Update** — form page, `PUT`, 3 trips.
+  Form loads record → save → list.
+- **Disable** — form page, `PUT`, 3 trips.
+  Uncheck Active → save → gray row.
+- **Delete** — form page, `DELETE`, 2 trips.
+  Click Delete → confirm → gone.
 
 The list is read-only. Every write operation goes through the form.
 This is the single point of control.
 
 Every other entity (Category, Author, Book) follows the same
 pattern. The files change, the flow does not.
+
+## Authentication
+
+Bibliotheca has a single admin user. The login flow adds one
+layer on top of everything described above.
+
+### The login
+
+1. The user visits `/login` (default credentials: `admin` /
+   `bibliotheca`). The front controller loads `pages/login.php`,
+   which includes `js/login.js`.
+2. The user submits username and password. JavaScript sends
+   a POST to `api/auth.php` with JSON body.
+3. The API calls `Auth::login()`, which queries the `user`
+   table and compares the password with `password_verify()`.
+4. If valid, `session_regenerate_id(true)` creates a new
+   session (preventing fixation), and `$_SESSION['user_id']`
+   is set. The API returns `{"authenticated": true}`.
+5. JavaScript redirects to the home page.
+
+### Changing the password
+
+The default password should be changed immediately. Generate
+a new hash from the command line:
+
+```bash
+php -r "echo password_hash('yournewpassword', PASSWORD_DEFAULT);"
+```
+
+Then update the database:
+
+```bash
+sqlite3 sql/bibliotheca.db
+UPDATE user SET password = '$2y$10$...' WHERE username = 'admin';
+```
+
+Replace `$2y$10$...` with the hash you generated. The username
+can be changed the same way.
+
+### Protecting writes
+
+Every API endpoint checks authentication before processing
+POST, PUT, or DELETE requests:
+
+```php
+Csrf::start();
+Csrf::verify();
+Auth::require();  // 401 if not logged in
+```
+
+`Auth::require()` reads `$_SESSION['user_id']`. If it is not
+set, it responds with HTTP 401 and exits.
+
+### Hiding the UI
+
+The front controller sets `$isLoggedIn = Auth::check()` and
+exposes it to templates and JavaScript:
+
+- **PHP templates** — the "Add new" buttons are wrapped in
+  `<?php if ($isLoggedIn): ?>` blocks.
+- **JavaScript** — the `<meta name="authenticated">` tag
+  carries the state. `auth.js` reads it into `AUTH.authenticated`,
+  and list views check this before rendering Edit buttons.
+- **Form pages** — the front controller redirects to `/login`
+  if the user tries to access a form page without being
+  logged in.
+
+The API is the real guard. The UI changes are convenience —
+they prevent confusion, not attacks.
 
 ## See also
 

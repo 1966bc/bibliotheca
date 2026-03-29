@@ -43,11 +43,18 @@ Two lines. Request, parse, done. No callbacks, no libraries.
 
 ## DOM — building the page
 
-We use `document.createElement` and `textContent` to build HTML.
-Never `innerHTML` with external data — that is an XSS vulnerability.
+The DOM (Document Object Model) is the browser's internal
+representation of the HTML page. When the browser reads your HTML,
+it builds a tree of objects — every tag becomes a node, every
+attribute a property. JavaScript does not modify the HTML file.
+It modifies this tree, and the browser redraws the screen.
 
-`textContent` is safe by design: it treats everything as text, never
-as HTML.
+We use `document.createElement` to add nodes and `textContent`
+to set their text. Never `innerHTML` with external data — that
+is an XSS vulnerability.
+
+`textContent` is safe by design: it treats everything as text,
+never as HTML.
 
 ## Next
 
