@@ -1,41 +1,40 @@
 # Prelude
 
-## Ten Brief Lessons on Web Programming
+## What is this
 
-> *To the next generation of programmers:
-> learn to read, write and compute — before it's too late.*
+The best way to learn something is by imitation. Study a real
+application, understand how it works, then build your own.
 
-## Why Bibliotheca?
-
-Because the best way to study programming is to build something real.
-
-Not a tutorial with copy-paste snippets. Not a framework that hides
-the mechanics. A complete application, built from scratch, in ten
-lessons, where every line of code has a reason and every choice
-is explained.
-
-Bibliotheca is a book catalog. Simple enough to hold in your head,
-rich enough to teach you the fundamentals of web development.
+Bibliotheca is a complete web application — a book catalog.
+Simple enough to hold in your head, rich enough to teach you
+the fundamentals of web development.
 
 The entire source code is on GitHub:
 https://github.com/1966bc/bibliotheca
 
 Read it. You will read more code than you write in your career —
-and reading good code is how you learn to write it.
+and reading good code is how you learn to write it. Reading *why*
+it is written that way is even better.
 
 ## Who is this for?
 
-For the young programmer — or the curious one at any age — who wants
-to understand how a web application actually works, in anno Domini 2026. From the database
-to the browser, with nothing in between but your own code.
+For the young programmer's mind — or the curious one at any age —
+who wants to understand how a web application actually works, in
+anno Domini 2026. From the database to the browser, with nothing
+in between but your own code.
+
+You do not need experience with web development, but you should
+know the basics of programming: variables, functions, loops,
+conditionals. You should also have some intuition of how a
+website works: that a browser asks a server for something, and
+the server answers. And above all, the hacker's instinct: the
+urge to open things up and see how they work.
 
 ## How to read this
 
-This is not a reference manual. It is a journey. Each chapter builds
-on the previous one. Read in order. Type the code yourself. Break it.
-Fix it. That is how you learn.
-
-The source code is the textbook. The docs are your guide through it.
+Read in order and try to absorb the key concepts. The lessons are
+brief but there is a lot to take in. Look at the application as
+you go — piece by piece, the puzzle will come to life.
 
 ## What you will need
 
@@ -54,6 +53,6 @@ sudo apt install apache2 php libapache2-mod-php php-sqlite3
 - A **web browser**
 - **Curiosity**
 
-## Let the show begin.
+Let the show begin.
 
 [Chapter 00 — Introduction](01_introduction.md)

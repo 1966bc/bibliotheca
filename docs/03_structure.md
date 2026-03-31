@@ -54,13 +54,16 @@ bibliotheca/
 
 ## The Stargate
 
-See `public/.htaccess`.
+There is a principle in programming: don't talk to strangers.
+The Stargate is where we enforce it. Everything outside `public/`
+is invisible to the browser. The gate decides who passes and
+where they go.
 
 When the browser requests `/publishers`, Apache looks for a file
-or directory called `publishers` inside `public/`. It does not exist.
-Without `.htaccess`, Apache would return a 404.
-
-The rewrite rule changes this:
+or directory called `publishers` inside `public/`. It does not
+exist. Before giving up with a 404, Apache checks if there is an
+`.htaccess` file in that directory with instructions. It finds
+ours, reads it, and follows the rewrite rule written in it:
 
 ```apache
 RewriteEngine On
@@ -83,28 +86,17 @@ Line by line:
    `/book?id=3` becomes `index.php?route=book&id=3`).
 
 The result: the user sees clean URLs (`/publishers`, `/book?id=3`),
-but every request actually goes through `index.php` — the front
-controller. This is the foundation of all modern web routing.
+but every request actually goes through `index.php`. This
+technique is called **routing**: one entry point, many
+destinations. If a route is not in the whitelist, it does not
+pass. It is the foundation of all modern web applications.
 
-Note: `.htaccess` requires Apache's `mod_rewrite` module. If clean
-URLs do not work, run `sudo a2enmod rewrite` and restart Apache.
+Note: `.htaccess` requires Apache's `mod_rewrite` module, which
+is the engine that makes URL rewriting possible. If clean URLs
+do not work, enable it with `sudo a2enmod rewrite` and restart
+Apache.
 
-## Naming convention
-
-Plural for collections, singular for single entity:
-
-- `publishers.php` / `publisher.php`
-- `publishers.js` / `publisher.js`
-
-This applies to pages, JavaScript files, and API endpoints.
-
-Why do we care about naming conventions? To avoid *mental mapping*.
-When a file is called `publishers.php`, you know immediately it
-handles a list. When a variable is called `publisherId`, you know
-what it holds. Consistent names mean you spend your mental energy
-on the problem, not on decoding someone else's naming choices.
-
-## The route to you
+## The journey of a request
 
 ```
 Browser                          Server

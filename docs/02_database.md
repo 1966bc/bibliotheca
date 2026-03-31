@@ -2,9 +2,16 @@
 
 ## Why start here?
 
-The database is the foundation. If the schema is solid, everything else
-follows naturally: from tables come Models, from Models come Controllers,
-from Controllers come Views.
+The database is the foundation. If the schema is solid, everything
+else follows naturally:
+
+Remember MVC?
+
+From tables come Models.
+From Models come Controllers.
+From Controllers come Views.
+
+In the beginning was the table.
 
 ## SQLite
 
@@ -17,7 +24,7 @@ the connection string and nothing else.
 
 ## The domain
 
-Bibliotheca is a book catalog. The domain has four entities:
+Bibliotheca is a book catalog. So the domain has four entities:
 
 - **Publisher** — who publishes the book (Einaudi, Penguin Books...)
 - **Category** — the classification (Fiction, Science, Philosophy...)
@@ -33,14 +40,17 @@ And their relationships:
 
 ## Schema conventions
 
-Every table follows the same structure:
+Every table follows the same structure, a convention we impose
+on ourselves:
 
 1. First field: primary key (`table_id`)
 2. Second field(s): foreign keys (if any)
 3. Data fields
 4. Last field: `status` (soft delete — 1 active, 0 inactive)
 
-We always access data **by column name**, never by position.
+Take note: we always access data **by column name**, never by
+position. Say it out loud. You may not fully understand why yet,
+but one day you will be grateful for this choice.
 
 ## The schema
 
@@ -65,8 +75,11 @@ The schema intentionally covers the fundamental data types:
 
 ## Setting up the console
 
-SQLite has a command-line interface. We configure it with a `setconsole`
-file that sets headers, column mode, and enables foreign keys:
+SQLite has a command-line interface. A programmer should always
+prefer the command line. It builds character, and keeps you away
+from the dark side of the force. We configure it with a
+`setconsole` file that sets headers, column mode, and enables
+foreign keys:
 
 ```
 sqlite3 bibliotheca.db -init sql/setconsole
@@ -90,6 +103,9 @@ sql/
 - **ddl/** — Data Definition Language (structure)
 - **dml/** — Data Manipulation Language (data)
 - **dql/** — Data Query Language (queries)
+
+Take your time in this folder. Read the files, chew on them.
+It will pay off.
 
 ## Next
 

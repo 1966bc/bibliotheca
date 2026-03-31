@@ -119,6 +119,13 @@ a single file. In Bibliotheca, `index.php` is the front controller:
 `.htaccess` routes all URLs to it, and it decides which page to
 load.
 
+**Hacker** —
+Originally, someone who explores systems out of curiosity, taking
+things apart to understand how they work. The media turned the
+word into a synonym for criminal, but in programming culture a
+hacker is simply a person driven by the urge to learn by doing.
+That is the meaning we use in this book.
+
 **HTTP methods** —
 The verbs of the web: GET (read), POST (create), PUT (update),
 DELETE (remove). Each API endpoint in Bibliotheca uses the method
@@ -212,6 +219,12 @@ always the first column: `publisher_id`, `book_id`, etc.
 **PSR-12** —
 A PHP coding standard that defines formatting rules: indentation,
 brace placement, naming. Bibliotheca follows it.
+
+**Routing** —
+The technique of directing every request through a single entry
+point (`index.php`) that decides which page to load. One door,
+many rooms. If a route is not in the whitelist, it gets a 404.
+Every modern web framework uses this pattern.
 
 **Rewrite rule** —
 An Apache directive in `.htaccess` that transforms URLs before they
