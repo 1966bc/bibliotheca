@@ -55,7 +55,8 @@ class AuthorsView {
     render(authors) {
         this.table.textContent = '';
 
-        for (const author of authors) {
+        for (let i = 0; i < authors.length; i++) {
+            const author = authors[i];
             const row = document.createElement('tr');
 
             if (author.status === 0) {

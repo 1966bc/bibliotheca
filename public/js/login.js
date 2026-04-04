@@ -81,11 +81,13 @@ class LoginForm {
      */
     clearErrors() {
         this.error.textContent = '';
-        for (const input of this.form.querySelectorAll('input')) {
-            input.classList.remove('invalid');
+        const inputs = this.form.querySelectorAll('input');
+        for (let i = 0; i < inputs.length; i++) {
+            inputs[i].classList.remove('invalid');
         }
-        for (const span of this.form.querySelectorAll('.error')) {
-            span.textContent = '';
+        const spans = this.form.querySelectorAll('.error');
+        for (let i = 0; i < spans.length; i++) {
+            spans[i].textContent = '';
         }
     }
 }

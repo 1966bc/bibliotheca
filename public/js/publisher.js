@@ -112,13 +112,13 @@ class PublisherForm {
      */
     clearErrors() {
         const errors = this.form.querySelectorAll('.error');
-        for (const error of errors) {
-            error.textContent = '';
+        for (let i = 0; i < errors.length; i++) {
+            errors[i].textContent = '';
         }
 
         const invalids = this.form.querySelectorAll('.invalid');
-        for (const input of invalids) {
-            input.classList.remove('invalid');
+        for (let i = 0; i < invalids.length; i++) {
+            invalids[i].classList.remove('invalid');
         }
     }
 

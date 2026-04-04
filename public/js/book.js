@@ -74,10 +74,10 @@ class BookForm {
 
             const publishers = await publisherRes.json();
 
-            for (const publisher of publishers) {
+            for (let i = 0; i < publishers.length; i++) {
                 const option = document.createElement('option');
-                option.value = publisher.publisher_id;
-                option.textContent = publisher.name;
+                option.value = publishers[i].publisher_id;
+                option.textContent = publishers[i].name;
                 this.selectPublisher.appendChild(option);
             }
 
@@ -89,10 +89,10 @@ class BookForm {
 
             const categories = await categoryRes.json();
 
-            for (const category of categories) {
+            for (let i = 0; i < categories.length; i++) {
                 const option = document.createElement('option');
-                option.value = category.category_id;
-                option.textContent = category.name;
+                option.value = categories[i].category_id;
+                option.textContent = categories[i].name;
                 this.selectCategory.appendChild(option);
             }
 
@@ -104,10 +104,10 @@ class BookForm {
 
             const authors = await authorRes.json();
 
-            for (const author of authors) {
+            for (let i = 0; i < authors.length; i++) {
                 const option = document.createElement('option');
-                option.value = author.author_id;
-                option.textContent = author.last_name + ', ' + author.first_name;
+                option.value = authors[i].author_id;
+                option.textContent = authors[i].last_name + ', ' + authors[i].first_name;
                 this.selectAuthors.appendChild(option);
             }
 
@@ -153,8 +153,8 @@ class BookForm {
             this.inputPublished.value = book.published || '';
             if (book.authors) {
                 const authorIds = book.authors.map(a => String(a.author_id));
-                for (const option of this.selectAuthors.options) {
-                    option.selected = authorIds.includes(option.value);
+                for (let i = 0; i < this.selectAuthors.options.length; i++) {
+                    this.selectAuthors.options[i].selected = authorIds.includes(this.selectAuthors.options[i].value);
                 }
             }
 
@@ -241,13 +241,13 @@ class BookForm {
      */
     clearErrors() {
         const errors = this.form.querySelectorAll('.error');
-        for (const error of errors) {
-            error.textContent = '';
+        for (let i = 0; i < errors.length; i++) {
+            errors[i].textContent = '';
         }
 
         const invalids = this.form.querySelectorAll('.invalid');
-        for (const input of invalids) {
-            input.classList.remove('invalid');
+        for (let i = 0; i < invalids.length; i++) {
+            invalids[i].classList.remove('invalid');
         }
     }
 
@@ -270,8 +270,8 @@ class BookForm {
         const published = this.inputPublished.value;
 
         const authorIds = [];
-        for (const option of this.selectAuthors.selectedOptions) {
-            authorIds.push(parseInt(option.value));
+        for (let i = 0; i < this.selectAuthors.selectedOptions.length; i++) {
+            authorIds.push(parseInt(this.selectAuthors.selectedOptions[i].value));
         }
 
         const payload = {

@@ -33,7 +33,8 @@ class BooksView {
      * Attach click listeners to sortable column headers.
      */
     initSort() {
-        for (const th of this.headers) {
+        for (let i = 0; i < this.headers.length; i++) {
+            const th = this.headers[i];
             th.style.cursor = 'pointer';
             th.addEventListener('click', () => {
                 const column = th.dataset.sort;
@@ -57,7 +58,8 @@ class BooksView {
      * Update header arrows to reflect current sort state.
      */
     updateHeaders() {
-        for (const th of this.headers) {
+        for (let i = 0; i < this.headers.length; i++) {
+            const th = this.headers[i];
             const label = th.textContent.replace(/ [▲▼]$/, '');
 
             if (th.dataset.sort === this.sortColumn) {
@@ -174,7 +176,8 @@ class BooksView {
     render(books) {
         this.table.textContent = '';
 
-        for (const book of books) {
+        for (let i = 0; i < books.length; i++) {
+            const book = books[i];
             const row = document.createElement('tr');
 
             if (book.status === 0) {

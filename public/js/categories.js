@@ -55,7 +55,8 @@ class CategoriesView {
     render(categories) {
         this.table.textContent = '';
 
-        for (const category of categories) {
+        for (let i = 0; i < categories.length; i++) {
+            const category = categories[i];
             const row = document.createElement('tr');
 
             if (category.status === 0) {

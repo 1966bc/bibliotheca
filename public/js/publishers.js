@@ -55,7 +55,8 @@ class PublishersView {
     render(publishers) {
         this.table.textContent = '';
 
-        for (const publisher of publishers) {
+        for (let i = 0; i < publishers.length; i++) {
+            const publisher = publishers[i];
             const row = document.createElement('tr');
 
             if (publisher.status === 0) {
