@@ -185,6 +185,117 @@ This is the foundation of every modern web application. The structure
 (HTML) and the data (JSON) travel separately. The browser assembles
 them.
 
+## What travels on the wire
+
+When the browser sends a request, it is not a file. It is a
+block of text transmitted over a TCP connection to port 80
+(or 443 for HTTPS). You can see it with `curl -v`:
+
+```
+> GET /bibliotheca/public/categories HTTP/1.1
+> Host: localhost
+> User-Agent: curl/7.88.1
+> Accept: */*
+>
+```
+
+The first line is the **request line**: method, path, protocol.
+The lines that follow are **headers**: key-value pairs that
+describe who is calling, what formats are accepted, the session
+cookie, and so on. The empty line marks the end. A GET request
+has no body; a POST would carry one after the blank line.
+
+The server responds in the same format: a status line, headers,
+a blank line, then the body (HTML, JSON, or whatever was asked).
+
+```
+< HTTP/1.1 200 OK
+< Content-Type: text/html; charset=UTF-8
+<
+< <!DOCTYPE html>...
+```
+
+No files are written to disk. Apache has a process (managed by
+its **MPM**, Multi-Processing Module) listening on a TCP socket.
+The bytes arrive in memory, Apache interprets them, calls PHP,
+and sends the response back on the same connection.
+
+With HTTP/1.1, the connection stays open briefly (**keep-alive**)
+so the browser can reuse it for subsequent requests (the CSS
+file, the JavaScript, the favicon) without opening a new one.
+
+## The DOM
+
+When the browser receives HTML, it does not keep it as text.
+It parses it and builds an in-memory tree of objects called the
+**DOM** (Document Object Model). For example:
+
+```html
+<table id="category-table">
+    <thead>
+        <tr><th>Name</th></tr>
+    </thead>
+    <tbody></tbody>
+</table>
+```
+
+becomes:
+
+```
+table#category-table
+├── thead
+│   └── tr
+│       └── th → "Name"
+└── tbody (empty)
+```
+
+Every tag is a **node** with properties and methods. JavaScript
+works on this tree, never on the HTML source. When it calls
+`document.createElement('tr')` and `tbody.appendChild(row)`,
+it is adding nodes to the tree. The browser detects the change
+and updates the screen.
+
+This is why the `<script>` tag sits at the bottom of the page
+template: by that point the browser has already built the DOM,
+and JavaScript can find the elements it needs with
+`document.querySelector('#category-table tbody')`.
+
+The selector syntax (`#id`, `.class`, `tag`) is the same one
+used in CSS. JavaScript borrows it to navigate the tree.
+
+## How data changes shape
+
+A single piece of data (say, a category name) passes through
+four representations on its way from disk to screen:
+
+| Layer       | Form                        |
+|-------------|-----------------------------|
+| SQLite      | Row in a table              |
+| PHP         | Associative array           |
+| Network     | JSON text                   |
+| JavaScript  | Object with properties      |
+
+```
+SQLite:  | 3 | Computer Science | 1 |
+              ↓
+PHP:     ['category_id'=>3,
+          'name'=>'Computer Science',
+          'status'=>1]
+              ↓
+JSON:    {"category_id":3,
+          "name":"Computer Science",
+          "status":1}
+              ↓
+JS:      {category_id: 3,
+          name: "Computer Science",
+          status: 1}
+```
+
+Each layer only knows about the one directly below it.
+JavaScript has no idea SQLite exists; it just sees a URL that
+returns JSON. The model has no idea JavaScript exists; it just
+returns an array to the controller.
+
 ## Where each file lives
 
 ```
