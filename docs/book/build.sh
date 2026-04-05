@@ -109,6 +109,7 @@ for file in \
     "$DOCS_DIR/how_it_works.md" \
     "$DOCS_DIR/glossary.md" \
     "$DOCS_DIR/bibliography.md" \
+    "$DOCS_DIR/citations.md" \
     "$DOCS_DIR/apocrypha.md"
 do
     echo "  Adding appendix $file..."

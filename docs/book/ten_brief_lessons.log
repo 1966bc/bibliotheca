@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Debian) (preloaded format=xelatex 2025.12.8)  5 APR 2026 10:23
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Debian) (preloaded format=xelatex 2025.12.8)  5 APR 2026 10:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1259,24 +1259,30 @@ Appendix D.
 [64
 
 ]
-Overfull \hbox (23.15872pt too wide) in paragraph at lines 4101--4106
+Missing character: There is no Φ ("3A6) in font ec-lmbx10!
+[65]
+Appendix E.
+[66
+
+]
+Overfull \hbox (23.15872pt too wide) in paragraph at lines 4204--4209
 []\T1/lmr/bx/n/10.95 Middleware \T1/lmr/m/n/10.95 --- your con-trollers check t
 he HTTP method with \T1/lmtt/m/n/10.95 $_SERVER[\TS1/lmtt/m/n/10.95 '\T1/lmtt/m
 /n/10.95 REQUEST_METHOD\TS1/lmtt/m/n/10.95 '\T1/lmtt/m/n/10.95 ]\T1/lmr/m/n/10.
 95 .
  []
 
-[65] [66] (./ten_brief_lessons.aux)
+[67] [68] (./ten_brief_lessons.aux)
 Package rerunfilecheck Info: File `ten_brief_lessons.out' has not changed.
-(rerunfilecheck)             Checksum: F96AE2DFE1978274D046D0AA90A764ED;23158.
+(rerunfilecheck)             Checksum: F49D3BFFA5DCC5B6C3545977E5D0E069;23343.
  ) 
 Here is how much of TeX's memory you used:
- 13275 strings out of 478775
- 209652 string characters out of 5850945
+ 13276 strings out of 478775
+ 209678 string characters out of 5850945
  1857991 words of memory out of 5000000
- 33099 multiletter control sequences out of 15000+600000
+ 33100 multiletter control sequences out of 15000+600000
  600465 words of font info for 84 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  72i,13n,78p,563b,524s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ten_brief_lessons.pdf (67 pages).
+Output written on ten_brief_lessons.pdf (69 pages).

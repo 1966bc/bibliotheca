@@ -126,9 +126,10 @@
 \contentsline {section}{\numberline {C.7}Git}{62}{section.C.7}%
 \contentsline {section}{\numberline {C.8}The classics}{63}{section.C.8}%
 \contentsline {section}{\numberline {C.9}Security}{63}{section.C.9}%
-\contentsline {chapter}{\numberline {D}The Apocryphal Chapter --- Beyond the Launch}{64}{appendix.D}%
-\contentsline {section}{\numberline {D.1}What you actually learned}{64}{section.D.1}%
-\contentsline {section}{\numberline {D.2}What Bibliotheca does not do}{64}{section.D.2}%
-\contentsline {section}{\numberline {D.3}Frameworks --- when and why}{65}{section.D.3}%
-\contentsline {section}{\numberline {D.4}The age of AI}{65}{section.D.4}%
-\contentsline {section}{\numberline {D.5}42}{66}{section.D.5}%
+\contentsline {chapter}{\numberline {D}Citations and References}{64}{appendix.D}%
+\contentsline {chapter}{\numberline {E}The Apocryphal Chapter --- Beyond the Launch}{66}{appendix.E}%
+\contentsline {section}{\numberline {E.1}What you actually learned}{66}{section.E.1}%
+\contentsline {section}{\numberline {E.2}What Bibliotheca does not do}{66}{section.E.2}%
+\contentsline {section}{\numberline {E.3}Frameworks --- when and why}{67}{section.E.3}%
+\contentsline {section}{\numberline {E.4}The age of AI}{67}{section.E.4}%
+\contentsline {section}{\numberline {E.5}42}{68}{section.E.5}%
