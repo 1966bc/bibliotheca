@@ -44,7 +44,7 @@ class CategoryForm {
         const id = params.get('id');
 
         if (id) {
-            this.loadRecord(parseInt(id));
+            this.load(parseInt(id));
         }
     }
 
@@ -54,7 +54,7 @@ class CategoryForm {
      * @param {number} id - Category ID to load
      * @returns {Promise<void>}
      */
-    async loadRecord(id) {
+    async load(id) {
         try {
             const response = await fetch(this.API + '?id=' + id);
 
@@ -63,17 +63,20 @@ class CategoryForm {
             }
 
             const category = await response.json();
-
-            this.inputId.value = category.category_id;
-            this.inputName.value = category.name;
-            this.inputStatus.checked = category.status === 1;
-            this.statusGroup.hidden = false;
-            this.btnDelete.hidden = false;
-            this.title.textContent = 'Edit Category';
-            this.inputName.focus();
+            this.render(category);
         } catch (error) {
             alert('Unable to load record. Please try again later.');
         }
+    }
+
+    render(category) {
+        this.inputId.value = category.category_id;
+        this.inputName.value = category.name;
+        this.inputStatus.checked = category.status === 1;
+        this.statusGroup.hidden = false;
+        this.btnDelete.hidden = false;
+        this.title.textContent = 'Edit Category';
+        this.inputName.focus();
     }
 
     /**
@@ -134,6 +137,10 @@ class CategoryForm {
         const id = this.inputId.value;
         const name = this.inputName.value.trim();
 
+        const payload = {
+            name: name,
+        };
+
         try {
             let response;
 
@@ -141,17 +148,15 @@ class CategoryForm {
                 response = await fetch(this.API, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json', 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content},
-                    body: JSON.stringify({name: name}),
+                    body: JSON.stringify(payload),
                 });
             } else {
+                payload.category_id = parseInt(id);
+                payload.status = this.inputStatus.checked ? 1 : 0;
                 response = await fetch(this.API, {
                     method: 'PUT',
                     headers: {'Content-Type': 'application/json', 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content},
-                    body: JSON.stringify({
-                        category_id: parseInt(id),
-                        name: name,
-                        status: this.inputStatus.checked ? 1 : 0,
-                    }),
+                    body: JSON.stringify(payload),
                 });
             }
 
@@ -178,12 +183,13 @@ class CategoryForm {
         }
 
         const id = this.inputId.value;
+        const payload = {category_id: parseInt(id)};
 
         try {
             const response = await fetch(this.API, {
                 method: 'DELETE',
                 headers: {'Content-Type': 'application/json', 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content},
-                body: JSON.stringify({category_id: parseInt(id)}),
+                body: JSON.stringify(payload),
             });
 
             if (!response.ok) {

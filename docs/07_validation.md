@@ -4,37 +4,69 @@
 
 Validation is not optional. It is part of the craft.
 
-1. **HTML** — `required`, `maxlength`, `type="number"`, `min`, `max`.
-   The browser provides the first filter. We add `novalidate` to the
-   form to disable browser popups and handle everything ourselves.
+1. **HTML** — we set constraints directly on the form fields:
+   `required`, `maxlength`, `type="number"`, `min`, `max`.
+   The browser enforces these before any code runs. We add
+   `novalidate` to the `<form>` tag so the browser does not
+   show its own popups — we want to control the error messages
+   ourselves.
 
-2. **JavaScript** — checks before sending the request. Inline error
-   messages under each field, red borders on invalid inputs. This is
-   for the user experience.
+2. **JavaScript** — we delegate the interactive checks to the
+   `validate()` method, which runs before sending the request.
+   Inline error messages appear under each field, red borders
+   highlight invalid inputs. This is for the user experience:
+   fast feedback, no round-trip to the server.
 
-3. **PHP** — the final wall. Never trust the client. The server
-   validates everything again, because anyone can bypass JavaScript.
+3. **PHP** — we delegate the final check to the server. Never
+   trust the client. The server validates everything again,
+   because anyone can bypass JavaScript with a single line in
+   the browser console.
 
-## What we validate
+Each layer validates as if it were the only one. HTML does not
+know JavaScript exists. JavaScript does not assume the server
+will catch what it missed. The server does not trust anything
+that came before it. They each see the data from their own
+point of view, and they each reject bad input independently.
+When you write the validation for one layer, forget the others
+exist. Do not think "HTML already checks this" or "the server
+will catch it anyway". Each layer must stand on its own and do its job to the
+best of its capabilities.
 
-- **Required fields** — cannot be empty.
-- **String length** — `maxlength="100"` on text inputs.
+## What we validate in our project
+
+- **Required fields** — cannot be empty after trimming.
+- **String length** — names capped at 100 characters, titles at 255.
 - **Numeric ranges** — pages between 1 and 99999, published year
-  from 1450 (because print wasn't invented yet) to current year + 1.
-- **Date ranges** — author birthdate between 1000 and current year.
-- **Duplicates** — server-side check with `exists()` method.
-  Returns HTTP 409 (Conflict) if the record already exists,
-  or 422 (Unprocessable Entity) for dependency errors.
+  from 1000 to the current year.
+- **Date format and range** — author birthdate must be a valid
+  `YYYY-MM-DD`, year >= 1000, not in the future.
+- **Duplicates** — server-side check with the model's `exists()`
+  method. Returns HTTP 409 (Conflict) if the record already exists.
+- **Dependencies** — returns HTTP 422 (Unprocessable Entity) if the
+  record has linked books and cannot be deleted or disabled.
 - **Input filtering** — numeric fields only accept digit keys.
 
-## Formatting
+## Input normalization
 
-The server normalizes input before saving:
+Before data reaches the database, the server normalizes it.
+This is not cosmetic — it is data entry control. If you let
+"eINAUDI", " Einaudi ", and "einaudi" into the database, you
+have three records for the same publisher. Same with numbers: 
+if a field expects an integer (like pages or published year), 
+then only digits should be allowed. 
+Not letters, not decimals, not special characters. 
+The type of number matters: an integer is not a float, a year is not a price. 
+Look at the column type in the database table:
+if it says `INTEGER`, the input field should only accept
+digits. A winning strategy: define what you expect based on
+where the data will be stored, and reject everything else at
+the point of entry.
 
-- `ucwords(strtolower())` — "eINAUDI" becomes "Einaudi".
 - `trim()` — no leading or trailing spaces.
+- `ucwords(strtolower())` — "eINAUDI" becomes "Einaudi".
 
-The user types whatever they want. The server stores it correctly.
+The user types whatever they want. The server stores it in a
+consistent format, every time.
 
 ## Sanitization
 
@@ -47,43 +79,62 @@ anything else happens:
 $name = mb_substr(strip_tags(trim($data['name'] ?? '')), 0, 100);
 ```
 
+- **`trim()`** — removes leading and trailing whitespace.
 - **`strip_tags()`** — removes any HTML or PHP tags. A name like
   `<script>alert('xss')</script>` becomes `alert('xss')`. The
   dangerous part is gone before the value reaches the database.
-- **`trim()`** — removes leading and trailing whitespace.
-- **`mb_substr()`** — enforces a maximum length. Names are capped
-  at 100 characters, titles at 255. Even if someone sends a megabyte
-  of text, only the first 100 characters survive.
+- **`mb_substr()`** — enforces a maximum length. Even if someone
+  sends a megabyte of text, only the first 100 characters survive.
 
-The order matters: strip first, trim second, truncate last.
+The order matters: trim first, strip second, truncate last.
 And this happens on the server — never trust the client's
 `maxlength` attribute alone.
 
-## Error display
+## Error display: how do we tell the user something is wrong?
 
-No `alert()` — that is from the 1990s. We use inline messages:
+No `alert()`. We use inline messages:
 
 ```html
 <span class="error" id="publisher-name-error"></span>
 ```
 
+Each input field has a matching `<span>` for its error message.
+The JavaScript class has two methods for this:
+
 ```javascript
 showError(fieldId, message) {
     const input = document.querySelector('#' + fieldId);
-    const error = document.querySelector('#' + fieldId + '-error');
+    const error = document.querySelector(
+        '#' + fieldId + '-error'
+    );
     input.classList.add('invalid');
     error.textContent = message;
 }
 ```
 
-The error appears under the field. The field gets a red border.
-Clear and immediate feedback.
+```javascript
+clearErrors() {
+    const errors = document.querySelectorAll('.error');
+    for (let i = 0; i < errors.length; i++) {
+        errors[i].textContent = '';
+    }
+    const invalids = document.querySelectorAll('.invalid');
+    for (let i = 0; i < invalids.length; i++) {
+        invalids[i].classList.remove('invalid');
+    }
+}
+```
+
+`showError` marks one field as invalid and shows the message.
+`clearErrors` resets all fields before a new validation pass.
+The `validate()` method calls `clearErrors` first, then checks
+each field and calls `showError` for every problem it finds.
 
 ## Server errors
 
-When the server returns an error (e.g., 409 for duplicates,
-422 for dependency issues),
-JavaScript reads the response and shows the message inline:
+When the server rejects the input (409 for duplicates, 422 for
+dependencies, 400 for bad data), JavaScript reads the response
+and shows the message inline — same place, same pattern:
 
 ```javascript
 if (!response.ok) {
@@ -93,33 +144,39 @@ if (!response.ok) {
 }
 ```
 
-Same pattern, same place, whether the error comes from the client
-or the server.
+Whether the error comes from client-side validation or from the
+server, the user sees it in the same way.
 
 ## Exceptions: who catches what
 
 Validation handles *expected* problems — empty fields, duplicates.
-But what about *unexpected* failures? The database file is corrupted.
-The disk is full. A table was dropped. These are exceptions.
+But what about *unexpected* failures? The database file is
+corrupted. The disk is full. A table was dropped. These are
+exceptions.
 
-In PHP, PDO is configured with `ERRMODE_EXCEPTION`: when something
-goes wrong, it throws a `PDOException`. The question is: who catches it?
+In PHP, PDO is configured with `ERRMODE_EXCEPTION`: when
+something goes wrong, it throws a `PDOException`. The question
+is: who catches it?
 
-**Not DBMS.** The database wrapper does not know *how* to handle the error.
-Should it return null? An empty array? Log something? It depends on
-who is calling. A web API needs a JSON response. A CLI script needs
-a console message. A test needs an assertion failure. DBMS cannot
-know any of this, so it lets the exception rise.
+**Not DBMS.** The database wrapper does not know *how* to handle
+the error. Should it return null? An empty array? Log something?
+It depends on who is calling. A web API needs a JSON response.
+A CLI script needs a console message. A test needs an assertion
+failure. DBMS cannot know any of this, so it lets the exception
+rise.
 
-**Not the Model.** Publisher, Book, Author — they have the same problem.
-They do not know the context. They pass the exception upward.
+**Not the Model.** Publisher, Book, Author — they have the same
+problem. They do not know the context. They pass the exception
+upward.
 
-**The API endpoint catches it.** This is the only place that knows
-it must respond with JSON and an HTTP status code:
+**The controller catches it.** The API file is the only place
+that knows it must respond with JSON and an HTTP status code:
 
 ```php
 try {
-    $db = new DBMS(__DIR__ . '/../../sql/bibliotheca.db');
+    $db = new DBMS(
+        __DIR__ . '/../../sql/bibliotheca.db'
+    );
     $publisher = new Publisher($db);
     // ... all the logic ...
 } catch (\Exception $e) {
@@ -128,8 +185,8 @@ try {
 }
 ```
 
-**JavaScript catches it too.** Network failures (server down, timeout)
-throw exceptions at the `fetch()` level:
+**JavaScript catches too.** Network failures (server down,
+timeout) throw exceptions at the `fetch` level:
 
 ```javascript
 try {
@@ -140,15 +197,15 @@ try {
     const data = await response.json();
     this.render(data);
 } catch (error) {
-    // show a message to the user
+    alert('Unable to load data.');
 }
 ```
 
-The principle: **catch where you can act.** The lower layers report
-the problem (by throwing). The upper layers handle it (by catching).
-An exception is a signal that travels upward — like pain traveling
-from an organ to the brain. The kidney does not decide how to inform
-the patient. The brain does.
+The principle: **catch where you can act.** The lower layers
+report the problem (by throwing). The upper layers handle it
+(by catching). An exception is a signal that travels upward —
+like pain traveling from an organ to the brain. The kidney does
+not decide how to inform the patient. The brain does.
 
 ## Next
 

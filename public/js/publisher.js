@@ -44,7 +44,7 @@ class PublisherForm {
         const id = params.get('id');
 
         if (id) {
-            this.loadRecord(parseInt(id));
+            this.load(parseInt(id));
         }
     }
 
@@ -55,7 +55,7 @@ class PublisherForm {
      * @param {number} id - Publisher ID to load
      * @returns {Promise<void>}
      */
-    async loadRecord(id) {
+    async load(id) {
         try {
             const response = await fetch(this.API + '?id=' + id);
 
@@ -64,17 +64,20 @@ class PublisherForm {
             }
 
             const publisher = await response.json();
-
-            this.inputId.value = publisher.publisher_id;
-            this.inputName.value = publisher.name;
-            this.inputStatus.checked = publisher.status === 1;
-            this.statusGroup.hidden = false;
-            this.btnDelete.hidden = false;
-            this.title.textContent = 'Edit Publisher';
-            this.inputName.focus();
+            this.render(publisher);
         } catch (error) {
             alert('Unable to load record. Please try again later.');
         }
+    }
+
+    render(publisher) {
+        this.inputId.value = publisher.publisher_id;
+        this.inputName.value = publisher.name;
+        this.inputStatus.checked = publisher.status === 1;
+        this.statusGroup.hidden = false;
+        this.btnDelete.hidden = false;
+        this.title.textContent = 'Edit Publisher';
+        this.inputName.focus();
     }
 
     /**
@@ -142,6 +145,10 @@ class PublisherForm {
         const id = this.inputId.value;
         const name = this.inputName.value.trim();
 
+        const payload = {
+            name: name,
+        };
+
         try {
             let response;
 
@@ -149,17 +156,15 @@ class PublisherForm {
                 response = await fetch(this.API, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json', 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content},
-                    body: JSON.stringify({name: name}),
+                    body: JSON.stringify(payload),
                 });
             } else {
+                payload.publisher_id = parseInt(id);
+                payload.status = this.inputStatus.checked ? 1 : 0;
                 response = await fetch(this.API, {
                     method: 'PUT',
                     headers: {'Content-Type': 'application/json', 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content},
-                    body: JSON.stringify({
-                        publisher_id: parseInt(id),
-                        name: name,
-                        status: this.inputStatus.checked ? 1 : 0,
-                    }),
+                    body: JSON.stringify(payload),
                 });
             }
 
@@ -187,12 +192,13 @@ class PublisherForm {
         }
 
         const id = this.inputId.value;
+        const payload = {publisher_id: parseInt(id)};
 
         try {
             const response = await fetch(this.API, {
                 method: 'DELETE',
                 headers: {'Content-Type': 'application/json', 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content},
-                body: JSON.stringify({publisher_id: parseInt(id)}),
+                body: JSON.stringify(payload),
             });
 
             if (!response.ok) {

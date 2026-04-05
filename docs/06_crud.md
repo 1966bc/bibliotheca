@@ -5,102 +5,102 @@
 CRUD stands for Create, Read, Update, Delete. Every data-driven
 application does these four things. Nothing more, nothing less.
 
-- **Create** — `POST` → `INSERT` — add a new publisher
-- **Read** — `GET` → `SELECT` — list all publishers
-- **Update** — `PUT` → `UPDATE` — change a publisher's name
-- **Delete** — `DELETE` → `DELETE` — remove a publisher
+In the previous chapter we learned that HTTP has a method for
+each operation. Here is the complete mapping, from the browser
+to the database:
 
-Bibliotheca also uses a `status` column (1 = active, 0 = disabled).
-Disabling a record is an Update (PUT), not a Delete — the record stays
-in the database but appears greyed out in the list. Deleting is permanent:
-`DELETE FROM` removes the record entirely.
+| Operation | HTTP Method | SQL       | Example                  |
+|-----------|-------------|-----------|--------------------------|
+| Create    | `POST`      | `INSERT`  | add a new publisher      |
+| Read      | `GET`       | `SELECT`  | list all publishers      |
+| Update    | `PUT`       | `UPDATE`  | change a publisher's name|
+| Delete    | `DELETE`    | `DELETE`  | remove a publisher       |
 
-## From two methods to four and return
+Three layers, one intention. The HTTP method arrives at the
+API file (e.g. `api/publishers.php`). In MVC architecture,
+this file is called the **controller**: it receives the
+request and decides what to do. It does not talk to the
+database directly. Instead, it calls the **model**: a PHP
+class (file) that lives in `src/` (outside `public/`, because it
+handles data, not HTTP requests). Each model — `Publisher.php`,
+`Category.php`, `Author.php`, `Book.php` — implements the
+CRUD methods internally: `insert`, `getAll`, `getById`,
+`update`, `delete`. None of them talks to the database
+directly either. They all use `DBMS.php`, a class we wrote
+that wraps PDO and exposes simple methods: `fetchOne`,
+`fetchAll`, `execute`. Every model receives a `DBMS` instance
+in its constructor and uses it for every query. One class for
+database access, shared by all models. The controller calls
+the model, the model calls DBMS, DBMS talks to SQLite, and
+the controller returns the result as JSON.
 
-If you have only used HTML forms, you know two HTTP methods:
+## Soft delete vs hard delete
 
-```html
-<form method="GET">   <!-- read / search -->
-<form method="POST">  <!-- send data -->
-```
+Bibliotheca uses a `status` column (1 = active, 0 = disabled).
+When you disable a record, the row stays in the database — it
+just appears greyed out in the list. This is a **soft delete**:
+a PUT that sets `status` to 0.
 
-That is all a classic `<form>` can do. To handle Update and Delete you
-would need to add a parameter and branch on it:
+When you delete a record, it is gone. `DELETE FROM` removes the
+row entirely. This is a **hard delete**: permanent, irreversible.
 
-```
-POST /api/books.php?action=create
-POST /api/books.php?action=update
-POST /api/books.php?action=delete
-```
+Why both? In a real application, you often want to keep the
+data. An author who is temporarily unavailable should not
+disappear from the database — their books still reference them.
+Disabling is safer. Deleting is for cleanup.
 
-It works, but the URL says nothing about the intention — the meaning is
-hidden inside a parameter.
+## From form to database
 
-With `fetch` in JavaScript, you are no longer limited to GET and POST.
-You can use all four HTTP methods:
+In a classic website, clicking a button loads a new page. In
+Bibliotheca, JavaScript intercepts the action, calls `fetch`
+with the right HTTP method, and updates the page without
+reloading. Let us follow each operation step by step.
 
-```
-POST   /api/books.php   → create
-GET    /api/books.php   → read
-PUT    /api/books.php   → update
-DELETE /api/books.php   → delete
-```
+### Create, POST
 
-Same URL, different verb. *In the beginning was the Verb* — and in
-REST, the verb is what gives meaning to every request. No extra
-parameters, no ambiguity. Anyone reading the code knows immediately
-what the request does.
+1. The user fills the form and clicks Save.
+2. JavaScript builds the `payload` object from the form fields.
+3. `fetch` sends a POST with the payload as JSON body.
+4. The controller validates and calls the model's `insert`.
+5. The model executes `INSERT INTO` via PDO.
+6. The controller returns the new record as JSON.
+7. JavaScript redirects to the list page.
 
-This is the key shift: in a classic website, the browser navigates
-to a new page on every action. In a single-page application (SPA),
-JavaScript talks directly to the API via `fetch`, sends the right
-HTTP method, and updates only the part of the page that changed —
-without a full reload.
+### Read, GET
 
-```javascript
-// The browser can only do GET and POST.
-// With fetch, you choose freely:
-await fetch('/api/books.php', {
-    method: 'DELETE',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ book_id: 3 })
-});
-```
+1. The page loads and JavaScript calls `fetch` with GET.
+2. The controller calls the model's `getAll` or `getById`.
+3. The model queries via PDO and returns an array.
+4. The controller encodes the array as JSON.
+5. JavaScript receives the data and calls `render` to build
+   the table rows or populate the form fields.
 
-That is why Bibliotheca has no traditional `<form>` elements that
-submit to a new page. Every form is intercepted by JavaScript, which
-calls `fetch` with the appropriate method, and the page never reloads.
+### Update, PUT
 
-## The dance
+1. The user clicks Edit — the browser goes to the form page
+   with `?id=` in the URL.
+2. `checkEdit` detects the ID and calls `load(id)`.
+3. `load` fetches the record via GET, then `render` populates
+   the form.
+4. The user modifies the fields and clicks Save.
+5. JavaScript builds the `payload` and adds the record ID.
+6. `fetch` sends a PUT with the payload as JSON body.
+7. The controller validates and calls the model's `update`.
+8. JavaScript redirects to the list page.
 
-**Create:**
-1. User fills the form and clicks Save.
-2. JavaScript sends a POST with JSON body.
-3. Controller validates, calls Model's `insert`.
-4. Model executes the INSERT via PDO.
-5. Controller returns the new record as JSON.
-6. JavaScript redirects to the list page.
+### Delete, DELETE
 
-**Read:**
-1. JavaScript calls `fetch` with GET.
-2. Controller calls Model's `getAll` or `getById`.
-3. Model queries via PDO, returns array.
-4. Controller encodes as JSON.
-5. JavaScript builds the table.
+1. The user clicks Delete — a confirmation dialog appears.
+2. JavaScript builds the `payload` with the record ID.
+3. `fetch` sends a DELETE with the payload as JSON body.
+4. The controller calls the model's `delete`
+   (`DELETE FROM` — permanent).
+5. JavaScript redirects to the list page.
 
-**Update:**
-1. User clicks Edit — goes to the form page with `?id=`.
-2. JavaScript loads the record via GET.
-3. User modifies and clicks Save.
-4. JavaScript sends a PUT with JSON body.
-5. Controller validates, calls Model's `update`.
-6. JavaScript redirects to the list page.
-
-**Delete:**
-1. User clicks Delete — confirmation dialog appears.
-2. JavaScript sends a DELETE with the record ID.
-3. Controller calls Model's `delete` (`DELETE FROM` — permanent).
-4. JavaScript reloads the list.
+Notice how every operation follows the same shape: build the
+payload, choose the method, call `fetch`, handle the response.
+The only things that change are the HTTP method and the data
+inside the payload.
 
 ## Next
 

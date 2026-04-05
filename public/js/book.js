@@ -125,7 +125,7 @@ class BookForm {
         const id = params.get('id');
 
         if (id) {
-            this.loadRecord(parseInt(id));
+            this.load(parseInt(id));
         }
     }
 
@@ -135,7 +135,7 @@ class BookForm {
      * @param {number} id - Book ID to load
      * @returns {Promise<void>}
      */
-    async loadRecord(id) {
+    async load(id) {
         try {
             const response = await fetch(this.API + '?id=' + id);
 
@@ -144,28 +144,31 @@ class BookForm {
             }
 
             const book = await response.json();
-
-            this.inputId.value = book.book_id;
-            this.inputTitle.value = book.title;
-            this.selectPublisher.value = book.publisher_id;
-            this.selectCategory.value = book.category_id;
-            this.inputPages.value = book.pages || '';
-            this.inputPublished.value = book.published || '';
-            if (book.authors) {
-                const authorIds = book.authors.map(a => String(a.author_id));
-                for (let i = 0; i < this.selectAuthors.options.length; i++) {
-                    this.selectAuthors.options[i].selected = authorIds.includes(this.selectAuthors.options[i].value);
-                }
-            }
-
-            this.inputStatus.checked = book.status === 1;
-            this.statusGroup.hidden = false;
-            this.btnDelete.hidden = false;
-            this.title.textContent = 'Edit Book';
-            this.inputTitle.focus();
+            this.render(book);
         } catch (error) {
             alert('Unable to load record. Please try again later.');
         }
+    }
+
+    render(book) {
+        this.inputId.value = book.book_id;
+        this.inputTitle.value = book.title;
+        this.selectPublisher.value = book.publisher_id;
+        this.selectCategory.value = book.category_id;
+        this.inputPages.value = book.pages || '';
+        this.inputPublished.value = book.published || '';
+        if (book.authors) {
+            const authorIds = book.authors.map(a => String(a.author_id));
+            for (let i = 0; i < this.selectAuthors.options.length; i++) {
+                this.selectAuthors.options[i].selected = authorIds.includes(this.selectAuthors.options[i].value);
+            }
+        }
+
+        this.inputStatus.checked = book.status === 1;
+        this.statusGroup.hidden = false;
+        this.btnDelete.hidden = false;
+        this.title.textContent = 'Edit Book';
+        this.inputTitle.focus();
     }
 
     /**
@@ -283,9 +286,6 @@ class BookForm {
             author_ids: authorIds,
         };
         
-        //console.log(payload);
-        //return;
-
         try {
             let response;
 
@@ -329,12 +329,13 @@ class BookForm {
         }
 
         const id = this.inputId.value;
+        const payload = {book_id: parseInt(id)};
 
         try {
             const response = await fetch(this.API, {
                 method: 'DELETE',
                 headers: {'Content-Type': 'application/json', 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content},
-                body: JSON.stringify({book_id: parseInt(id)}),
+                body: JSON.stringify(payload),
             });
 
             if (!response.ok) {

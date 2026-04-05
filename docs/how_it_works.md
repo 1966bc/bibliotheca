@@ -378,7 +378,7 @@ when you click **Add new publisher**, or **Edit** on an existing one?
     │  │                checkbox and Delete stay hidden
     │  │                done — waiting for user input
     │  │
-    │  └─── ?id=2 ──► this.loadRecord(2)
+    │  └─── ?id=2 ──► this.load(2)
     │                   │
     │                   │  fetch('/api/publishers.php?id=2')  ─────┐
     │                   │                                          │

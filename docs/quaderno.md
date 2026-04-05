@@ -1326,7 +1326,7 @@ l'abbiamo scelta noi perché è intuitiva e coerente.
          const params = new URLSearchParams(window.location.search);
          const id = params.get('id');
          if (id) {
-             this.loadRecord(parseInt(id));
+             this.load(parseInt(id));
          }
      }
      ```
@@ -1341,7 +1341,7 @@ l'abbiamo scelta noi perché è intuitiva e coerente.
      stringa `'3'` o `null`, e `checkEdit()` usa quel risultato per
      decidere cosa fare, fail fast fail save.
 
-     Se l'id c'è → siamo in modifica, chiama `loadRecord()` che
+     Se l'id c'è → siamo in modifica, chiama `load()` che
      fa un viaggio al server per prendere i dati dell'editore e
      riempire il form. Se non c'è → non fa niente, il form resta
      com'è arrivato dall'HTML: titolo "Add Publisher", campo nome
@@ -1351,7 +1351,7 @@ l'abbiamo scelta noi perché è intuitiva e coerente.
 
      **E se qualcuno bara?** Se modifichi l'URL a mano e scrivi
      `/publisher?id=999` (un id che non esiste), `checkEdit()`
-     trova l'id e chiama `loadRecord(999)`. Parte il viaggio al
+     trova l'id e chiama `load(999)`. Parte il viaggio al
      server: l'API chiama `$publisher->getById(999)`, che ritorna
      `null`. PHP risponde con `404 Not Found`:
 
@@ -1754,12 +1754,12 @@ l'abbiamo scelta noi perché è intuitiva e coerente.
        const params = new URLSearchParams(window.location.search);
        const id = params.get('id');
        if (id) {
-           this.loadRecord(parseInt(id));
+           this.load(parseInt(id));
        }
    }
    ```
 
-3. `loadRecord()` fa un viaggio al server per caricare i dati
+3. `load()` fa un viaggio al server per caricare i dati
    dell'editore:
 
    ```javascript

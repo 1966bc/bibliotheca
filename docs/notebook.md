@@ -1337,7 +1337,7 @@ because it is intuitive and consistent.
          const params = new URLSearchParams(window.location.search);
          const id = params.get('id');
          if (id) {
-             this.loadRecord(parseInt(id));
+             this.load(parseInt(id));
          }
      }
      ```
@@ -1353,7 +1353,7 @@ because it is intuitive and consistent.
      uses that result to decide what to do, fail fast fail safe.
 
      If the id is there → we are in edit mode, it calls
-     `loadRecord()` which makes a trip to the server to fetch the
+     `load()` which makes a trip to the server to fetch the
      publisher's data and fill the form. If it is not there → it
      does nothing, the form stays as it arrived from HTML: title
      "Add Publisher", name field empty, hidden field empty, checkbox
@@ -1362,7 +1362,7 @@ because it is intuitive and consistent.
 
      **What if someone cheats?** If you manually edit the URL and
      type `/publisher?id=999` (an id that does not exist),
-     `checkEdit()` finds the id and calls `loadRecord(999)`. The
+     `checkEdit()` finds the id and calls `load(999)`. The
      trip to the server begins: the API calls
      `$publisher->getById(999)`, which returns `null`. PHP responds
      with `404 Not Found`:
@@ -1769,12 +1769,12 @@ because it is intuitive and consistent.
        const params = new URLSearchParams(window.location.search);
        const id = params.get('id');
        if (id) {
-           this.loadRecord(parseInt(id));
+           this.load(parseInt(id));
        }
    }
    ```
 
-3. `loadRecord()` makes a trip to the server to load the
+3. `load()` makes a trip to the server to load the
    publisher's data:
 
    ```javascript

@@ -45,7 +45,7 @@ class AuthorForm {
         const id = params.get('id');
 
         if (id) {
-            this.loadRecord(parseInt(id));
+            this.load(parseInt(id));
         }
     }
 
@@ -55,7 +55,7 @@ class AuthorForm {
      * @param {number} id - Author ID to load
      * @returns {Promise<void>}
      */
-    async loadRecord(id) {
+    async load(id) {
         try {
             const response = await fetch(this.API + '?id=' + id);
 
@@ -64,19 +64,22 @@ class AuthorForm {
             }
 
             const author = await response.json();
-
-            this.inputId.value = author.author_id;
-            this.inputFirstName.value = author.first_name;
-            this.inputLastName.value = author.last_name;
-            this.inputBirthdate.value = author.birthdate || '';
-            this.inputStatus.checked = author.status === 1;
-            this.statusGroup.hidden = false;
-            this.btnDelete.hidden = false;
-            this.title.textContent = 'Edit Author';
-            this.inputFirstName.focus();
+            this.render(author);
         } catch (error) {
             alert('Unable to load record. Please try again later.');
         }
+    }
+
+    render(author) {
+        this.inputId.value = author.author_id;
+        this.inputFirstName.value = author.first_name;
+        this.inputLastName.value = author.last_name;
+        this.inputBirthdate.value = author.birthdate || '';
+        this.inputStatus.checked = author.status === 1;
+        this.statusGroup.hidden = false;
+        this.btnDelete.hidden = false;
+        this.title.textContent = 'Edit Author';
+        this.inputFirstName.focus();
     }
 
     /**
@@ -211,12 +214,13 @@ class AuthorForm {
         }
 
         const id = this.inputId.value;
+        const payload = {author_id: parseInt(id)};
 
         try {
             const response = await fetch(this.API, {
                 method: 'DELETE',
                 headers: {'Content-Type': 'application/json', 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content},
-                body: JSON.stringify({author_id: parseInt(id)}),
+                body: JSON.stringify(payload),
             });
 
             if (!response.ok) {
