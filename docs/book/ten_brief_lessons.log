@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Debian) (preloaded format=xelatex 2025.12.8)  5 APR 2026 10:25
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Debian) (preloaded format=xelatex 2025.12.8)  5 APR 2026 10:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1265,7 +1265,7 @@ Appendix E.
 [66
 
 ]
-Overfull \hbox (23.15872pt too wide) in paragraph at lines 4204--4209
+Overfull \hbox (23.15872pt too wide) in paragraph at lines 4208--4213
 []\T1/lmr/bx/n/10.95 Middleware \T1/lmr/m/n/10.95 --- your con-trollers check t
 he HTTP method with \T1/lmtt/m/n/10.95 $_SERVER[\TS1/lmtt/m/n/10.95 '\T1/lmtt/m
 /n/10.95 REQUEST_METHOD\TS1/lmtt/m/n/10.95 '\T1/lmtt/m/n/10.95 ]\T1/lmr/m/n/10.
