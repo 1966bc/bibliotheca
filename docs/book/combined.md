@@ -68,9 +68,9 @@ it is written that way is even better.
 ## Who is this for?
 
 For the young programmer's mind — or the curious one at any age —
-who wants to understand how a web application actually works, in
-anno Domini 2026. From the database to the browser, with nothing
-in between but your own code.
+open to the wonder of understanding how things actually work.
+A web application, in anno Domini 2026. From the database to
+the browser, with nothing in between but your own code.
 
 You do not need experience with web development, but you should
 know the basics of programming: variables, functions, loops,
@@ -101,6 +101,13 @@ sudo apt install apache2 php libapache2-mod-php php-sqlite3
 - A **terminal**
 - A **web browser**
 - **Curiosity**
+
+One note about the terminal. Throughout this book, we will use
+the command line for everything we can: creating files, running
+queries, testing the API, checking permissions, managing git.
+This is deliberate. The terminal is not a fallback for when the
+GUI is missing. It is the primary tool of a programmer. Learn
+to think in commands.
 
 Let the show begin.
 
@@ -175,14 +182,41 @@ Pure languages only. We use nothing but the native capabilities
 of each language. No extra tools to learn, no abstractions to
 cloud your understanding. Stay pure, stay focused.
 
+## The terminal
+
+There is one tool that sits above all others: the command line.
+Every operation in this book can be done from the terminal, and
+most of them *should* be. Creating a database, inserting seed
+data, testing an API endpoint, checking file permissions,
+committing code — all from a text prompt.
+
+Why? Because a graphical interface hides what is happening. A
+command shows it. When you type `chmod 664 bibliotheca.db`, you
+know exactly what you are changing. When you right-click and
+open a properties dialog, you are trusting someone else's
+abstraction.
+
+More importantly: a production server has no desktop, no file
+manager, no mouse. It has a terminal and nothing else. If you
+can only work with a GUI, you cannot work on a real server.
+The programmers who are comfortable on the command line are
+the ones who can diagnose a problem at 2 AM on a server they
+have never seen before.
+
+The command line has been the programmer's primary interface
+since the DEC VT100 in 1978. Its screen had 80 columns and 24
+rows — and that is where the 80-character line convention comes
+from, the same convention you still see in coding standards
+today. Graphical desktops came and went. The terminal is still
+here, because it works. In programming, traditions exist for
+a reason.
+
+Make the terminal your first choice, not your last resort.
+
 Each of these technologies has extensive documentation online.
-Study them separately. This book shows how the pieces fit together.
-
-Some good starting points:
-
-- **PHP**: https://phptherightway.com, https://phpdelusions.net
-- **JavaScript, HTML, CSS**: https://developer.mozilla.org
-- **SQLite**: https://sqlite.org/docs.html
+Study them separately. This book shows how the pieces fit
+together. You will find all references in the Bibliography
+appendix.
 
 ## The body of a web application
 
@@ -1217,12 +1251,28 @@ sudo chmod 775 /var/www/html/bibliotheca/sql/
 ```
 
 - `664` — owner reads/writes, group reads/writes, others read.
-- `775` — same for directories, plus execute (needed to list contents).
+- `775` — same for directories, plus execute (needed to list
+  contents).
+
+Check the result with `ls -la`:
+
+```bash
+ls -la sql/
+```
+
+The terminal is your best friend for diagnosing permission
+problems. Always verify with `ls -la` after changing
+permissions. Get comfortable with the command line — it should
+always be your first choice. A production server has no
+graphical interface. There is no file manager, no right-click,
+no properties dialog. There is only the terminal. The sooner
+you make it your natural environment, the better.
 
 ## Every time you recreate the database
 
-When you delete and recreate `bibliotheca.db`, the new file belongs
-to your user with default permissions. You must set them again:
+When you delete and recreate `bibliotheca.db`, the new file
+belongs to your user with default permissions. You must set
+them again:
 
 ```bash
 rm bibliotheca.db
@@ -1232,103 +1282,29 @@ sudo chgrp www-data bibliotheca.db
 sudo chmod 664 bibliotheca.db
 ```
 
-This is easy to forget. And when you forget, the application reads
-data fine but fails on any write operation with:
+This is easy to forget. And when you forget, the application
+reads data fine but fails on any write operation with:
 
 ```
 SQLSTATE[HY000]: General error: 8 attempt to write a readonly database
 ```
 
-## CSRF — protecting write operations
+If you see this error, check the permissions first. Nine times
+out of ten, that is the problem.
 
-Permissions are not only about Linux file ownership. There is another
-kind of permission problem: **who is allowed to make changes** through
-the API.
+## Why `public/` matters
 
-### The attack
+Notice the project structure: the `src/` folder (models, DBMS)
+and the `sql/` folder (database) are outside `public/`. Only
+the files inside `public/` are reachable from the browser.
 
-Imagine you have the Bibliotheca page open. A malicious website in
-another tab could contain hidden JavaScript that sends a POST request
-to `http://localhost/bibliotheca/public/api/publishers.php` with
-`{"name": "HACKED"}`. The browser would happily send it — from the
-browser's perspective, it is just another HTTP request to localhost.
+This is a permission boundary too. Even if someone guesses the
+path to `sql/bibliotheca.db`, Apache will not serve it — the
+`.htaccess` rewrite rule sends everything through `index.php`,
+and the router only accepts whitelisted routes.
 
-This is called **CSRF** (Cross-Site Request Forgery): a malicious site
-tricks the browser into making requests to *your* application.
-
-### The defense — a secret token
-
-The solution is a **CSRF token**: a long random string that only our
-pages know. The malicious site cannot read it because the browser's
-**Same-Origin Policy** prevents one site from reading another site's
-content.
-
-The flow:
-
-1. When PHP renders the page (`index.php`), it generates a random
-   token and stores it in the session:
-   ```php
-   Csrf::start();
-   $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-   ```
-
-2. The token is injected into the HTML as a `<meta>` tag:
-   ```html
-   <meta name="csrf-token" content="a7f3b9c2e1d4...">
-   ```
-
-3. JavaScript reads the token and includes it in every POST/PUT/DELETE:
-   ```javascript
-   headers: {
-       'Content-Type': 'application/json',
-       'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
-   }
-   ```
-
-4. The API verifies the token before processing the request:
-   ```php
-   Csrf::start();
-   Csrf::verify();  // 403 if token is missing or wrong
-   ```
-
-The malicious site cannot read the `<meta>` tag from our page (Same-Origin
-Policy), so it cannot send the correct token. The API rejects its request
-with `403 Forbidden`.
-
-### The implementation
-
-The `Csrf` class (`src/Csrf.php`) has three methods:
-
-- `Csrf::start()` — starts a PHP session (with secure
-  cookie settings).
-- `Csrf::token()` — returns the token, generating one
-  if needed.
-- `Csrf::verify()` — compares the `X-CSRF-Token` header
-  against the session; exits with 403 on mismatch.
-
-GET requests do not need CSRF protection — they only read data, they
-never modify it. Only POST, PUT, and DELETE are checked.
-
-### Verify it works
-
-```bash
-# Without token → 403
-curl -s -o /dev/null -w "%{http_code}" -X POST \
-     http://localhost/bibliotheca/public/api/publishers.php \
-     -H "Content-Type: application/json" \
-     -d '{"name": "Test"}'
-# Prints: 403
-
-# With token → 200 (get token from page first)
-TOKEN=$(curl -s -c /tmp/c.txt http://localhost/bibliotheca/public/ \
-    | grep csrf-token | sed 's/.*content="\([^"]*\)".*/\1/')
-curl -s -o /dev/null -w "%{http_code}" -b /tmp/c.txt -X POST \
-     http://localhost/bibliotheca/public/api/publishers.php \
-     -H "Content-Type: application/json" \
-     -H "X-CSRF-Token: $TOKEN" \
-     -d '{"name": "Test"}'
-# Prints: 200
-```
+The file system layout is your first line of defense. Keep
+sensitive files outside the web root.
 
 
 \newpage
@@ -1339,10 +1315,26 @@ curl -s -o /dev/null -w "%{http_code}" -b /tmp/c.txt -X POST \
 ## The blank page
 
 The most frustrating thing in web development: your code looks
-correct, but the browser shows nothing. No error, no message, just
-white. This means PHP crashed before producing any output.
+correct, but the browser shows nothing. No error, no message,
+just white. This means PHP crashed before producing any output.
 
-The browser cannot help you. You need to look elsewhere.
+The browser cannot help you here. You need to look elsewhere.
+
+## Think in layers
+
+When something breaks, remember the architecture from Chapter
+06: JavaScript calls the controller, the controller calls the
+model, the model calls DBMS, DBMS talks to SQLite. The bug
+lives in one of these layers. Your job is to find which one.
+
+Start from the outside and work inward:
+
+1. Is the browser showing a JavaScript error? → **Console**
+2. Is the server returning an error code? → **Network tab**
+3. Is PHP crashing? → **Apache error log**
+4. Is the SQL wrong? → **SQLite command line**
+
+Be methodical. Narrow it down.
 
 ## Apache error log
 
@@ -1352,17 +1344,29 @@ The server-side truth lives here:
 sudo tail -20 /var/log/apache2/error.log
 ```
 
-This log captures every PHP fatal error, every uncaught exception,
-every permission problem. When the browser shows a 500, this log
-tells you why.
+This log captures every PHP fatal error, every uncaught
+exception, every permission problem. When the browser shows
+a 500, this log tells you why.
+
+For real-time monitoring, use `-f` — the log updates as
+requests come in:
+
+```bash
+sudo tail -f /var/log/apache2/error.log
+```
+
+Keep this running in a terminal while you test in the browser.
+You will see errors the moment they happen.
 
 Common errors you will find:
 
 - `could not find driver` — a PHP extension is missing.
-- `attempt to write a readonly database` — permissions (Chapter 08).
-- `Uncaught PDOException` — a SQL error, with the exact line number.
+- `attempt to write a readonly database` — permissions
+  (Chapter 08).
+- `Uncaught PDOException` — a SQL error, with the exact line
+  number.
 
-## curl — testing the API
+## curl: testing the API
 
 Before blaming the frontend, test the backend directly:
 
@@ -1370,32 +1374,68 @@ Before blaming the frontend, test the backend directly:
 curl http://localhost/bibliotheca/public/api/publishers.php
 ```
 
-If this returns JSON, the backend works. If it returns nothing or
-an error, the problem is server-side.
+If this returns JSON, the backend works. If it returns nothing
+or an error, the problem is server-side.
 
-For POST requests:
-
-```bash
-curl -X POST -H "Content-Type: application/json" \
-     -d '{"name":"Test"}' \
-     http://localhost/bibliotheca/public/api/publishers.php
-```
+For POST requests, remember that the controller requires a
+CSRF token (Chapter 10). Without it, you will get a 403. For
+a quick diagnostic, you can test a GET first to confirm the
+API is alive, then check the Network tab for POST issues.
 
 Use `-v` for verbose output — it shows HTTP status codes,
-headers, and the full request/response cycle.
+headers, and the full request/response cycle:
+
+```bash
+curl -v http://localhost/bibliotheca/public/api/publishers.php
+```
+
+The `-v` flag is one of the most useful debugging tools you
+have. It shows you exactly what the browser and server are
+saying to each other.
 
 ## Browser developer tools
 
 Press F12. Three tabs matter:
 
-- **Console** — JavaScript errors appear here. If `fetch` fails
-  or your code has a syntax error, this is where you see it.
-- **Network** — every HTTP request the browser makes. Click on a
-  request to see the status code, request body, and response body.
-  If a fetch returns 500, click on it to see the server's error
-  message.
-- **Elements** — the live HTML. Useful to check if JavaScript
-  actually built the DOM you expected.
+- **Console** — JavaScript errors appear here. If `fetch`
+  fails or your code has a syntax error, this is where you
+  see it.
+- **Network** — every HTTP request the browser makes. Click
+  on a request to see the status code, request body, and
+  response body. If a fetch returns 500, click on it to see
+  the server's error message.
+- **Elements** — the live DOM. Useful to check if JavaScript
+  actually built the HTML you expected. Remember the DOM
+  diagram from Chapter 05: what you see here is the tree, not
+  the source file.
+
+## PHP debugging tools
+
+When you need to inspect a value inside your PHP code, two
+tools:
+
+**`error_log()`** — writes to the Apache error log without
+breaking the response:
+
+```php
+error_log('Publisher name: ' . $name);
+error_log(print_r($data, true));
+```
+
+Check the output with `tail -f /var/log/apache2/error.log`.
+This is safe to use in API controllers — it does not corrupt
+the JSON response.
+
+**`var_dump()`** — prints the value directly to the output:
+
+```php
+var_dump($data);
+exit;
+```
+
+Useful for quick inspection, but it breaks the JSON response.
+Use it only for temporary debugging, never in production code.
+Remove it when you are done.
 
 ## PHP from the command line
 
@@ -1406,11 +1446,12 @@ php /var/www/html/bibliotheca/public/api/publishers.php
 ```
 
 This bypasses Apache and permissions. If it works here but not
-in the browser, the problem is Apache configuration or permissions.
+in the browser, the problem is Apache configuration or
+permissions (Chapter 08).
 
 ## SQLite from the command line
 
-You can inspect the database directly with the `sqlite3` command:
+You can inspect the database directly:
 
 ```bash
 sqlite3 sql/bibliotheca.db
@@ -1422,7 +1463,7 @@ Useful commands inside the SQLite shell:
 -- List all tables
 .tables
 
--- Show the schema of a table (columns, types, constraints)
+-- Show the schema of a table
 PRAGMA table_info(book);
 
 -- Show all indexes in the database
@@ -1444,16 +1485,19 @@ PRAGMA foreign_keys;
 SELECT * FROM publisher ORDER BY name;
 ```
 
-`PRAGMA table_info` is especially useful: it shows the column name,
-type, whether it allows NULL, its default value, and whether it is
-part of the primary key. Learn to use it — it is faster than reading
-the schema file.
+`PRAGMA table_info` is especially useful: it shows the column
+name, type, whether it allows NULL, its default value, and
+whether it is part of the primary key. Learn to use it — it
+is faster than reading the schema file.
 
 ## The golden rule
 
-When something breaks, do not guess. Read the error. Follow the
-trail: browser console, network tab, Apache log, PHP command line.
-The answer is always there — you just have to look in the right place.
+When something breaks, resist the urge to change random
+things hoping the problem goes away. Read the error message.
+Follow the chain: browser console → network tab → Apache log →
+PHP command line → SQLite shell. The answer is always in one
+of these places. Your job is not to fix — it is to *find*.
+Once you find it, the fix is usually obvious.
 
 
 \newpage
@@ -1467,17 +1511,134 @@ Previous chapters covered the essentials:
 
 - **SQL injection** — prepared statements with named parameters (Chapter 04).
 - **XSS** — `htmlspecialchars()` in PHP, `textContent` in JavaScript (Chapter 07).
-- **CSRF** — session-based tokens on every state-changing request (Chapter 06).
 - **Input validation** — server-side checks on every field (Chapter 07).
+- **File permissions** — keeping sensitive files outside the web root (Chapter 08).
 
-These are non-negotiable. This chapter covers the next layer: what
-happens *around* your code.
+These are non-negotiable. They are part of the code you have
+already written. This chapter adds the layers that protect
+*around* your code.
 
-## Session fixation
+## CSRF — protecting write operations
 
-A session fixation attack works like this: the attacker gives you
-a session ID they already know (via a crafted URL or a cookie), then
-waits for you to log in. Now they share your authenticated session.
+In Chapter 05 we saw that JavaScript sends an `X-CSRF-Token`
+header with every POST, PUT, and DELETE request. But what is
+CSRF, and why do we need that token?
+
+### The attack
+
+Imagine you have Bibliotheca open in your browser. A malicious
+website in another tab contains hidden JavaScript that sends a
+POST request to your `api/publishers.php` with
+`{"name": "HACKED"}`. The browser sends it — from its
+perspective, it is just another HTTP request to localhost, and
+it attaches your session cookie automatically.
+
+This is **CSRF** (Cross-Site Request Forgery): a malicious site
+tricks the browser into making requests to *your* application,
+using *your* session.
+
+### The defense: a secret token
+
+The solution is a **CSRF token**: a long random string that
+only our pages know. The malicious site cannot read it because
+the browser's **Same-Origin Policy** prevents one site from
+reading another site's content.
+
+The flow:
+
+1. When PHP renders the page (`index.php`), it generates a
+   random token and stores it in the session:
+   ```php
+   $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+   ```
+
+2. The token is injected into the HTML as a `<meta>` tag:
+   ```html
+   <meta name="csrf-token" content="a7f3b9c2e1d4...">
+   ```
+
+3. JavaScript reads the token and includes it in every
+   POST, PUT, and DELETE request — the same header we saw
+   in Chapter 05:
+   ```javascript
+   headers: {
+       'Content-Type': 'application/json',
+       'X-CSRF-Token': document.querySelector(
+           'meta[name="csrf-token"]'
+       ).content
+   }
+   ```
+
+4. The controller (the API file) verifies the token before
+   processing the request:
+   ```php
+   Csrf::verify();  // 403 if token is missing or wrong
+   ```
+
+The malicious site cannot read the `<meta>` tag from our page
+(Same-Origin Policy), so it cannot send the correct token. The
+controller rejects its request with `403 Forbidden`.
+
+### The Csrf class
+
+The `Csrf` class (`src/Csrf.php`) has three methods:
+
+- **`Csrf::start()`** — starts a PHP session (with secure
+  cookie settings).
+- **`Csrf::token()`** — returns the token, generating one
+  if needed.
+- **`Csrf::verify()`** — compares the `X-CSRF-Token` header
+  against the session; exits with 403 on mismatch.
+
+GET requests do not need CSRF protection — they only read data,
+they never modify it. Only POST, PUT, and DELETE are checked.
+
+### Verify it works from the terminal
+
+```bash
+# Without token: 403
+curl -s -o /dev/null -w "%{http_code}" \
+     -X POST \
+     http://localhost/bibliotheca/public/api/publishers.php \
+     -H "Content-Type: application/json" \
+     -d '{"name": "Test"}'
+```
+
+```bash
+# With token: 200
+TOKEN=$(curl -s -c /tmp/c.txt \
+    http://localhost/bibliotheca/public/ \
+    | grep csrf-token \
+    | sed 's/.*content="\([^"]*\)".*/\1/')
+
+curl -s -o /dev/null -w "%{http_code}" \
+     -b /tmp/c.txt -X POST \
+     http://localhost/bibliotheca/public/api/publishers.php \
+     -H "Content-Type: application/json" \
+     -H "X-CSRF-Token: $TOKEN" \
+     -d '{"name": "Test"}'
+```
+
+The first request has no token — the server rejects it. The
+second extracts the token from the page and sends it — the
+server accepts it. Try both from your terminal.
+
+## Sessions and session fixation
+
+HTTP is stateless: each request is independent, the server does
+not remember who you are. **Sessions** solve this. When you
+visit the application, PHP creates a session — a small file on
+the server identified by a random ID. The browser stores this
+ID in a cookie and sends it with every request. That is how
+the server knows you are still you.
+
+When you log in, PHP writes your user ID into the session.
+From that point, every request carries your identity.
+
+A **session fixation** attack exploits this: the attacker gives
+you a session ID they already know (via a crafted URL or a
+cookie), then waits for you to log in. Now they share your
+authenticated session.
 
 The defense is simple: regenerate the session ID after any privilege
 change.
@@ -1667,10 +1828,17 @@ that is genuinely hard to attack.
 
 ## The rule
 
-Security is not a feature you add at the end. It is a property of
-every line of code you write, every header you set, every default
-you accept or override. The attacker only needs one gap. You need
-them all closed.
+Security is not a feature you add at the end. It is a property
+of every line of code you write, every header you set, every
+default you accept or override.
+
+Remember the principle from Chapter 07: each layer validates
+as if it were the only one. The same applies here. Prepared
+statements do not assume CSP will block the injection. CSRF
+tokens do not assume HTTPS will stop the attacker. Each
+defense stands on its own.
+
+The attacker only needs one gap. You need them all closed.
 
 
 \newpage
@@ -2737,6 +2905,59 @@ Prevented by escaping output: `htmlspecialchars()` in PHP,
 
 **YAGNI (You Aren't Gonna Need It)** —
 Don't build what you don't need yet. Solve today's problem today.
+
+\newpage
+
+
+# Bibliography
+
+## The terminal
+
+- William Shotts, *The Linux Command Line*, Sixth Internet
+  Edition. Free at https://linuxcommand.org
+
+## Apache
+
+- *Apache .htaccess Tutorial* —
+  https://httpd.apache.org/docs/2.4/howto/htaccess.html
+
+## PHP
+
+- *PHP Manual* — https://www.php.net/manual/en/
+- *PHP: The Right Way* — https://phptherightway.com
+- *PHP Delusions* — https://phpdelusions.net
+
+## JavaScript, HTML, CSS
+
+- Marijn Haverbeke, *Eloquent JavaScript*, 4th Edition.
+  Free at https://eloquentjavascript.net
+- *MDN Web Docs* — https://developer.mozilla.org
+
+## SQL and SQLite
+
+- *SQLite Documentation* — https://sqlite.org/docs.html
+- *SQLite Tutorial* — https://www.sqlitetutorial.net
+
+## HTTP
+
+- *MDN: HTTP Guide* —
+  https://developer.mozilla.org/en-US/docs/Web/HTTP
+
+## Git
+
+- Scott Chacon, Ben Straub, *Pro Git*, 2nd Edition.
+  Free at https://git-scm.com/book
+
+## The classics
+
+- Brian W. Kernighan, Dennis M. Ritchie, *The C Programming
+  Language*, 2nd Edition, Prentice Hall, 1988. You will not
+  need C for web development, but this book will shape the
+  way you think as a programmer.
+
+## Security
+
+- *OWASP Top Ten* — https://owasp.org/www-project-top-ten/
 
 \newpage
 

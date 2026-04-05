@@ -65,14 +65,41 @@ Pure languages only. We use nothing but the native capabilities
 of each language. No extra tools to learn, no abstractions to
 cloud your understanding. Stay pure, stay focused.
 
+## The terminal
+
+There is one tool that sits above all others: the command line.
+Every operation in this book can be done from the terminal, and
+most of them *should* be. Creating a database, inserting seed
+data, testing an API endpoint, checking file permissions,
+committing code — all from a text prompt.
+
+Why? Because a graphical interface hides what is happening. A
+command shows it. When you type `chmod 664 bibliotheca.db`, you
+know exactly what you are changing. When you right-click and
+open a properties dialog, you are trusting someone else's
+abstraction.
+
+More importantly: a production server has no desktop, no file
+manager, no mouse. It has a terminal and nothing else. If you
+can only work with a GUI, you cannot work on a real server.
+The programmers who are comfortable on the command line are
+the ones who can diagnose a problem at 2 AM on a server they
+have never seen before.
+
+The command line has been the programmer's primary interface
+since the DEC VT100 in 1978. Its screen had 80 columns and 24
+rows — and that is where the 80-character line convention comes
+from, the same convention you still see in coding standards
+today. Graphical desktops came and went. The terminal is still
+here, because it works. In programming, traditions exist for
+a reason.
+
+Make the terminal your first choice, not your last resort.
+
 Each of these technologies has extensive documentation online.
-Study them separately. This book shows how the pieces fit together.
-
-Some good starting points:
-
-- **PHP**: https://phptherightway.com, https://phpdelusions.net
-- **JavaScript, HTML, CSS**: https://developer.mozilla.org
-- **SQLite**: https://sqlite.org/docs.html
+Study them separately. This book shows how the pieces fit
+together. You will find all references in the Bibliography
+appendix.
 
 ## The body of a web application
 

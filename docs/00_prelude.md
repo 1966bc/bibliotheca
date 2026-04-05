@@ -19,9 +19,9 @@ it is written that way is even better.
 ## Who is this for?
 
 For the young programmer's mind — or the curious one at any age —
-who wants to understand how a web application actually works, in
-anno Domini 2026. From the database to the browser, with nothing
-in between but your own code.
+open to the wonder of understanding how things actually work.
+A web application, in anno Domini 2026. From the database to
+the browser, with nothing in between but your own code.
 
 You do not need experience with web development, but you should
 know the basics of programming: variables, functions, loops,
@@ -52,6 +52,13 @@ sudo apt install apache2 php libapache2-mod-php php-sqlite3
 - A **terminal**
 - A **web browser**
 - **Curiosity**
+
+One note about the terminal. Throughout this book, we will use
+the command line for everything we can: creating files, running
+queries, testing the API, checking permissions, managing git.
+This is deliberate. The terminal is not a fallback for when the
+GUI is missing. It is the primary tool of a programmer. Learn
+to think in commands.
 
 Let the show begin.
 

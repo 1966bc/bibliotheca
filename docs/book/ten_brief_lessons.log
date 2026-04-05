@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Debian) (preloaded format=xelatex 2025.12.8)  5 APR 2026 07:47
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Debian) (preloaded format=xelatex 2025.12.8)  5 APR 2026 08:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -611,11 +611,11 @@ Chapter 0.
 ] [10]
 Chapter 1.
 LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
-533.
+540.
 (/usr/share/texmf/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Overfull \hbox (19.99742pt too wide) in paragraph at lines 532--538
+Overfull \hbox (19.99742pt too wide) in paragraph at lines 539--545
 []\T1/lmr/bx/n/10.95 JavaScript\T1/lmr/m/n/10.95 : \TS1/lmtt/m/n/10.95 '\T1/lmt
 t/m/n/10.95 use strict\TS1/lmtt/m/n/10.95 ' \T1/lmr/m/n/10.95 at the top. Al-wa
 ys \T1/lmtt/m/n/10.95 const \T1/lmr/m/n/10.95 or \T1/lmtt/m/n/10.95 let\T1/lmr/
@@ -631,7 +631,7 @@ Chapter 2.
 
 ]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 732.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 759.
 
 Missing character: There is no — ("2014) in font ec-lmtt10!
 Missing character: There is no — ("2014) in font ec-lmtt10!
@@ -658,7 +658,7 @@ Missing character: There is no — ("2014) in font ec-lmtt10!
 Missing character: There is no — ("2014) in font ec-lmtt10!
 Missing character: There is no — ("2014) in font ec-lmtt10!
 
-Overfull \hbox (16.15204pt too wide) in paragraph at lines 853--853
+Overfull \hbox (16.15204pt too wide) in paragraph at lines 880--880
 []    \T1/lmtt/m/n/10.95 public/                      document root  ONLY folde
 r exposed to the browser[] 
  []
@@ -738,9 +738,9 @@ Missing character: There is no ► ("25BA) in font ec-lmtt10!
 [19]
 Chapter 4.
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1011.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1038.
 
-Overfull \hbox (34.41824pt too wide) in paragraph at lines 1022--1027
+Overfull \hbox (34.41824pt too wide) in paragraph at lines 1049--1054
 []\T1/lmr/m/n/10.95 It also pro-vides \T1/lmtt/m/n/10.95 exec() \T1/lmr/m/n/10.
 95 for state-ments that re-turn no rows (DDL, PRAGMA), and \T1/lmtt/m/n/10.95 b
 eginTransaction()
@@ -776,287 +776,287 @@ Missing character: There is no ─ ("2500) in font ec-lmtt10!
 [25] [26] [27]
 Chapter 6.
 
-Overfull \hbox (48.39311pt too wide) in paragraph at lines 1468--1469
+Overfull \hbox (48.39311pt too wide) in paragraph at lines 1495--1496
 []\T1/lmr/m/n/10.95 Operation  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1467--1469
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1494--1496
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (31.48067pt too wide) in paragraph at lines 1470--1471
+Overfull \hbox (31.48067pt too wide) in paragraph at lines 1497--1498
 []\T1/lmr/m/n/10.95 HTTP 
  []
 
 
-Overfull \hbox (37.1087pt too wide) in paragraph at lines 1470--1471
+Overfull \hbox (37.1087pt too wide) in paragraph at lines 1497--1498
 \T1/lmr/m/n/10.95 Method  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1469--1471
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1496--1498
 []\T1/lmr/m/n/10.95 .2131 
  []
 
 
-Overfull \hbox (21.44388pt too wide) in paragraph at lines 1472--1473
+Overfull \hbox (21.44388pt too wide) in paragraph at lines 1499--1500
 []\T1/lmr/m/n/10.95 SQL  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1471--1473
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1498--1500
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (41.82265pt too wide) in paragraph at lines 1474--1475
+Overfull \hbox (41.82265pt too wide) in paragraph at lines 1501--1502
 []\T1/lmr/m/n/10.95 Example  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1473--1476
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1500--1503
 []\T1/lmr/m/n/10.95 .4262 
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1478--1478
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1505--1505
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (31.66373pt too wide) in paragraph at lines 1478--1478
+Overfull \hbox (31.66373pt too wide) in paragraph at lines 1505--1505
 |\T1/lmr/m/n/10.95 Create|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1478--1478
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1505--1505
 []\T1/lmr/m/n/10.95 .2131 
  []
 
 
-Overfull \hbox (22.99493pt too wide) in paragraph at lines 1478--1478
+Overfull \hbox (22.99493pt too wide) in paragraph at lines 1505--1505
 |\T1/lmtt/m/n/10.95 POST|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1478--1478
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1505--1505
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (34.4924pt too wide) in paragraph at lines 1478--1478
+Overfull \hbox (34.4924pt too wide) in paragraph at lines 1505--1505
 |\T1/lmtt/m/n/10.95 INSERT|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1478--1479
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1505--1506
 []\T1/lmr/m/n/10.95 .4262 
  []
 
 
-Overfull \hbox (17.6415pt too wide) in paragraph at lines 1478--1479
+Overfull \hbox (17.6415pt too wide) in paragraph at lines 1505--1506
 |\T1/lmr/m/n/10.95 add 
  []
 
 
-Overfull \hbox (5.47499pt too wide) in paragraph at lines 1478--1479
+Overfull \hbox (5.47499pt too wide) in paragraph at lines 1505--1506
 \T1/lmr/m/n/10.95 a 
  []
 
 
-Overfull \hbox (18.85806pt too wide) in paragraph at lines 1478--1479
+Overfull \hbox (18.85806pt too wide) in paragraph at lines 1505--1506
 \T1/lmr/m/n/10.95 new 
  []
 
 
-Overfull \hbox (21.89975pt too wide) in paragraph at lines 1478--1479
+Overfull \hbox (21.89975pt too wide) in paragraph at lines 1505--1506
 \T1/lmr/m/n/10.95 pub- 
  []
 
 
-Overfull \hbox (25.64122pt too wide) in paragraph at lines 1478--1479
+Overfull \hbox (25.64122pt too wide) in paragraph at lines 1505--1506
 \T1/lmr/m/n/10.95 lisher|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1479--1479
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1506--1506
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (24.48524pt too wide) in paragraph at lines 1479--1479
+Overfull \hbox (24.48524pt too wide) in paragraph at lines 1506--1506
 |\T1/lmr/m/n/10.95 Read|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1479--1479
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1506--1506
 []\T1/lmr/m/n/10.95 .2131 
  []
 
 
-Overfull \hbox (17.2462pt too wide) in paragraph at lines 1479--1479
+Overfull \hbox (17.2462pt too wide) in paragraph at lines 1506--1506
 |\T1/lmtt/m/n/10.95 GET|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1479--1479
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1506--1506
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (34.4924pt too wide) in paragraph at lines 1479--1479
+Overfull \hbox (34.4924pt too wide) in paragraph at lines 1506--1506
 |\T1/lmtt/m/n/10.95 SELECT|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1479--1480
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1506--1507
 []\T1/lmr/m/n/10.95 .4262 
  []
 
 
-Overfull \hbox (14.66095pt too wide) in paragraph at lines 1479--1480
+Overfull \hbox (14.66095pt too wide) in paragraph at lines 1506--1507
 |\T1/lmr/m/n/10.95 list 
  []
 
 
-Overfull \hbox (11.55827pt too wide) in paragraph at lines 1479--1480
+Overfull \hbox (11.55827pt too wide) in paragraph at lines 1506--1507
 \T1/lmr/m/n/10.95 all 
  []
 
 
-Overfull \hbox (21.89975pt too wide) in paragraph at lines 1479--1480
+Overfull \hbox (21.89975pt too wide) in paragraph at lines 1506--1507
 \T1/lmr/m/n/10.95 pub- 
  []
 
 
-Overfull \hbox (20.13574pt too wide) in paragraph at lines 1479--1480
+Overfull \hbox (20.13574pt too wide) in paragraph at lines 1506--1507
 \T1/lmr/m/n/10.95 lish- 
  []
 
 
-Overfull \hbox (13.47469pt too wide) in paragraph at lines 1479--1480
+Overfull \hbox (13.47469pt too wide) in paragraph at lines 1506--1507
 \T1/lmr/m/n/10.95 ers|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1480--1480
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1507--1507
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (35.28334pt too wide) in paragraph at lines 1480--1480
+Overfull \hbox (35.28334pt too wide) in paragraph at lines 1507--1507
 |\T1/lmr/m/n/10.95 Update|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1480--1480
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1507--1507
 []\T1/lmr/m/n/10.95 .2131 
  []
 
 
-Overfull \hbox (17.2462pt too wide) in paragraph at lines 1480--1480
+Overfull \hbox (17.2462pt too wide) in paragraph at lines 1507--1507
 |\T1/lmtt/m/n/10.95 PUT|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1480--1480
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1507--1507
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (34.4924pt too wide) in paragraph at lines 1480--1480
+Overfull \hbox (34.4924pt too wide) in paragraph at lines 1507--1507
 |\T1/lmtt/m/n/10.95 UPDATE|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1480--1482
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1507--1509
 []\T1/lmr/m/n/10.95 .4262 
  []
 
 
-Overfull \hbox (32.54576pt too wide) in paragraph at lines 1480--1482
+Overfull \hbox (32.54576pt too wide) in paragraph at lines 1507--1509
 |\T1/lmr/m/n/10.95 change 
  []
 
 
-Overfull \hbox (5.47499pt too wide) in paragraph at lines 1480--1482
+Overfull \hbox (5.47499pt too wide) in paragraph at lines 1507--1509
 \T1/lmr/m/n/10.95 a 
  []
 
 
-Overfull \hbox (21.89975pt too wide) in paragraph at lines 1480--1482
+Overfull \hbox (21.89975pt too wide) in paragraph at lines 1507--1509
 \T1/lmr/m/n/10.95 pub- 
  []
 
 
-Overfull \hbox (33.00208pt too wide) in paragraph at lines 1480--1482
+Overfull \hbox (33.00208pt too wide) in paragraph at lines 1507--1509
 \T1/lmr/m/n/10.95 lisher's 
  []
 
 
-Overfull \hbox (25.54959pt too wide) in paragraph at lines 1480--1482
+Overfull \hbox (25.54959pt too wide) in paragraph at lines 1507--1509
 \T1/lmr/m/n/10.95 name|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1482--1482
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1509--1509
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (30.26498pt too wide) in paragraph at lines 1482--1482
+Overfull \hbox (30.26498pt too wide) in paragraph at lines 1509--1509
 |\T1/lmr/m/n/10.95 Delete|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1482--1482
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1509--1509
 []\T1/lmr/m/n/10.95 .2131 
  []
 
 
-Overfull \hbox (34.4924pt too wide) in paragraph at lines 1482--1482
+Overfull \hbox (34.4924pt too wide) in paragraph at lines 1509--1509
 |\T1/lmtt/m/n/10.95 DELETE|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1482--1482
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1509--1509
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (34.4924pt too wide) in paragraph at lines 1482--1482
+Overfull \hbox (34.4924pt too wide) in paragraph at lines 1509--1509
 |\T1/lmtt/m/n/10.95 DELETE|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1482--1484
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1509--1511
 []\T1/lmr/m/n/10.95 .4262 
  []
 
 
-Overfull \hbox (33.79285pt too wide) in paragraph at lines 1482--1484
+Overfull \hbox (33.79285pt too wide) in paragraph at lines 1509--1511
 |\T1/lmr/m/n/10.95 remove 
  []
 
 
-Overfull \hbox (5.47499pt too wide) in paragraph at lines 1482--1484
+Overfull \hbox (5.47499pt too wide) in paragraph at lines 1509--1511
 \T1/lmr/m/n/10.95 a 
  []
 
 
-Overfull \hbox (21.89975pt too wide) in paragraph at lines 1482--1484
+Overfull \hbox (21.89975pt too wide) in paragraph at lines 1509--1511
 \T1/lmr/m/n/10.95 pub- 
  []
 
 
-Overfull \hbox (25.64122pt too wide) in paragraph at lines 1482--1484
+Overfull \hbox (25.64122pt too wide) in paragraph at lines 1509--1511
 \T1/lmr/m/n/10.95 lisher|  
  []
 
 
-Overfull \hbox (7.22763pt too wide) in paragraph at lines 1487--1506
+Overfull \hbox (7.22763pt too wide) in paragraph at lines 1514--1533
 []\T1/lmr/m/n/10.95 Three lay-ers, one in-ten-tion. The HTTP method ar-rives at
  the API file (e.g. \T1/lmtt/m/n/10.95 api/publishers.php\T1/lmr/m/n/10.95 ).
  []
@@ -1066,7 +1066,7 @@ Overfull \hbox (7.22763pt too wide) in paragraph at lines 1487--1506
 ] [29] [30]
 Chapter 7.
 
-Overfull \hbox (25.06436pt too wide) in paragraph at lines 1639--1647
+Overfull \hbox (25.06436pt too wide) in paragraph at lines 1666--1674
 []\T1/lmr/bx/n/10.95 HTML \T1/lmr/m/n/10.95 --- we set con-straints di-rectly o
 n the form fields: \T1/lmtt/m/n/10.95 required\T1/lmr/m/n/10.95 , \T1/lmtt/m/n/
 10.95 maxlength\T1/lmr/m/n/10.95 , \T1/lmtt/m/n/10.95 type="number"\T1/lmr/m/n/
@@ -1076,7 +1076,7 @@ n the form fields: \T1/lmtt/m/n/10.95 required\T1/lmr/m/n/10.95 , \T1/lmtt/m/n/
 [31
 
 ]
-Overfull \hbox (41.35432pt too wide) in paragraph at lines 1749--1756
+Overfull \hbox (41.35432pt too wide) in paragraph at lines 1776--1783
 []\T1/lmtt/b/n/10.95 strip_tags() \T1/lmr/m/n/10.95 --- re-moves any HTML or PH
 P tags. A name like \T1/lmtt/m/n/10.95 <script>alert(\TS1/lmtt/m/n/10.95 '\T1/l
 mtt/m/n/10.95 xss\TS1/lmtt/m/n/10.95 '\T1/lmtt/m/n/10.95 )</script>
@@ -1087,43 +1087,44 @@ Chapter 8.
 [35
 
 ]
-Overfull \hbox (82.33849pt too wide) in paragraph at lines 2004--2011
-\T1/lmr/m/n/10.95 hid-den JavaScript that sends a POST re-quest to \T1/lmtt/m/n
-/10.95 http://localhost/bibliotheca/public/api/publishers.php
- []
-
-[36] [37]
-Missing character: There is no → ("2192) in font ec-lmtti10!
-Missing character: There is no → ("2192) in font ec-lmtti10!
-[38
-
-]
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 2041.
+ [36]
 Chapter 9.
-[39
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+[37
 
-] [40] [41]
+] [38] [39]
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+[40]
 Chapter 10.
-[42
+[41
 
-]
+] [42] [43]
 Missing character: There is no — ("2014) in font ec-lmtti10!
 Missing character: There is no — ("2014) in font ec-lmtti10!
-[43]
-Overfull \hbox (0.99455pt too wide) in paragraph at lines 2508--2510
+[44]
+Overfull \hbox (0.99455pt too wide) in paragraph at lines 2675--2677
 \T1/lmr/m/n/10.95 On a De-bian/A-pache server, cer-tifi-cates typ-i-cally live 
 in \T1/lmtt/m/n/10.95 /etc/letsencrypt/live/yourdomain/\T1/lmr/m/n/10.95 .
  []
 
-[44]
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
 [45]
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+[46]
 Appendix A.
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
@@ -1274,7 +1275,7 @@ Missing character: There is no ┘ ("2518) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-[46
+[47
 
 ]
 Missing character: There is no │ ("2502) in font ec-lmtt10!
@@ -1318,7 +1319,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 
-Overfull \hbox (44.8957pt too wide) in paragraph at lines 2700--2700
+Overfull \hbox (44.8957pt too wide) in paragraph at lines 2874--2874
 []                                                        \T1/lmtt/m/n/10.95 $p
 ublisher = new Publisher($db)[] 
  []
@@ -1329,7 +1330,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no → ("2192) in font ec-lmtt10!
 
-Overfull \hbox (10.4033pt too wide) in paragraph at lines 2700--2700
+Overfull \hbox (10.4033pt too wide) in paragraph at lines 2874--2874
 []                                                        \T1/lmtt/m/n/10.95 GE
 T  $publisher->getAll()[] 
  []
@@ -1344,7 +1345,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 
-Overfull \hbox (56.39317pt too wide) in paragraph at lines 2700--2700
+Overfull \hbox (56.39317pt too wide) in paragraph at lines 2874--2874
 []                                                        \T1/lmtt/m/n/10.95 SE
 LECT publisher_id, name, status[] 
  []
@@ -1365,7 +1366,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no → ("2192) in font ec-lmtt10!
 Missing character: There is no → ("2192) in font ec-lmtt10!
 
-Overfull \hbox (16.15204pt too wide) in paragraph at lines 2700--2700
+Overfull \hbox (16.15204pt too wide) in paragraph at lines 2874--2874
 []                                                        \T1/lmtt/m/n/10.95 pr
 epare  execute  fetchAll[] 
  []
@@ -1400,14 +1401,14 @@ Missing character: There is no ─ ("2500) in font ec-lmtt10!
 Missing character: There is no ┘ ("2518) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 
-Overfull \hbox (16.15204pt too wide) in paragraph at lines 2700--2700
+Overfull \hbox (16.15204pt too wide) in paragraph at lines 2874--2874
 []                                  \T1/lmtt/m/n/10.95 [{"publisher_id":1,"name
 ":"Adelphi","status":1},[] 
  []
 
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 
-Overfull \hbox (16.15204pt too wide) in paragraph at lines 2700--2700
+Overfull \hbox (16.15204pt too wide) in paragraph at lines 2874--2874
 []                                   \T1/lmtt/m/n/10.95 {"publisher_id":2,"name
 ":"Einaudi","status":0},[] 
  []
@@ -1489,7 +1490,7 @@ Missing character: There is no ─ ("2500) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
 Missing character: There is no ┐ ("2510) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
-[47]
+[48]
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
@@ -1560,7 +1561,7 @@ Missing character: There is no ─ ("2500) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
 Missing character: There is no ┘ ("2518) in font ec-lmtt10!
-[48] [49]
+[49] [50]
 Missing character: There is no ├ ("251C) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
@@ -1577,19 +1578,19 @@ Missing character: There is no └ ("2514) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
 
-Overfull \hbox (135.1919pt too wide) in paragraph at lines 2890--2895
+Overfull \hbox (135.1919pt too wide) in paragraph at lines 3064--3069
 \T1/lmr/m/n/10.95 has al-ready built the DOM, and JavaScript can find the el-e-
 ments it needs with \T1/lmtt/m/n/10.95 document.querySelector(\TS1/lmtt/m/n/10.
 95 '\T1/lmtt/m/n/10.95 #category-table
  []
 
-[50]
-Missing character: There is no ↓ ("2193) in font ec-lmtt10!
-Missing character: There is no ↓ ("2193) in font ec-lmtt10!
-Missing character: There is no ↓ ("2193) in font ec-lmtt10!
-Missing character: There is no ← ("2190) in font ec-lmtt10!
-Missing character: There is no ← ("2190) in font ec-lmtt10!
 [51]
+Missing character: There is no ↓ ("2193) in font ec-lmtt10!
+Missing character: There is no ↓ ("2193) in font ec-lmtt10!
+Missing character: There is no ↓ ("2193) in font ec-lmtt10!
+Missing character: There is no ← ("2190) in font ec-lmtt10!
+Missing character: There is no ← ("2190) in font ec-lmtt10!
+[52]
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
@@ -1850,7 +1851,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
-[52]
+[53]
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no ├ ("251C) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
@@ -1908,7 +1909,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 
-Overfull \hbox (67.89064pt too wide) in paragraph at lines 3058--3058
+Overfull \hbox (67.89064pt too wide) in paragraph at lines 3232--3232
 []                                                        \T1/lmtt/m/n/10.95 SE
 LECT ... WHERE publisher_id = :id[] 
  []
@@ -2065,7 +2066,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
-[53]
+[54]
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no ├ ("251C) in font ec-lmtt10!
@@ -2155,7 +2156,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no ✓ ("2713) in font ec-lmtt10!
 
-Overfull \hbox (4.65457pt too wide) in paragraph at lines 3145--3145
+Overfull \hbox (4.65457pt too wide) in paragraph at lines 3319--3319
 []                                                       \T1/lmtt/m/n/10.95 val
 idate: name required? [] 
  []
@@ -2170,7 +2171,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 
-Overfull \hbox (73.63937pt too wide) in paragraph at lines 3145--3145
+Overfull \hbox (73.63937pt too wide) in paragraph at lines 3319--3319
 []                                                       \T1/lmtt/m/n/10.95 $pu
 blisher->insert("Einaudi Editore")[] 
  []
@@ -2184,7 +2185,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 
-Overfull \hbox (21.90077pt too wide) in paragraph at lines 3145--3145
+Overfull \hbox (21.90077pt too wide) in paragraph at lines 3319--3319
 []                                                       \T1/lmtt/m/n/10.95 INS
 ERT INTO publisher (name)[] 
  []
@@ -2303,7 +2304,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no ✓ ("2713) in font ec-lmtt10!
 
-Overfull \hbox (4.65457pt too wide) in paragraph at lines 3145--3145
+Overfull \hbox (4.65457pt too wide) in paragraph at lines 3319--3319
 []                                                         \T1/lmtt/m/n/10.95 v
 alidate: ID and name? [] 
  []
@@ -2317,7 +2318,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no → ("2192) in font ec-lmtt10!
 
-Overfull \hbox (102.38304pt too wide) in paragraph at lines 3145--3145
+Overfull \hbox (102.38304pt too wide) in paragraph at lines 3319--3319
 []                                                         \T1/lmtt/m/n/10.95 s
 tatus=0 and hasBooks()?  block or allow[] 
  []
@@ -2326,7 +2327,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 
-Overfull \hbox (119.62924pt too wide) in paragraph at lines 3145--3145
+Overfull \hbox (119.62924pt too wide) in paragraph at lines 3319--3319
 []                                                         \T1/lmtt/m/n/10.95 $
 publisher->update(2, "Einaudi Editore", 0)[] 
  []
@@ -2341,7 +2342,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 
-Overfull \hbox (67.89064pt too wide) in paragraph at lines 3145--3145
+Overfull \hbox (67.89064pt too wide) in paragraph at lines 3319--3319
 []                                                         \T1/lmtt/m/n/10.95 S
 ET name = :name, status = :status[] 
  []
@@ -2350,7 +2351,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 
-Overfull \hbox (10.4033pt too wide) in paragraph at lines 3145--3145
+Overfull \hbox (10.4033pt too wide) in paragraph at lines 3319--3319
 []                                                         \T1/lmtt/m/n/10.95 W
 HERE publisher_id = :id[] 
  []
@@ -2409,7 +2410,7 @@ Missing character: There is no ─ ("2500) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
 Missing character: There is no ► ("25BA) in font ec-lmtt10!
-[54]
+[55]
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no └ ("2514) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
@@ -2640,18 +2641,18 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no ✓ ("2713) in font ec-lmtt10!
 
-Overfull \hbox (16.15204pt too wide) in paragraph at lines 3209--3209
+Overfull \hbox (16.15204pt too wide) in paragraph at lines 3383--3383
 []                                                           \T1/lmtt/m/n/10.95
  validate: ID required? [] 
  []
 
-[55]
+[56]
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 
-Overfull \hbox (62.1419pt too wide) in paragraph at lines 3209--3209
+Overfull \hbox (62.1419pt too wide) in paragraph at lines 3383--3383
 []                                                           \T1/lmtt/m/n/10.95
  $publisher->hasBooks(2, false)?[] 
  []
@@ -2659,7 +2660,7 @@ Overfull \hbox (62.1419pt too wide) in paragraph at lines 3209--3209
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 
-Overfull \hbox (73.63937pt too wide) in paragraph at lines 3209--3209
+Overfull \hbox (73.63937pt too wide) in paragraph at lines 3383--3383
 []                                                           \T1/lmtt/m/n/10.95
  (checks ALL books, active or not)[] 
  []
@@ -2681,7 +2682,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 
-Overfull \hbox (44.8957pt too wide) in paragraph at lines 3209--3209
+Overfull \hbox (44.8957pt too wide) in paragraph at lines 3383--3383
 []                                                               \T1/lmtt/m/n/1
 0.95 {"error":"Cannot delete:[] 
  []
@@ -2690,7 +2691,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 
-Overfull \hbox (96.63431pt too wide) in paragraph at lines 3209--3209
+Overfull \hbox (96.63431pt too wide) in paragraph at lines 3383--3383
 []                                                                \T1/lmtt/m/n/
 10.95 publisher has associated books"}[] 
  []
@@ -2708,7 +2709,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 
-Overfull \hbox (33.39824pt too wide) in paragraph at lines 3209--3209
+Overfull \hbox (33.39824pt too wide) in paragraph at lines 3383--3383
 []                                                                \T1/lmtt/m/n/
 10.95 $publisher->delete(2)[] 
  []
@@ -2718,7 +2719,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 
-Overfull \hbox (33.39824pt too wide) in paragraph at lines 3209--3209
+Overfull \hbox (33.39824pt too wide) in paragraph at lines 3383--3383
 []                                                                \T1/lmtt/m/n/
 10.95 DELETE FROM publisher[] 
  []
@@ -2726,7 +2727,7 @@ Overfull \hbox (33.39824pt too wide) in paragraph at lines 3209--3209
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 
-Overfull \hbox (50.64444pt too wide) in paragraph at lines 3209--3209
+Overfull \hbox (50.64444pt too wide) in paragraph at lines 3383--3383
 []                                                                \T1/lmtt/m/n/
 10.95 WHERE publisher_id = :id[] 
  []
@@ -2736,7 +2737,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 
-Overfull \hbox (10.4033pt too wide) in paragraph at lines 3209--3209
+Overfull \hbox (10.4033pt too wide) in paragraph at lines 3383--3383
 []                                                                \T1/lmtt/m/n/
 10.95 {"deleted": true}[] 
  []
@@ -2816,7 +2817,7 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
 
-Overfull \hbox (9.02827pt too wide) in paragraph at lines 3214--3218
+Overfull \hbox (9.02827pt too wide) in paragraph at lines 3388--3392
 \T1/lmr/bx/n/10.95 Step 1--2 \T1/lmr/m/n/10.95 --- iden-ti-cal to the list page
 : \T1/lmtt/m/n/10.95 .htaccess \T1/lmr/m/n/10.95 rewrites, the router loads \T1
 /lmtt/m/n/10.95 pages/publisher.php
@@ -2824,25 +2825,25 @@ Overfull \hbox (9.02827pt too wide) in paragraph at lines 3214--3218
 
 Missing character: There is no → ("2192) in font ec-lmr10!
 Missing character: There is no → ("2192) in font ec-lmr10!
-[56]
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
 [57]
-Overfull \hbox (19.62088pt too wide) in paragraph at lines 3411--3413
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+[58]
+Overfull \hbox (19.62088pt too wide) in paragraph at lines 3585--3587
 \T1/lmr/m/n/10.95 The front con-troller sets \T1/lmtt/m/n/10.95 $isLoggedIn = A
 uth::check() \T1/lmr/m/n/10.95 and ex-poses it to tem-plates and JavaScript: 
  []
 
-[58] [59]
+[59] [60]
 Appendix B.
 
-Overfull \hbox (44.63806pt too wide) in paragraph at lines 3473--3482
+Overfull \hbox (44.63806pt too wide) in paragraph at lines 3647--3656
 \T1/lmtt/m/n/10.95 index.php?route=...\T1/lmr/m/n/10.95 , en-abling clean URLs 
 like \T1/lmtt/m/n/10.95 /publishers \T1/lmr/m/n/10.95 in-stead of \T1/lmtt/m/n/
 10.95 index.php?route=publishers\T1/lmr/m/n/10.95 .
@@ -2851,35 +2852,49 @@ like \T1/lmtt/m/n/10.95 /publishers \T1/lmr/m/n/10.95 in-stead of \T1/lmtt/m/n/
 Missing character: There is no → ("2192) in font ec-lmr10!
 Missing character: There is no → ("2192) in font ec-lmr10!
 Missing character: There is no → ("2192) in font ec-lmr10!
-[60
+[61
 
-] [61]
-Overfull \hbox (18.8504pt too wide) in paragraph at lines 3668--3674
+] [62]
+Overfull \hbox (18.8504pt too wide) in paragraph at lines 3842--3848
 []\T1/lmr/m/n/10.95 We use named pa-ram-e-ters be-cause they are eas-ier to rea
 d and safer to refac-tor. \T1/lmtt/m/n/10.95 WHERE publisher_id
  []
 
-[62] [63]
+[63] [64]
 Appendix C.
+
+Overfull \hbox (52.00249pt too wide) in paragraph at lines 3968--3970
+[]\T1/lmr/m/n/10.95 William Shotts, \T1/lmr/m/it/10.95 The Linux Com-mand Line\
+T1/lmr/m/n/10.95 , Sixth In-ter-net Edi-tion. Free at https://linuxcommand.org 
+
+ []
+
+
+Overfull \hbox (1.53165pt too wide) in paragraph at lines 4001--4004
+[]\T1/lmr/m/n/10.95 Marijn Haver-beke, \T1/lmr/m/it/10.95 Elo-quent JavaScript\
+T1/lmr/m/n/10.95 , 4th Edi-tion. Free at https://eloquentjavascript.net 
+ []
+
+[65
+
+] [66]
+Appendix D.
 Missing character: There is no → ("2192) in font ec-lmr10!
 Missing character: There is no → ("2192) in font ec-lmr10!
 Missing character: There is no → ("2192) in font ec-lmr10!
-[64
+[67
 
-] [65] [66] (./ten_brief_lessons.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+] [68] [69] (./ten_brief_lessons.aux)
 Package rerunfilecheck Info: File `ten_brief_lessons.out' has not changed.
-(rerunfilecheck)             Checksum: 4911486FA01EBC4B1C56E621603E16E0;22710.
+(rerunfilecheck)             Checksum: 67007D6A5591D4D182B050C19BBFD168;24810.
  ) 
 Here is how much of TeX's memory you used:
- 13270 strings out of 478775
- 209437 string characters out of 5850945
+ 13287 strings out of 478775
+ 209699 string characters out of 5850945
  1872991 words of memory out of 5000000
- 33095 multiletter control sequences out of 15000+600000
- 599842 words of font info for 82 fonts, out of 8000000 for 9000
+ 33112 multiletter control sequences out of 15000+600000
+ 600160 words of font info for 83 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  72i,13n,78p,450b,524s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ten_brief_lessons.pdf (67 pages).
+Output written on ten_brief_lessons.pdf (70 pages).

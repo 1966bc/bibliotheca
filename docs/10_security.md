@@ -6,17 +6,134 @@ Previous chapters covered the essentials:
 
 - **SQL injection** — prepared statements with named parameters (Chapter 04).
 - **XSS** — `htmlspecialchars()` in PHP, `textContent` in JavaScript (Chapter 07).
-- **CSRF** — session-based tokens on every state-changing request (Chapter 06).
 - **Input validation** — server-side checks on every field (Chapter 07).
+- **File permissions** — keeping sensitive files outside the web root (Chapter 08).
 
-These are non-negotiable. This chapter covers the next layer: what
-happens *around* your code.
+These are non-negotiable. They are part of the code you have
+already written. This chapter adds the layers that protect
+*around* your code.
 
-## Session fixation
+## CSRF — protecting write operations
 
-A session fixation attack works like this: the attacker gives you
-a session ID they already know (via a crafted URL or a cookie), then
-waits for you to log in. Now they share your authenticated session.
+In Chapter 05 we saw that JavaScript sends an `X-CSRF-Token`
+header with every POST, PUT, and DELETE request. But what is
+CSRF, and why do we need that token?
+
+### The attack
+
+Imagine you have Bibliotheca open in your browser. A malicious
+website in another tab contains hidden JavaScript that sends a
+POST request to your `api/publishers.php` with
+`{"name": "HACKED"}`. The browser sends it — from its
+perspective, it is just another HTTP request to localhost, and
+it attaches your session cookie automatically.
+
+This is **CSRF** (Cross-Site Request Forgery): a malicious site
+tricks the browser into making requests to *your* application,
+using *your* session.
+
+### The defense: a secret token
+
+The solution is a **CSRF token**: a long random string that
+only our pages know. The malicious site cannot read it because
+the browser's **Same-Origin Policy** prevents one site from
+reading another site's content.
+
+The flow:
+
+1. When PHP renders the page (`index.php`), it generates a
+   random token and stores it in the session:
+   ```php
+   $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+   ```
+
+2. The token is injected into the HTML as a `<meta>` tag:
+   ```html
+   <meta name="csrf-token" content="a7f3b9c2e1d4...">
+   ```
+
+3. JavaScript reads the token and includes it in every
+   POST, PUT, and DELETE request — the same header we saw
+   in Chapter 05:
+   ```javascript
+   headers: {
+       'Content-Type': 'application/json',
+       'X-CSRF-Token': document.querySelector(
+           'meta[name="csrf-token"]'
+       ).content
+   }
+   ```
+
+4. The controller (the API file) verifies the token before
+   processing the request:
+   ```php
+   Csrf::verify();  // 403 if token is missing or wrong
+   ```
+
+The malicious site cannot read the `<meta>` tag from our page
+(Same-Origin Policy), so it cannot send the correct token. The
+controller rejects its request with `403 Forbidden`.
+
+### The Csrf class
+
+The `Csrf` class (`src/Csrf.php`) has three methods:
+
+- **`Csrf::start()`** — starts a PHP session (with secure
+  cookie settings).
+- **`Csrf::token()`** — returns the token, generating one
+  if needed.
+- **`Csrf::verify()`** — compares the `X-CSRF-Token` header
+  against the session; exits with 403 on mismatch.
+
+GET requests do not need CSRF protection — they only read data,
+they never modify it. Only POST, PUT, and DELETE are checked.
+
+### Verify it works from the terminal
+
+```bash
+# Without token: 403
+curl -s -o /dev/null -w "%{http_code}" \
+     -X POST \
+     http://localhost/bibliotheca/public/api/publishers.php \
+     -H "Content-Type: application/json" \
+     -d '{"name": "Test"}'
+```
+
+```bash
+# With token: 200
+TOKEN=$(curl -s -c /tmp/c.txt \
+    http://localhost/bibliotheca/public/ \
+    | grep csrf-token \
+    | sed 's/.*content="\([^"]*\)".*/\1/')
+
+curl -s -o /dev/null -w "%{http_code}" \
+     -b /tmp/c.txt -X POST \
+     http://localhost/bibliotheca/public/api/publishers.php \
+     -H "Content-Type: application/json" \
+     -H "X-CSRF-Token: $TOKEN" \
+     -d '{"name": "Test"}'
+```
+
+The first request has no token — the server rejects it. The
+second extracts the token from the page and sends it — the
+server accepts it. Try both from your terminal.
+
+## Sessions and session fixation
+
+HTTP is stateless: each request is independent, the server does
+not remember who you are. **Sessions** solve this. When you
+visit the application, PHP creates a session — a small file on
+the server identified by a random ID. The browser stores this
+ID in a cookie and sends it with every request. That is how
+the server knows you are still you.
+
+When you log in, PHP writes your user ID into the session.
+From that point, every request carries your identity.
+
+A **session fixation** attack exploits this: the attacker gives
+you a session ID they already know (via a crafted URL or a
+cookie), then waits for you to log in. Now they share your
+authenticated session.
 
 The defense is simple: regenerate the session ID after any privilege
 change.
@@ -206,10 +323,17 @@ that is genuinely hard to attack.
 
 ## The rule
 
-Security is not a feature you add at the end. It is a property of
-every line of code you write, every header you set, every default
-you accept or override. The attacker only needs one gap. You need
-them all closed.
+Security is not a feature you add at the end. It is a property
+of every line of code you write, every header you set, every
+default you accept or override.
+
+Remember the principle from Chapter 07: each layer validates
+as if it were the only one. The same applies here. Prepared
+statements do not assume CSP will block the injection. CSRF
+tokens do not assume HTTPS will stop the attacker. Each
+defense stands on its own.
+
+The attacker only needs one gap. You need them all closed.
 
 ## Next
 

@@ -38,12 +38,28 @@ sudo chmod 775 /var/www/html/bibliotheca/sql/
 ```
 
 - `664` — owner reads/writes, group reads/writes, others read.
-- `775` — same for directories, plus execute (needed to list contents).
+- `775` — same for directories, plus execute (needed to list
+  contents).
+
+Check the result with `ls -la`:
+
+```bash
+ls -la sql/
+```
+
+The terminal is your best friend for diagnosing permission
+problems. Always verify with `ls -la` after changing
+permissions. Get comfortable with the command line — it should
+always be your first choice. A production server has no
+graphical interface. There is no file manager, no right-click,
+no properties dialog. There is only the terminal. The sooner
+you make it your natural environment, the better.
 
 ## Every time you recreate the database
 
-When you delete and recreate `bibliotheca.db`, the new file belongs
-to your user with default permissions. You must set them again:
+When you delete and recreate `bibliotheca.db`, the new file
+belongs to your user with default permissions. You must set
+them again:
 
 ```bash
 rm bibliotheca.db
@@ -53,103 +69,29 @@ sudo chgrp www-data bibliotheca.db
 sudo chmod 664 bibliotheca.db
 ```
 
-This is easy to forget. And when you forget, the application reads
-data fine but fails on any write operation with:
+This is easy to forget. And when you forget, the application
+reads data fine but fails on any write operation with:
 
 ```
 SQLSTATE[HY000]: General error: 8 attempt to write a readonly database
 ```
 
-## CSRF — protecting write operations
+If you see this error, check the permissions first. Nine times
+out of ten, that is the problem.
 
-Permissions are not only about Linux file ownership. There is another
-kind of permission problem: **who is allowed to make changes** through
-the API.
+## Why `public/` matters
 
-### The attack
+Notice the project structure: the `src/` folder (models, DBMS)
+and the `sql/` folder (database) are outside `public/`. Only
+the files inside `public/` are reachable from the browser.
 
-Imagine you have the Bibliotheca page open. A malicious website in
-another tab could contain hidden JavaScript that sends a POST request
-to `http://localhost/bibliotheca/public/api/publishers.php` with
-`{"name": "HACKED"}`. The browser would happily send it — from the
-browser's perspective, it is just another HTTP request to localhost.
+This is a permission boundary too. Even if someone guesses the
+path to `sql/bibliotheca.db`, Apache will not serve it — the
+`.htaccess` rewrite rule sends everything through `index.php`,
+and the router only accepts whitelisted routes.
 
-This is called **CSRF** (Cross-Site Request Forgery): a malicious site
-tricks the browser into making requests to *your* application.
-
-### The defense — a secret token
-
-The solution is a **CSRF token**: a long random string that only our
-pages know. The malicious site cannot read it because the browser's
-**Same-Origin Policy** prevents one site from reading another site's
-content.
-
-The flow:
-
-1. When PHP renders the page (`index.php`), it generates a random
-   token and stores it in the session:
-   ```php
-   Csrf::start();
-   $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-   ```
-
-2. The token is injected into the HTML as a `<meta>` tag:
-   ```html
-   <meta name="csrf-token" content="a7f3b9c2e1d4...">
-   ```
-
-3. JavaScript reads the token and includes it in every POST/PUT/DELETE:
-   ```javascript
-   headers: {
-       'Content-Type': 'application/json',
-       'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
-   }
-   ```
-
-4. The API verifies the token before processing the request:
-   ```php
-   Csrf::start();
-   Csrf::verify();  // 403 if token is missing or wrong
-   ```
-
-The malicious site cannot read the `<meta>` tag from our page (Same-Origin
-Policy), so it cannot send the correct token. The API rejects its request
-with `403 Forbidden`.
-
-### The implementation
-
-The `Csrf` class (`src/Csrf.php`) has three methods:
-
-- `Csrf::start()` — starts a PHP session (with secure
-  cookie settings).
-- `Csrf::token()` — returns the token, generating one
-  if needed.
-- `Csrf::verify()` — compares the `X-CSRF-Token` header
-  against the session; exits with 403 on mismatch.
-
-GET requests do not need CSRF protection — they only read data, they
-never modify it. Only POST, PUT, and DELETE are checked.
-
-### Verify it works
-
-```bash
-# Without token → 403
-curl -s -o /dev/null -w "%{http_code}" -X POST \
-     http://localhost/bibliotheca/public/api/publishers.php \
-     -H "Content-Type: application/json" \
-     -d '{"name": "Test"}'
-# Prints: 403
-
-# With token → 200 (get token from page first)
-TOKEN=$(curl -s -c /tmp/c.txt http://localhost/bibliotheca/public/ \
-    | grep csrf-token | sed 's/.*content="\([^"]*\)".*/\1/')
-curl -s -o /dev/null -w "%{http_code}" -b /tmp/c.txt -X POST \
-     http://localhost/bibliotheca/public/api/publishers.php \
-     -H "Content-Type: application/json" \
-     -H "X-CSRF-Token: $TOKEN" \
-     -d '{"name": "Test"}'
-# Prints: 200
-```
+The file system layout is your first line of defense. Keep
+sensitive files outside the web root.
 
 ## Next
 
