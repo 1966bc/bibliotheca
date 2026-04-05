@@ -144,4 +144,4 @@
 \contentsline {section}{\numberline {D.2}What Bibliotheca does not do}{67}{section.D.2}%
 \contentsline {section}{\numberline {D.3}Frameworks --- when and why}{68}{section.D.3}%
 \contentsline {section}{\numberline {D.4}The age of AI}{68}{section.D.4}%
-\contentsline {section}{\numberline {D.5}42}{68}{section.D.5}%
+\contentsline {section}{\numberline {D.5}42}{69}{section.D.5}%

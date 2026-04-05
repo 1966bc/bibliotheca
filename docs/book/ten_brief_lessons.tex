@@ -4086,19 +4086,21 @@ way of thinking:
 \item
   \textbf{A request is a conversation.} The browser asks, the
   server answers. HTTP methods are the vocabulary. JSON is the
-  language.
+  language. One URL, different verbs --- that is REST.
 \item
-  \textbf{Data flows in one direction.} Browser → API → Model →
-  Database, and back. Each layer has one job. If you respect the
-  boundaries, the code stays simple.
+  \textbf{Data flows in one direction.} JavaScript calls the
+  controller, the controller calls the model, the model calls
+  DBMS, DBMS talks to SQLite --- and back. Each layer has one
+  job. If you respect the boundaries, the code stays simple.
 \item
   \textbf{Security is not a feature.} It is a habit. Prepared
-  statements, \texttt{textContent}, server-side validation ---
-  these are not optional extras. They are how you write code.
+  statements, \texttt{textContent}, CSRF tokens, server-side
+  validation --- these are not optional extras. They are how you
+  write code. Each defense stands on its own.
 \item
   \textbf{The database is the truth.} Everything else --- the
-  API, the frontend, the cache --- is a representation. When in
-  doubt, ask the database.
+  controller, the frontend, the cache --- is a representation.
+  When in doubt, ask the database.
 \end{itemize}
 
 \hypertarget{what-bibliotheca-does-not-do}{%
@@ -4145,29 +4147,37 @@ But now you know what a framework does for you:
 \begin{itemize}
 \tightlist
 \item
-  \textbf{A router} --- you built one in \texttt{index.php}.
-  Thirty lines. Laravel's router does the same thing with more
-  features.
+  \textbf{A router} --- you built one in \texttt{index.php}. A
+  whitelist, a parameter, a \texttt{require}. Laravel's router
+  does the same thing with more features.
 \item
-  \textbf{An ORM} --- you built models with raw SQL. Eloquent
-  writes the SQL for you. But when it generates a slow query, you
-  will know why --- because you understand \texttt{JOIN} and
-  \texttt{INDEX}.
+  \textbf{An ORM} --- you built models with \texttt{insert},
+  \texttt{getAll}, \texttt{update}, \texttt{delete}, and raw SQL.
+  Eloquent writes the SQL for you. But when it generates a slow
+  query, you will know why --- because you understand
+  \texttt{JOIN} and \texttt{INDEX}.
 \item
-  \textbf{A template engine} --- you used \texttt{textContent} in
-  JavaScript. React does the same with JSX, plus reactivity. But
-  the DOM manipulation underneath is identical.
+  \textbf{A template engine} --- you used \texttt{createElement}
+  and \texttt{textContent} to build the DOM. React does the same
+  with JSX, plus reactivity. But the DOM manipulation underneath
+  is identical.
 \item
-  \textbf{Middleware} --- your API endpoints check the HTTP
-  method manually. Express or Laravel route middleware does this
-  declaratively.
+  \textbf{Middleware} --- your controllers check the HTTP method
+  with
+  \texttt{\$\_SERVER{[}\textquotesingle{}REQUEST\_METHOD\textquotesingle{}{]}}.
+  Express or Laravel route middleware does this declaratively.
+\item
+  \textbf{A REST client} --- you used \texttt{fetch} with
+  \texttt{async/await}, built a \texttt{payload}, and chose the
+  HTTP method. Axios or other libraries wrap the same mechanism
+  with convenience methods.
 \end{itemize}
 
 A framework is not magic. It is someone else's
 \texttt{index.php}, someone else's \texttt{DBMS.php}, someone
-else's \texttt{BookView.js} --- packaged, tested, and documented.
-You can use it with confidence now, because you know what it
-replaces.
+else's \texttt{Publisher.js} --- packaged, tested, and
+documented. You can use it with confidence now, because you know
+what it replaces.
 
 The danger is using a framework \emph{without} understanding the
 layer below. You can configure a router without knowing what
@@ -4186,10 +4196,13 @@ You are learning to program in an era where machines can write
 code. That changes the job, not the need.
 
 An AI can generate a CRUD endpoint in seconds. But it cannot
-decide whether the endpoint should exist, what it should
-validate, or how it fits into the architecture. Those decisions
-require understanding --- the kind you build by writing code from
-scratch, breaking it, and fixing it.
+think for you. You are the one who defines the domain, decides
+which entities exist, what rules govern them, and how they relate
+to each other. You model the problem. The machine writes code ---
+you decide what code should be written, and whether it is right.
+If you give up that responsibility, you have no reason to be
+there. That should be unsettling enough to keep you learning.
+Remember this always.
 
 The programmers who will thrive are not the ones who type
 fastest. They are the ones who understand what the machine wrote,

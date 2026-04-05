@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Debian) (preloaded format=xelatex 2025.12.8)  5 APR 2026 08:20
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Debian) (preloaded format=xelatex 2025.12.8)  5 APR 2026 08:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2879,12 +2879,17 @@ T1/lmr/m/n/10.95 , 4th Edi-tion. Free at https://eloquentjavascript.net
 
 ] [66]
 Appendix D.
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
 [67
 
-] [68] [69] (./ten_brief_lessons.aux)
+]
+Overfull \hbox (23.15872pt too wide) in paragraph at lines 4165--4170
+[]\T1/lmr/bx/n/10.95 Middleware \T1/lmr/m/n/10.95 --- your con-trollers check t
+he HTTP method with \T1/lmtt/m/n/10.95 $_SERVER[\TS1/lmtt/m/n/10.95 '\T1/lmtt/m
+/n/10.95 REQUEST_METHOD\TS1/lmtt/m/n/10.95 '\T1/lmtt/m/n/10.95 ]\T1/lmr/m/n/10.
+95 .
+ []
+
+[68] [69] (./ten_brief_lessons.aux)
 Package rerunfilecheck Info: File `ten_brief_lessons.out' has not changed.
 (rerunfilecheck)             Checksum: 67007D6A5591D4D182B050C19BBFD168;24810.
  ) 
