@@ -125,6 +125,33 @@ class DBMS
     }
 
     /**
+     * Bind parameters with automatic type detection.
+     *
+     * Instead of passing all values as strings to execute(),
+     * this method uses bindValue() with the correct PDO type
+     * for each parameter: PARAM_INT for integers, PARAM_BOOL
+     * for booleans, PARAM_NULL for nulls, PARAM_STR for
+     * everything else.
+     *
+     * @param  \PDOStatement $stmt   Prepared statement
+     * @param  array         $params Associative array of parameter bindings
+     * @return void
+     */
+    private function bindParams(\PDOStatement $stmt, array $params): void
+    {
+        foreach ($params as $key => $value) {
+            $type = match (true) {
+                is_int($value)  => PDO::PARAM_INT,
+                is_bool($value) => PDO::PARAM_BOOL,
+                is_null($value) => PDO::PARAM_NULL,
+                default         => PDO::PARAM_STR,
+            };
+
+            $stmt->bindValue($key, $value, $type);
+        }
+    }
+
+    /**
      * Execute a query and return a single row.
      *
      * @param  string     $sql    SQL query with named placeholders (e.g. `:id`)
@@ -134,7 +161,8 @@ class DBMS
     public function fetchOne(string $sql, array $params = []): ?array
     {
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($params);
+        $this->bindParams($stmt, $params);
+        $stmt->execute();
         $row = $stmt->fetch();
 
         return $row !== false ? $row : null;
@@ -150,7 +178,8 @@ class DBMS
     public function fetchAll(string $sql, array $params = []): array
     {
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($params);
+        $this->bindParams($stmt, $params);
+        $stmt->execute();
 
         return $stmt->fetchAll();
     }
@@ -165,7 +194,8 @@ class DBMS
     public function insert(string $sql, array $params = []): int
     {
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($params);
+        $this->bindParams($stmt, $params);
+        $stmt->execute();
 
         return (int) $this->pdo->lastInsertId();
     }
@@ -180,7 +210,8 @@ class DBMS
     public function update(string $sql, array $params = []): int
     {
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($params);
+        $this->bindParams($stmt, $params);
+        $stmt->execute();
 
         return $stmt->rowCount();
     }
@@ -195,7 +226,8 @@ class DBMS
     public function delete(string $sql, array $params = []): int
     {
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($params);
+        $this->bindParams($stmt, $params);
+        $stmt->execute();
 
         return $stmt->rowCount();
     }

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Debian) (preloaded format=xelatex 2025.12.8)  5 APR 2026 08:26
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Debian) (preloaded format=xelatex 2025.12.8)  5 APR 2026 10:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -611,11 +611,11 @@ Chapter 0.
 ] [10]
 Chapter 1.
 LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
-540.
+546.
 (/usr/share/texmf/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Overfull \hbox (19.99742pt too wide) in paragraph at lines 539--545
+Overfull \hbox (19.99742pt too wide) in paragraph at lines 545--551
 []\T1/lmr/bx/n/10.95 JavaScript\T1/lmr/m/n/10.95 : \TS1/lmtt/m/n/10.95 '\T1/lmt
 t/m/n/10.95 use strict\TS1/lmtt/m/n/10.95 ' \T1/lmr/m/n/10.95 at the top. Al-wa
 ys \T1/lmtt/m/n/10.95 const \T1/lmr/m/n/10.95 or \T1/lmtt/m/n/10.95 let\T1/lmr/
@@ -631,7 +631,7 @@ Chapter 2.
 
 ]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 759.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 765.
 
 Missing character: There is no — ("2014) in font ec-lmtt10!
 Missing character: There is no — ("2014) in font ec-lmtt10!
@@ -658,7 +658,7 @@ Missing character: There is no — ("2014) in font ec-lmtt10!
 Missing character: There is no — ("2014) in font ec-lmtt10!
 Missing character: There is no — ("2014) in font ec-lmtt10!
 
-Overfull \hbox (16.15204pt too wide) in paragraph at lines 880--880
+Overfull \hbox (16.15204pt too wide) in paragraph at lines 886--886
 []    \T1/lmtt/m/n/10.95 public/                      document root  ONLY folde
 r exposed to the browser[] 
  []
@@ -738,9 +738,9 @@ Missing character: There is no ► ("25BA) in font ec-lmtt10!
 [19]
 Chapter 4.
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1038.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1044.
 
-Overfull \hbox (34.41824pt too wide) in paragraph at lines 1049--1054
+Overfull \hbox (34.41824pt too wide) in paragraph at lines 1055--1060
 []\T1/lmr/m/n/10.95 It also pro-vides \T1/lmtt/m/n/10.95 exec() \T1/lmr/m/n/10.
 95 for state-ments that re-turn no rows (DDL, PRAGMA), and \T1/lmtt/m/n/10.95 b
 eginTransaction()
@@ -776,287 +776,287 @@ Missing character: There is no ─ ("2500) in font ec-lmtt10!
 [25] [26] [27]
 Chapter 6.
 
-Overfull \hbox (48.39311pt too wide) in paragraph at lines 1495--1496
+Overfull \hbox (48.39311pt too wide) in paragraph at lines 1501--1502
 []\T1/lmr/m/n/10.95 Operation  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1494--1496
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1500--1502
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (31.48067pt too wide) in paragraph at lines 1497--1498
+Overfull \hbox (31.48067pt too wide) in paragraph at lines 1503--1504
 []\T1/lmr/m/n/10.95 HTTP 
  []
 
 
-Overfull \hbox (37.1087pt too wide) in paragraph at lines 1497--1498
+Overfull \hbox (37.1087pt too wide) in paragraph at lines 1503--1504
 \T1/lmr/m/n/10.95 Method  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1496--1498
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1502--1504
 []\T1/lmr/m/n/10.95 .2131 
  []
 
 
-Overfull \hbox (21.44388pt too wide) in paragraph at lines 1499--1500
+Overfull \hbox (21.44388pt too wide) in paragraph at lines 1505--1506
 []\T1/lmr/m/n/10.95 SQL  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1498--1500
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1504--1506
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (41.82265pt too wide) in paragraph at lines 1501--1502
+Overfull \hbox (41.82265pt too wide) in paragraph at lines 1507--1508
 []\T1/lmr/m/n/10.95 Example  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1500--1503
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1506--1509
 []\T1/lmr/m/n/10.95 .4262 
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1511--1511
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (31.66373pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (31.66373pt too wide) in paragraph at lines 1511--1511
 |\T1/lmr/m/n/10.95 Create|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1511--1511
 []\T1/lmr/m/n/10.95 .2131 
  []
 
 
-Overfull \hbox (22.99493pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (22.99493pt too wide) in paragraph at lines 1511--1511
 |\T1/lmtt/m/n/10.95 POST|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1511--1511
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (34.4924pt too wide) in paragraph at lines 1505--1505
+Overfull \hbox (34.4924pt too wide) in paragraph at lines 1511--1511
 |\T1/lmtt/m/n/10.95 INSERT|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1505--1506
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1511--1512
 []\T1/lmr/m/n/10.95 .4262 
  []
 
 
-Overfull \hbox (17.6415pt too wide) in paragraph at lines 1505--1506
+Overfull \hbox (17.6415pt too wide) in paragraph at lines 1511--1512
 |\T1/lmr/m/n/10.95 add 
  []
 
 
-Overfull \hbox (5.47499pt too wide) in paragraph at lines 1505--1506
+Overfull \hbox (5.47499pt too wide) in paragraph at lines 1511--1512
 \T1/lmr/m/n/10.95 a 
  []
 
 
-Overfull \hbox (18.85806pt too wide) in paragraph at lines 1505--1506
+Overfull \hbox (18.85806pt too wide) in paragraph at lines 1511--1512
 \T1/lmr/m/n/10.95 new 
  []
 
 
-Overfull \hbox (21.89975pt too wide) in paragraph at lines 1505--1506
+Overfull \hbox (21.89975pt too wide) in paragraph at lines 1511--1512
 \T1/lmr/m/n/10.95 pub- 
  []
 
 
-Overfull \hbox (25.64122pt too wide) in paragraph at lines 1505--1506
+Overfull \hbox (25.64122pt too wide) in paragraph at lines 1511--1512
 \T1/lmr/m/n/10.95 lisher|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1506--1506
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1512--1512
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (24.48524pt too wide) in paragraph at lines 1506--1506
+Overfull \hbox (24.48524pt too wide) in paragraph at lines 1512--1512
 |\T1/lmr/m/n/10.95 Read|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1506--1506
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1512--1512
 []\T1/lmr/m/n/10.95 .2131 
  []
 
 
-Overfull \hbox (17.2462pt too wide) in paragraph at lines 1506--1506
+Overfull \hbox (17.2462pt too wide) in paragraph at lines 1512--1512
 |\T1/lmtt/m/n/10.95 GET|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1506--1506
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1512--1512
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (34.4924pt too wide) in paragraph at lines 1506--1506
+Overfull \hbox (34.4924pt too wide) in paragraph at lines 1512--1512
 |\T1/lmtt/m/n/10.95 SELECT|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1506--1507
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1512--1513
 []\T1/lmr/m/n/10.95 .4262 
  []
 
 
-Overfull \hbox (14.66095pt too wide) in paragraph at lines 1506--1507
+Overfull \hbox (14.66095pt too wide) in paragraph at lines 1512--1513
 |\T1/lmr/m/n/10.95 list 
  []
 
 
-Overfull \hbox (11.55827pt too wide) in paragraph at lines 1506--1507
+Overfull \hbox (11.55827pt too wide) in paragraph at lines 1512--1513
 \T1/lmr/m/n/10.95 all 
  []
 
 
-Overfull \hbox (21.89975pt too wide) in paragraph at lines 1506--1507
+Overfull \hbox (21.89975pt too wide) in paragraph at lines 1512--1513
 \T1/lmr/m/n/10.95 pub- 
  []
 
 
-Overfull \hbox (20.13574pt too wide) in paragraph at lines 1506--1507
+Overfull \hbox (20.13574pt too wide) in paragraph at lines 1512--1513
 \T1/lmr/m/n/10.95 lish- 
  []
 
 
-Overfull \hbox (13.47469pt too wide) in paragraph at lines 1506--1507
+Overfull \hbox (13.47469pt too wide) in paragraph at lines 1512--1513
 \T1/lmr/m/n/10.95 ers|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1507--1507
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1513--1513
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (35.28334pt too wide) in paragraph at lines 1507--1507
+Overfull \hbox (35.28334pt too wide) in paragraph at lines 1513--1513
 |\T1/lmr/m/n/10.95 Update|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1507--1507
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1513--1513
 []\T1/lmr/m/n/10.95 .2131 
  []
 
 
-Overfull \hbox (17.2462pt too wide) in paragraph at lines 1507--1507
+Overfull \hbox (17.2462pt too wide) in paragraph at lines 1513--1513
 |\T1/lmtt/m/n/10.95 PUT|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1507--1507
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1513--1513
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (34.4924pt too wide) in paragraph at lines 1507--1507
+Overfull \hbox (34.4924pt too wide) in paragraph at lines 1513--1513
 |\T1/lmtt/m/n/10.95 UPDATE|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1507--1509
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1513--1515
 []\T1/lmr/m/n/10.95 .4262 
  []
 
 
-Overfull \hbox (32.54576pt too wide) in paragraph at lines 1507--1509
+Overfull \hbox (32.54576pt too wide) in paragraph at lines 1513--1515
 |\T1/lmr/m/n/10.95 change 
  []
 
 
-Overfull \hbox (5.47499pt too wide) in paragraph at lines 1507--1509
+Overfull \hbox (5.47499pt too wide) in paragraph at lines 1513--1515
 \T1/lmr/m/n/10.95 a 
  []
 
 
-Overfull \hbox (21.89975pt too wide) in paragraph at lines 1507--1509
+Overfull \hbox (21.89975pt too wide) in paragraph at lines 1513--1515
 \T1/lmr/m/n/10.95 pub- 
  []
 
 
-Overfull \hbox (33.00208pt too wide) in paragraph at lines 1507--1509
+Overfull \hbox (33.00208pt too wide) in paragraph at lines 1513--1515
 \T1/lmr/m/n/10.95 lisher's 
  []
 
 
-Overfull \hbox (25.54959pt too wide) in paragraph at lines 1507--1509
+Overfull \hbox (25.54959pt too wide) in paragraph at lines 1513--1515
 \T1/lmr/m/n/10.95 name|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1509--1509
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1515--1515
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (30.26498pt too wide) in paragraph at lines 1509--1509
+Overfull \hbox (30.26498pt too wide) in paragraph at lines 1515--1515
 |\T1/lmr/m/n/10.95 Delete|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1509--1509
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1515--1515
 []\T1/lmr/m/n/10.95 .2131 
  []
 
 
-Overfull \hbox (34.4924pt too wide) in paragraph at lines 1509--1509
+Overfull \hbox (34.4924pt too wide) in paragraph at lines 1515--1515
 |\T1/lmtt/m/n/10.95 DELETE|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1509--1509
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1515--1515
 []\T1/lmr/m/n/10.95 .1803 
  []
 
 
-Overfull \hbox (34.4924pt too wide) in paragraph at lines 1509--1509
+Overfull \hbox (34.4924pt too wide) in paragraph at lines 1515--1515
 |\T1/lmtt/m/n/10.95 DELETE|  
  []
 
 
-Overfull \hbox (24.9416pt too wide) in paragraph at lines 1509--1511
+Overfull \hbox (24.9416pt too wide) in paragraph at lines 1515--1517
 []\T1/lmr/m/n/10.95 .4262 
  []
 
 
-Overfull \hbox (33.79285pt too wide) in paragraph at lines 1509--1511
+Overfull \hbox (33.79285pt too wide) in paragraph at lines 1515--1517
 |\T1/lmr/m/n/10.95 remove 
  []
 
 
-Overfull \hbox (5.47499pt too wide) in paragraph at lines 1509--1511
+Overfull \hbox (5.47499pt too wide) in paragraph at lines 1515--1517
 \T1/lmr/m/n/10.95 a 
  []
 
 
-Overfull \hbox (21.89975pt too wide) in paragraph at lines 1509--1511
+Overfull \hbox (21.89975pt too wide) in paragraph at lines 1515--1517
 \T1/lmr/m/n/10.95 pub- 
  []
 
 
-Overfull \hbox (25.64122pt too wide) in paragraph at lines 1509--1511
+Overfull \hbox (25.64122pt too wide) in paragraph at lines 1515--1517
 \T1/lmr/m/n/10.95 lisher|  
  []
 
 
-Overfull \hbox (7.22763pt too wide) in paragraph at lines 1514--1533
+Overfull \hbox (7.22763pt too wide) in paragraph at lines 1520--1539
 []\T1/lmr/m/n/10.95 Three lay-ers, one in-ten-tion. The HTTP method ar-rives at
  the API file (e.g. \T1/lmtt/m/n/10.95 api/publishers.php\T1/lmr/m/n/10.95 ).
  []
@@ -1066,7 +1066,7 @@ Overfull \hbox (7.22763pt too wide) in paragraph at lines 1514--1533
 ] [29] [30]
 Chapter 7.
 
-Overfull \hbox (25.06436pt too wide) in paragraph at lines 1666--1674
+Overfull \hbox (25.06436pt too wide) in paragraph at lines 1672--1680
 []\T1/lmr/bx/n/10.95 HTML \T1/lmr/m/n/10.95 --- we set con-straints di-rectly o
 n the form fields: \T1/lmtt/m/n/10.95 required\T1/lmr/m/n/10.95 , \T1/lmtt/m/n/
 10.95 maxlength\T1/lmr/m/n/10.95 , \T1/lmtt/m/n/10.95 type="number"\T1/lmr/m/n/
@@ -1076,7 +1076,7 @@ n the form fields: \T1/lmtt/m/n/10.95 required\T1/lmr/m/n/10.95 , \T1/lmtt/m/n/
 [31
 
 ]
-Overfull \hbox (41.35432pt too wide) in paragraph at lines 1776--1783
+Overfull \hbox (41.35432pt too wide) in paragraph at lines 1782--1789
 []\T1/lmtt/b/n/10.95 strip_tags() \T1/lmr/m/n/10.95 --- re-moves any HTML or PH
 P tags. A name like \T1/lmtt/m/n/10.95 <script>alert(\TS1/lmtt/m/n/10.95 '\T1/l
 mtt/m/n/10.95 xss\TS1/lmtt/m/n/10.95 '\T1/lmtt/m/n/10.95 )</script>
@@ -1088,7 +1088,7 @@ Chapter 8.
 
 ]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 2041.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 2047.
  [36]
 Chapter 9.
 Missing character: There is no → ("2192) in font ec-lmr10!
@@ -1110,7 +1110,7 @@ Chapter 10.
 Missing character: There is no — ("2014) in font ec-lmtti10!
 Missing character: There is no — ("2014) in font ec-lmtti10!
 [44]
-Overfull \hbox (0.99455pt too wide) in paragraph at lines 2675--2677
+Overfull \hbox (0.99455pt too wide) in paragraph at lines 2681--2683
 \T1/lmr/m/n/10.95 On a De-bian/A-pache server, cer-tifi-cates typ-i-cally live 
 in \T1/lmtt/m/n/10.95 /etc/letsencrypt/live/yourdomain/\T1/lmr/m/n/10.95 .
  []
@@ -1126,442 +1126,9 @@ Missing character: There is no → ("2192) in font ec-lmr10!
 Missing character: There is no → ("2192) in font ec-lmr10!
 [46]
 Appendix A.
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ► ("25BA) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ► ("25BA) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ► ("25BA) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-Missing character: There is no ◄ ("25C4) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┌ ("250C) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┐ ("2510) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ┌ ("250C) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┐ ("2510) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no └ ("2514) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┘ ("2518) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no └ ("2514) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┘ ("2518) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
 [47
 
-]
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no → ("2192) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┐ ("2510) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-
-Overfull \hbox (44.8957pt too wide) in paragraph at lines 2874--2874
-[]                                                        \T1/lmtt/m/n/10.95 $p
-ublisher = new Publisher($db)[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no → ("2192) in font ec-lmtt10!
-
-Overfull \hbox (10.4033pt too wide) in paragraph at lines 2874--2874
-[]                                                        \T1/lmtt/m/n/10.95 GE
-T  $publisher->getAll()[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-
-Overfull \hbox (56.39317pt too wide) in paragraph at lines 2874--2874
-[]                                                        \T1/lmtt/m/n/10.95 SE
-LECT publisher_id, name, status[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no → ("2192) in font ec-lmtt10!
-Missing character: There is no → ("2192) in font ec-lmtt10!
-
-Overfull \hbox (16.15204pt too wide) in paragraph at lines 2874--2874
-[]                                                        \T1/lmtt/m/n/10.95 pr
-epare  execute  fetchAll[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ◄ ("25C4) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┘ ("2518) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-
-Overfull \hbox (16.15204pt too wide) in paragraph at lines 2874--2874
-[]                                  \T1/lmtt/m/n/10.95 [{"publisher_id":1,"name
-":"Adelphi","status":1},[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-
-Overfull \hbox (16.15204pt too wide) in paragraph at lines 2874--2874
-[]                                   \T1/lmtt/m/n/10.95 {"publisher_id":2,"name
-":"Einaudi","status":0},[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no → ("2192) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-Missing character: There is no ┌ ("250C) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┐ ("2510) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ┌ ("250C) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┐ ("2510) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-[48]
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ← ("2190) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ← ("2190) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no └ ("2514) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┘ ("2518) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no └ ("2514) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┘ ("2518) in font ec-lmtt10!
-[49] [50]
+] [48] [49]
 Missing character: There is no ├ ("251C) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
@@ -1573,1277 +1140,87 @@ Missing character: There is no │ ("2502) in font ec-lmtt10!
 Missing character: There is no └ ("2514) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no → ("2192) in font ec-lmtt10!
 Missing character: There is no └ ("2514) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
 
-Overfull \hbox (135.1919pt too wide) in paragraph at lines 3064--3069
-\T1/lmr/m/n/10.95 has al-ready built the DOM, and JavaScript can find the el-e-
-ments it needs with \T1/lmtt/m/n/10.95 document.querySelector(\TS1/lmtt/m/n/10.
-95 '\T1/lmtt/m/n/10.95 #category-table
+Overfull \hbox (39.02527pt too wide) in paragraph at lines 3053--3061
+\T1/lmr/m/n/10.95 (\T1/lmtt/m/n/10.95 src/Category.php\T1/lmr/m/n/10.95 ), whic
+h calls DBMS (\T1/lmtt/m/n/10.95 src/DBMS.php\T1/lmr/m/n/10.95 ), which queries
+ SQLite (\T1/lmtt/m/n/10.95 sql/bibliotheca.db\T1/lmr/m/n/10.95 ),
  []
 
+[50]
+Missing character: There is no ↓ ("2193) in font ec-lmtt10!
+Missing character: There is no ↓ ("2193) in font ec-lmtt10!
+Missing character: There is no ↓ ("2193) in font ec-lmtt10!
+Missing character: There is no — ("2014) in font ec-lmtt10!
+Missing character: There is no → ("2192) in font ec-lmtt10!
+Missing character: There is no → ("2192) in font ec-lmtt10!
 [51]
-Missing character: There is no ↓ ("2193) in font ec-lmtt10!
-Missing character: There is no ↓ ("2193) in font ec-lmtt10!
-Missing character: There is no ↓ ("2193) in font ec-lmtt10!
+Missing character: There is no → ("2192) in font ec-lmtt10!
 Missing character: There is no ← ("2190) in font ec-lmtt10!
+Missing character: There is no — ("2014) in font ec-lmtt10!
+Missing character: There is no → ("2192) in font ec-lmtt10!
+Missing character: There is no → ("2192) in font ec-lmtt10!
+Missing character: There is no → ("2192) in font ec-lmtt10!
+Missing character: There is no → ("2192) in font ec-lmtt10!
+Missing character: There is no → ("2192) in font ec-lmtt10!
 Missing character: There is no ← ("2190) in font ec-lmtt10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+
+Overfull \hbox (0.88394pt too wide) in paragraph at lines 3146--3151
+\T1/lmr/m/n/10.95 the con-troller (\T1/lmtt/m/n/10.95 api/categories.php\T1/lmr
+/m/n/10.95 )  the con-troller en-codes JSON  JavaScript (\T1/lmtt/m/n/10.95 cat
+egories.js\T1/lmr/m/n/10.95 )
+ []
+
+
+Overfull \hbox (32.23058pt too wide) in paragraph at lines 3152--3157
+\T1/lmr/m/n/10.95 (\T1/lmtt/m/n/10.95 api/categories.php\T1/lmr/m/n/10.95 ) han
+-dles the re-quest, the \T1/lmr/bx/n/10.95 View \T1/lmr/m/n/10.95 (\T1/lmtt/m/n
+/10.95 pages/categories.php \T1/lmr/m/n/10.95 + \T1/lmtt/m/n/10.95 js/categorie
+s.js\T1/lmr/m/n/10.95 )
+ []
+
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
 [52]
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┌ ("250C) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┐ ("2510) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no └ ("2514) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┘ ("2518) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ► ("25BA) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-Missing character: There is no ◄ ("25C4) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┌ ("250C) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┐ ("2510) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ┌ ("250C) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┐ ("2510) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no └ ("2514) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┘ ("2518) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no └ ("2514) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┘ ("2518) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no → ("2192) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no → ("2192) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
+LaTeX Font Info:    Font shape `TS1/lmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `TS1/lmtt/b/n' tried instead on input line 3270.
+
+
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
 [53]
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ├ ("251C) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ► ("25BA) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no — ("2014) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no └ ("2514) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ► ("25BA) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┐ ("2510) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-
-Overfull \hbox (67.89064pt too wide) in paragraph at lines 3232--3232
-[]                                                        \T1/lmtt/m/n/10.95 SE
-LECT ... WHERE publisher_id = :id[] 
+Overfull \hbox (28.74355pt too wide) in paragraph at lines 3355--3360
+[]\T1/lmtt/m/n/10.95 php://input \T1/lmr/m/n/10.95 is where PHP finds the re-qu
+est body --- the JSON string that \T1/lmtt/m/n/10.95 JSON.stringify(payload)
  []
 
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ◄ ("25C4) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┘ ("2518) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ← ("2190) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ← ("2190) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ← ("2190) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ← ("2190) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ┌ ("250C) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┐ ("2510) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ☑ ("2611) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no └ ("2514) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┘ ("2518) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no — ("2014) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-[54]
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ├ ("251C) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ► ("25BA) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no └ ("2514) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ► ("25BA) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ├ ("251C) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┐ ("2510) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ✓ ("2713) in font ec-lmtt10!
-
-Overfull \hbox (4.65457pt too wide) in paragraph at lines 3319--3319
-[]                                                       \T1/lmtt/m/n/10.95 val
-idate: name required? [] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no → ("2192) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-
-Overfull \hbox (73.63937pt too wide) in paragraph at lines 3319--3319
-[]                                                       \T1/lmtt/m/n/10.95 $pu
-blisher->insert("Einaudi Editore")[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-
-Overfull \hbox (21.90077pt too wide) in paragraph at lines 3319--3319
-[]                                                       \T1/lmtt/m/n/10.95 INS
-ERT INTO publisher (name)[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ◄ ("25C4) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┘ ("2518) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no └ ("2514) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┐ ("2510) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ✓ ("2713) in font ec-lmtt10!
-
-Overfull \hbox (4.65457pt too wide) in paragraph at lines 3319--3319
-[]                                                         \T1/lmtt/m/n/10.95 v
-alidate: ID and name? [] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no → ("2192) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no → ("2192) in font ec-lmtt10!
-
-Overfull \hbox (102.38304pt too wide) in paragraph at lines 3319--3319
-[]                                                         \T1/lmtt/m/n/10.95 s
-tatus=0 and hasBooks()?  block or allow[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-
-Overfull \hbox (119.62924pt too wide) in paragraph at lines 3319--3319
-[]                                                         \T1/lmtt/m/n/10.95 $
-publisher->update(2, "Einaudi Editore", 0)[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-
-Overfull \hbox (67.89064pt too wide) in paragraph at lines 3319--3319
-[]                                                         \T1/lmtt/m/n/10.95 S
-ET name = :name, status = :status[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-
-Overfull \hbox (10.4033pt too wide) in paragraph at lines 3319--3319
-[]                                                         \T1/lmtt/m/n/10.95 W
-HERE publisher_id = :id[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ◄ ("25C4) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┘ ("2518) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ├ ("251C) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ► ("25BA) in font ec-lmtt10!
-[55]
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no └ ("2514) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no — ("2014) in font ec-lmtt10!
-Missing character: There is no — ("2014) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-Missing character: There is no ┌ ("250C) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┐ ("2510) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ☐ ("2610) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no └ ("2514) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┘ ("2518) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┌ ("250C) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┐ ("2510) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ☑ ("2611) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ◄ ("25C4) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no └ ("2514) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┘ ("2518) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ├ ("251C) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ► ("25BA) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no └ ("2514) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┐ ("2510) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ✓ ("2713) in font ec-lmtt10!
-
-Overfull \hbox (16.15204pt too wide) in paragraph at lines 3383--3383
-[]                                                           \T1/lmtt/m/n/10.95
- validate: ID required? [] 
- []
-
+[54] [55]
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
 [56]
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-
-Overfull \hbox (62.1419pt too wide) in paragraph at lines 3383--3383
-[]                                                           \T1/lmtt/m/n/10.95
- $publisher->hasBooks(2, false)?[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-
-Overfull \hbox (73.63937pt too wide) in paragraph at lines 3383--3383
-[]                                                           \T1/lmtt/m/n/10.95
- (checks ALL books, active or not)[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ├ ("251C) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-
-Overfull \hbox (44.8957pt too wide) in paragraph at lines 3383--3383
-[]                                                               \T1/lmtt/m/n/1
-0.95 {"error":"Cannot delete:[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-
-Overfull \hbox (96.63431pt too wide) in paragraph at lines 3383--3383
-[]                                                                \T1/lmtt/m/n/
-10.95 publisher has associated books"}[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no └ ("2514) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-
-Overfull \hbox (33.39824pt too wide) in paragraph at lines 3383--3383
-[]                                                                \T1/lmtt/m/n/
-10.95 $publisher->delete(2)[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-
-Overfull \hbox (33.39824pt too wide) in paragraph at lines 3383--3383
-[]                                                                \T1/lmtt/m/n/
-10.95 DELETE FROM publisher[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-
-Overfull \hbox (50.64444pt too wide) in paragraph at lines 3383--3383
-[]                                                                \T1/lmtt/m/n/
-10.95 WHERE publisher_id = :id[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-
-Overfull \hbox (10.4033pt too wide) in paragraph at lines 3383--3383
-[]                                                                \T1/lmtt/m/n/
-10.95 {"deleted": true}[] 
- []
-
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ◄ ("25C4) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ┘ ("2518) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ├ ("251C) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ► ("25BA) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no └ ("2514) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no ─ ("2500) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no │ ("2502) in font ec-lmtt10!
-Missing character: There is no ▼ ("25BC) in font ec-lmtt10!
-
-Overfull \hbox (9.02827pt too wide) in paragraph at lines 3388--3392
-\T1/lmr/bx/n/10.95 Step 1--2 \T1/lmr/m/n/10.95 --- iden-ti-cal to the list page
-: \T1/lmtt/m/n/10.95 .htaccess \T1/lmr/m/n/10.95 rewrites, the router loads \T1
-/lmtt/m/n/10.95 pages/publisher.php
- []
-
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
+Missing character: There is no → ("2192) in font ec-lmr10!
 Missing character: There is no → ("2192) in font ec-lmr10!
 Missing character: There is no → ("2192) in font ec-lmr10!
 [57]
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-Missing character: There is no → ("2192) in font ec-lmr10!
-[58]
-Overfull \hbox (19.62088pt too wide) in paragraph at lines 3585--3587
-\T1/lmr/m/n/10.95 The front con-troller sets \T1/lmtt/m/n/10.95 $isLoggedIn = A
-uth::check() \T1/lmr/m/n/10.95 and ex-poses it to tem-plates and JavaScript: 
- []
-
-[59] [60]
 Appendix B.
 
-Overfull \hbox (44.63806pt too wide) in paragraph at lines 3647--3656
+Overfull \hbox (44.63806pt too wide) in paragraph at lines 3583--3592
 \T1/lmtt/m/n/10.95 index.php?route=...\T1/lmr/m/n/10.95 , en-abling clean URLs 
 like \T1/lmtt/m/n/10.95 /publishers \T1/lmr/m/n/10.95 in-stead of \T1/lmtt/m/n/
 10.95 index.php?route=publishers\T1/lmr/m/n/10.95 .
@@ -2852,54 +1229,54 @@ like \T1/lmtt/m/n/10.95 /publishers \T1/lmr/m/n/10.95 in-stead of \T1/lmtt/m/n/
 Missing character: There is no → ("2192) in font ec-lmr10!
 Missing character: There is no → ("2192) in font ec-lmr10!
 Missing character: There is no → ("2192) in font ec-lmr10!
-[61
+[58
 
-] [62]
-Overfull \hbox (18.8504pt too wide) in paragraph at lines 3842--3848
+] [59]
+Overfull \hbox (18.8504pt too wide) in paragraph at lines 3778--3784
 []\T1/lmr/m/n/10.95 We use named pa-ram-e-ters be-cause they are eas-ier to rea
 d and safer to refac-tor. \T1/lmtt/m/n/10.95 WHERE publisher_id
  []
 
-[63] [64]
+[60] [61]
 Appendix C.
 
-Overfull \hbox (52.00249pt too wide) in paragraph at lines 3968--3970
+Overfull \hbox (52.00249pt too wide) in paragraph at lines 3904--3906
 []\T1/lmr/m/n/10.95 William Shotts, \T1/lmr/m/it/10.95 The Linux Com-mand Line\
 T1/lmr/m/n/10.95 , Sixth In-ter-net Edi-tion. Free at https://linuxcommand.org 
 
  []
 
 
-Overfull \hbox (1.53165pt too wide) in paragraph at lines 4001--4004
+Overfull \hbox (1.53165pt too wide) in paragraph at lines 3937--3940
 []\T1/lmr/m/n/10.95 Marijn Haver-beke, \T1/lmr/m/it/10.95 Elo-quent JavaScript\
 T1/lmr/m/n/10.95 , 4th Edi-tion. Free at https://eloquentjavascript.net 
  []
 
-[65
+[62
 
-] [66]
+] [63]
 Appendix D.
-[67
+[64
 
 ]
-Overfull \hbox (23.15872pt too wide) in paragraph at lines 4165--4170
+Overfull \hbox (23.15872pt too wide) in paragraph at lines 4101--4106
 []\T1/lmr/bx/n/10.95 Middleware \T1/lmr/m/n/10.95 --- your con-trollers check t
 he HTTP method with \T1/lmtt/m/n/10.95 $_SERVER[\TS1/lmtt/m/n/10.95 '\T1/lmtt/m
 /n/10.95 REQUEST_METHOD\TS1/lmtt/m/n/10.95 '\T1/lmtt/m/n/10.95 ]\T1/lmr/m/n/10.
 95 .
  []
 
-[68] [69] (./ten_brief_lessons.aux)
+[65] [66] (./ten_brief_lessons.aux)
 Package rerunfilecheck Info: File `ten_brief_lessons.out' has not changed.
-(rerunfilecheck)             Checksum: 67007D6A5591D4D182B050C19BBFD168;24810.
+(rerunfilecheck)             Checksum: F96AE2DFE1978274D046D0AA90A764ED;23158.
  ) 
 Here is how much of TeX's memory you used:
- 13287 strings out of 478775
- 209699 string characters out of 5850945
- 1872991 words of memory out of 5000000
- 33112 multiletter control sequences out of 15000+600000
- 600160 words of font info for 83 fonts, out of 8000000 for 9000
+ 13275 strings out of 478775
+ 209652 string characters out of 5850945
+ 1857991 words of memory out of 5000000
+ 33099 multiletter control sequences out of 15000+600000
+ 600465 words of font info for 84 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 72i,13n,78p,450b,524s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,13n,78p,563b,524s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on ten_brief_lessons.pdf (70 pages).
+Output written on ten_brief_lessons.pdf (67 pages).

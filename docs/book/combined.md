@@ -109,6 +109,12 @@ This is deliberate. The terminal is not a fallback for when the
 GUI is missing. It is the primary tool of a programmer. Learn
 to think in commands.
 
+One more thing. A programmer must have dominion over the code.
+Every line, every layer, every file — you must know what it
+does and why it is there. If you do not understand it, you do
+not control it. And if you do not control it, sooner or later
+it controls you.
+
 Let the show begin.
 
 
@@ -1849,196 +1855,43 @@ The attacker only needs one gap. You need them all closed.
 
 # How It Works
 
-## Single point of control
+## Request and response
 
-The application follows one rule: **the list reads, the form writes**.
+Everything on the web is built on one mechanism: a client
+sends a **request**, a server sends back a **response**. That
+is it. Every click, every page load, every form submission,
+every API call — request, response. HTML, CSS, JavaScript,
+frameworks, databases — they all exist to produce or consume
+requests and responses. If you understand this, you understand
+the web.
 
-- **List page** — displays all records. The only action is Edit.
-- **Form page** — all modifications happen here: Create, Update,
-  Disable, Delete.
+In our application, every request that JavaScript makes to
+the server goes through one function: `fetch`. It is the
+bridge between the browser and the server. Without it,
+JavaScript can change the page but cannot talk to anyone.
+This is why learning JavaScript matters. It can change the
+color of a button or make elements appear and disappear, but
+it does much more than that. 
+It is the nervous system of the application (Chapter 00):
+the language that ferries data between the browser and the
+server. `fetch` is its Charon.
 
-One entity, one form, every operation. The user never has to wonder
-*where* to do something — the answer is always: open the record.
+## Open your terminal
 
-## The life of a request
+The best way to see this in action is to watch it from the
+outside. Not with the browser — the browser does too much at
+once. Use `curl`, which does exactly one thing: send a request,
+show the response.
 
-What happens when you click **Publishers** in the navigation bar?
-Follow the numbers.
+## The first request
 
+Click "Categories" on the menu. What actually happens? Let
+us ask `curl`:
+
+```bash
+curl -v http://localhost/bibliotheca/public/categories \
+    2>&1 | grep "^>"
 ```
-    Browser                                          Server
-    ───────                                          ──────
-
- 1  Click "Publishers"
-    GET /bibliotheca/public/publishers
-                │
-                ▼
- 2  .htaccess ─── RewriteRule ──► index.php?route=publishers
-                                        │
-                                        │  route in whitelist?
-                                        │  yes ──► require pages/publishers.php
-                                        │  no  ──► require pages/404.php
-                                        │
-                                        ▼
- 3  Browser receives HTML ◄──────── index.php renders the full page:
-    ┌─────────────────────┐         <header>, <nav>, <main>,
-    │ header / nav        │         and inside <main>:
-    │ ┌─────────────────┐ │         pages/publishers.php
-    │ │ <table>         │ │         (empty <tbody>, plus a <script> tag)
-    │ │   <thead>       │ │
-    │ │   <tbody/>      │ │
-    │ └─────────────────┘ │
-    │ footer              │
-    └─────────────────────┘
-                │
-                │  <script src="js/publishers.js">
-                ▼
- 4  PublishersView fires
-    │
-    │  constructor() → this.load()
-    │
-    │  async load() {
-    │      fetch('/api/publishers.php')  ──────────────────────┐
-    │  }                                                       │
-    │                                                          ▼
-    │                                               5  api/publishers.php
-    │                                                  │
-    │                                                  │  $db = new DBMS(...)
-    │                                                  │  $publisher = new Publisher($db)
-    │                                                  │
-    │                                                  │  GET → $publisher->getAll()
-    │                                                  │
-    │                                                  ▼
-    │                                               6  src/Publisher.php
-    │                                                  │
-    │                                                  │  SELECT publisher_id, name, status
-    │                                                  │  FROM publisher
-    │                                                  │  ORDER BY name
-    │                                                  │
-    │                                                  ▼
-    │                                               7  src/DBMS.php
-    │                                                  │
-    │                                                  │  prepare → execute → fetchAll
-    │                                                  │
-    │                                                  ▼
-    │                                               8  sql/bibliotheca.db
-    │                                                  │
-    │                                                  │  SQLite returns rows
-    │                                                  │
-    │                              JSON ◄──────────────┘
-    │                              [{"publisher_id":1,"name":"Adelphi","status":1},
-    │                               {"publisher_id":2,"name":"Einaudi","status":0},
-    │                               ...]
-    │
-    │  render(publishers)
-    │  │
-    │  │  for each publisher:
-    │  │      createElement('tr')
-    │  │      if status === 0 → row.className = 'row-disabled'
-    │  │      nameCell.textContent = publisher.name
-    │  │      append [Edit] button
-    │  │      append to <tbody>
-    │  │
-    ▼
- 9  Browser shows the table
-    ┌──────────────────────────┐
-    │ header / nav             │
-    │ ┌──────────────────────┐ │
-    │ │ Adelphi        [Edit]│ │   ← active (normal)
-    │ │ Einaudi        [Edit]│ │   ← disabled (gray)
-    │ │ ...                  │ │
-    │ └──────────────────────┘ │
-    │ footer                   │
-    └──────────────────────────┘
-```
-
-## Step by step
-
-### 1 — The click
-
-The user clicks a link. The browser sends a GET request to
-`/bibliotheca/public/publishers`.
-
-### 2 — URL rewriting
-
-Apache's `.htaccess` intercepts the request. Since `/publishers`
-is not a real file or directory, the `RewriteRule` rewrites it to:
-
-```
-index.php?route=publishers
-```
-
-### 3 — The router
-
-`index.php` reads the `route` parameter, checks it against a
-whitelist of allowed routes, and includes the matching page inside
-a common HTML shell (header, nav, main, footer).
-
-The page `pages/publishers.php` is minimal: an empty `<table>` and
-a `<script>` tag. No data yet.
-
-### 4 — JavaScript takes over
-
-The browser loads `js/publishers.js`. The script creates a
-`PublishersView` object. The constructor immediately calls `load()`,
-which uses `fetch` to request data from the API.
-
-### 5 — The controller
-
-`api/publishers.php` receives the GET request. It creates a `DBMS`
-instance (the database connection) and a `Publisher` instance (the
-model). Based on the HTTP method, it calls the right model method.
-
-For a plain GET with no `id` parameter, it calls `getAll()`.
-
-### 6 — The model
-
-`Publisher::getAll()` builds a SQL query that selects all records
-— both active and disabled — and delegates execution to DBMS.
-
-The model knows *what* to ask, but not *how* the database works.
-That is the DBMS wrapper's job.
-
-### 7 — The database wrapper
-
-`DBMS::fetchAll()` prepares the statement, executes it, and returns
-an array of associative arrays. Every query goes through prepared
-statements — never string concatenation.
-
-### 8 — SQLite
-
-The database engine runs the query against `sql/bibliotheca.db`
-and returns the rows to PHP.
-
-### 9 — Rendering
-
-The JSON response travels back to the browser. `PublishersView.render()`
-loops through the array, creates a `<tr>` for each publisher using
-`createElement` and `textContent` (never `innerHTML`), and appends
-everything to the `<tbody>`.
-
-Rows with `status === 0` get the class `row-disabled` and appear
-grayed out. The list is read-only — the only action is the Edit
-button, which links to the form page.
-
-## The round trip
-
-The key insight: **the page loads twice**.
-
-1. **First trip** — the browser gets the HTML shell (step 1–3).
-   The table is empty.
-2. **Second trip** — JavaScript fetches the data as JSON (step 4–9).
-   The table fills up.
-
-This is the foundation of every modern web application. The structure
-(HTML) and the data (JSON) travel separately. The browser assembles
-them.
-
-## What travels on the wire
-
-When the browser sends a request, it is not a file. It is a
-block of text transmitted over a TCP connection to port 80
-(or 443 for HTTPS). You can see it with `curl -v`:
 
 ```
 > GET /bibliotheca/public/categories HTTP/1.1
@@ -2048,21 +1901,120 @@ block of text transmitted over a TCP connection to port 80
 >
 ```
 
-The first line is the **request line**: method, path, protocol.
-The lines that follow are **headers**: key-value pairs that
-describe who is calling, what formats are accepted, the session
-cookie, and so on. The empty line marks the end. A GET request
-has no body; a POST would carry one after the blank line.
+This is the **request**. The browser sends these exact bytes
+to Apache on port 80 (or 443 for HTTPS). The first line says: send me the page at this URL, using
+HTTP/1.1. (It could be a page, an image, a JSON response —
+the browser does not know in advance. It just asks.) The rest
+are headers — metadata about the request.
 
-The server responds in the same format: a status line, headers,
-a blank line, then the body (HTML, JSON, or whatever was asked).
+Now the response:
+
+```bash
+curl -s http://localhost/bibliotheca/public/categories
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="csrf-token" content="a7f3b9...">
+    <meta name="authenticated" content="0">
+    <title>Bibliotheca</title>
+    <link rel="stylesheet" href="...style.css">
+</head>
+<body>
+    <header>...</header>
+    <main>
+        <h2>Categories</h2>
+        <table id="category-table">
+            <thead>
+                <tr><th>Name</th><th></th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </main>
+    <script src="...categories.js"></script>
+</body>
+</html>
+```
+
+Look at the `<tbody>`. It is empty. There are no records.
+
+## Where are the records?
+
+They are not in this response. The HTML contains the structure
+— the skeleton — but no data. The table is an empty container
+waiting to be filled.
+
+The records live in the database. The only way to get them is
+to call the API:
+
+```bash
+curl -s http://localhost/bibliotheca/public/api/categories.php
+```
+
+```json
+[
+  {"category_id":1,"name":"Fiction","status":1},
+  {"category_id":2,"name":"Science","status":1},
+  {"category_id":3,"name":"History","status":0}
+]
+```
+
+There they are. JSON, not HTML. Data, not structure.
+
+## Two requests, one page
+
+This is the key: **loading a page takes two requests**.
+
+1. **First request** — the browser asks for the page. Apache
+   rewrites the URL through `.htaccess`, the router loads the
+   template, PHP sends back HTML. The table is empty.
+2. **Second request** — JavaScript starts (the `<script>` tag
+   at the bottom of the page), calls `fetch` to the API, gets
+   JSON back, and fills the table with `createElement` and
+   `textContent`.
+
+When you use the browser, this happens automatically — so fast
+you never notice the table is empty for a fraction of a second.
+With `curl`, you see the truth: `curl` does not execute
+JavaScript, so the second request never happens. The table
+stays empty.
+
+You can see both requests in the browser's Network tab (F12).
+The first returns HTML. The second returns JSON. Two trips,
+one page.
+
+## What travels on the wire
+
+When the browser sends a request, it is not a file. It is a
+block of text transmitted over a TCP connection to port 80 (or 443 for HTTPS).
+
+```
+> GET /bibliotheca/public/categories HTTP/1.1
+> Host: localhost
+> Accept: */*
+>
+```
+
+The first line is the **request line**: method, path, protocol.
+The lines that follow are **headers**: key-value pairs. The
+empty line marks the end. A GET has no body; a POST carries one
+after the blank line.
+
+The server responds in the same format:
 
 ```
 < HTTP/1.1 200 OK
 < Content-Type: text/html; charset=UTF-8
+< Set-Cookie: PHPSESSID=...; HttpOnly; SameSite=Strict
 <
-< <!DOCTYPE html>...
+<!DOCTYPE html>...
 ```
+
+Status line, headers, blank line, body. That is all HTTP is:
+structured text over a wire.
 
 No files are written to disk. Apache has a process (managed by
 its **MPM**, Multi-Processing Module) listening on a TCP socket.
@@ -2070,518 +2022,519 @@ The bytes arrive in memory, Apache interprets them, calls PHP,
 and sends the response back on the same connection.
 
 With HTTP/1.1, the connection stays open briefly (**keep-alive**)
-so the browser can reuse it for subsequent requests (the CSS
-file, the JavaScript, the favicon) without opening a new one.
+so the browser can reuse it for the CSS, the JavaScript, and
+the favicon without opening a new connection each time.
 
-## The DOM
+## What Apache does
 
-When the browser receives HTML, it does not keep it as text.
-It parses it and builds an in-memory tree of objects called the
-**DOM** (Document Object Model). For example:
-
-```html
-<table id="category-table">
-    <thead>
-        <tr><th>Name</th></tr>
-    </thead>
-    <tbody></tbody>
-</table>
-```
-
-becomes:
+Apache receives the request and reads the path. Since
+`/categories` is not a real file, `.htaccess` rewrites it:
 
 ```
-table#category-table
+RewriteRule ^(.+)$ index.php?route=$1 [QSA,L]
+```
+
+Now Apache calls PHP with `index.php?route=categories`. The
+router checks the whitelist, finds "categories", and loads
+`pages/categories.php` inside the HTML shell (header, nav,
+main, footer). PHP sends the complete HTML back to Apache,
+Apache sends it to the browser.
+
+## What the browser does
+
+The browser receives the HTML and builds the **DOM** (Document
+Object Model) — an in-memory tree of objects:
+
+```
+table #category-table
 ├── thead
 │   └── tr
-│       └── th → "Name"
-└── tbody (empty)
+│       └── th  "Name"
+└── tbody  (empty)
 ```
 
-Every tag is a **node** with properties and methods. JavaScript
-works on this tree, never on the HTML source. When it calls
-`document.createElement('tr')` and `tbody.appendChild(row)`,
-it is adding nodes to the tree. The browser detects the change
-and updates the screen.
+Every tag becomes a node. JavaScript works on this tree, not
+on the HTML text. When it calls `createElement('tr')` and
+`appendChild(row)`, it adds nodes to the tree and the browser
+redraws the screen.
 
-This is why the `<script>` tag sits at the bottom of the page
-template: by that point the browser has already built the DOM,
-and JavaScript can find the elements it needs with
-`document.querySelector('#category-table tbody')`.
+The `<script>` tag at the bottom triggers the second request.
+It sits at the bottom so the DOM is already built when
+JavaScript starts — otherwise `querySelector` would not find
+the elements.
 
-The selector syntax (`#id`, `.class`, `tag`) is the same one
-used in CSS. JavaScript borrows it to navigate the tree.
+## What JavaScript does
+
+The browser loads `js/categories.js` (the `<script>` tag
+at the bottom of the HTML). This file creates a `Categories`
+object. The constructor
+calls `load()`. These are methods we wrote — `load` and
+`render` are not part of JavaScript, they are our convention
+(Chapter 05). The only built-in part is `fetch`, which sends
+the HTTP request. `this.API` is a property set in the
+constructor — it holds the URL of the API endpoint:
+
+```javascript
+this.API = '/bibliotheca/public/api/categories.php';
+```
+
+So when we write:
+
+```javascript
+async load() {
+    const response = await fetch(this.API);
+    const categories = await response.json();
+    this.render(categories);
+}
+```
+
+`fetch(this.API)` sends a GET request to that URL —
+the same request we just made with `curl`. Notice there is no
+`method: 'GET'` here: when you call `fetch` with just a URL,
+it defaults to GET. Writing:
+
+`fetch(this.API)`
+
+and:
+
+`fetch(this.API, { method: 'GET' })`
+
+is the same thing. You only need to specify the method for
+POST, PUT, and DELETE.
+
+The server responds through the API endpoint
+(`api/categories.php`),
+which calls the model (`src/Category.php`),
+which calls DBMS (`src/DBMS.php`),
+which queries SQLite (`sql/bibliotheca.db`),
+and if everything went as it should, the server responds
+with JSON — a list of records if we sent GET, the new or
+updated record if we sent POST or PUT, a confirmation if
+we sent DELETE.
+
+Now you see why the directories are organized that way.
+`src/` and `sql/` are outside `public/` because they are
+private — only PHP can reach them. `api/` and `pages/` are
+inside `public/` because they need to receive HTTP requests.
+The directory structure is not arbitrary. It reflects who
+can talk to who.
+
+One API file and one model per entity. Every operation on
+categories — read, create, update, delete — goes through
+those same two files. The pages and JavaScript files instead
+are two: one for the list (`categories.php` +
+`categories.js`) and one for the form (`category.php` +
+`category.js`).
+
+In the case of a GET, back in the browser, `load` receives
+the JSON data. `render` builds the DOM: for each category,
+it creates a `<tr>`, sets the text with `textContent`, and
+appends it to the `<tbody>`. The empty table fills up.
+For POST, PUT, and DELETE the flow is different — we will
+see that shortly in "What happens when you click Save".
 
 ## How data changes shape
 
-A single piece of data (say, a category name) passes through
-four representations on its way from disk to screen:
+A single piece of data passes through four representations on
+its way from disk to screen:
 
-| Layer       | Form                        |
-|-------------|-----------------------------|
-| SQLite      | Row in a table              |
-| PHP         | Associative array           |
-| Network     | JSON text                   |
-| JavaScript  | Object with properties      |
+| Layer      | Form                   |
+|------------|------------------------|
+| SQLite     | Row in a table         |
+| PHP        | Associative array      |
+| Network    | JSON text              |
+| JavaScript | Object with properties |
 
 ```
-SQLite:  | 3 | Computer Science | 1 |
-              ↓
-PHP:     ['category_id'=>3,
-          'name'=>'Computer Science',
+SQLite:  | 1 | Fiction | 1 |
+             ↓
+PHP:     ['category_id'=>1, 'name'=>'Fiction',
           'status'=>1]
-              ↓
-JSON:    {"category_id":3,
-          "name":"Computer Science",
+             ↓
+JSON:    {"category_id":1,"name":"Fiction",
           "status":1}
-              ↓
-JS:      {category_id: 3,
-          name: "Computer Science",
+             ↓
+JS:      {category_id: 1, name: "Fiction",
           status: 1}
 ```
 
 Each layer only knows about the one directly below it.
-JavaScript has no idea SQLite exists; it just sees a URL that
-returns JSON. The model has no idea JavaScript exists; it just
+JavaScript has no idea SQLite exists; it sees a URL that
+returns JSON. The model has no idea JavaScript exists; it
 returns an array to the controller.
 
-## Where each file lives
+## The chain
+
+The full chain, with the actual files. Notice the two
+requests: the first (steps 1-3) brings the HTML, the second
+(steps 4-8) brings the data.
 
 ```
-bibliotheca/
-    src/                    ← private (not web-accessible)
-        DBMS.php            7  database wrapper
-        Publisher.php       6  model
-    sql/
-        bibliotheca.db      8  database
-    public/                 ← document root (web-accessible)
-        .htaccess           2  URL rewriting
-        index.php           3  router
-        pages/
-            publishers.php  3  list template
-            publisher.php      form template
-        js/
-            publishers.js   4  list logic
-            publisher.js       form logic
-        api/
-            publishers.php  5  controller
+First request — the page:
+
+  Browser
+  1 → .htaccess             (rewrites URL)
+  2 → index.php             (router, loads template)
+  3 → pages/categories.php  (HTML skeleton)
+      ← HTML response (empty table + script tag)
+
+Second request — the data:
+
+  4 → js/categories.js      (fetch)
+  5 → api/categories.php    (controller)
+  6 → src/Category.php      (model)
+  7 → src/DBMS.php           (database wrapper)
+  8 → sql/bibliotheca.db     (SQLite)
+      ← JSON response (the records)
 ```
 
-The numbers match the steps in the diagram. Notice how `src/` and
-`sql/` sit outside `public/`. The browser can never reach them
-directly — only PHP can.
+And back: SQLite returns rows → `DBMS.php` returns arrays →
+the model (`Category.php`) returns to the controller
+(`api/categories.php`) → the controller encodes JSON →
+JavaScript (`categories.js`) receives it → `render` builds
+the DOM → the user sees the table.
 
-## The life of a form
+This is MVC in action: the **Model** (`src/Category.php`)
+handles the data, the **Controller** (`api/categories.php`)
+handles the request, the **View** (`pages/categories.php` +
+`js/categories.js`) handles what the user sees.
 
-The list page shows data. The form page changes it. What happens
-when you click **Add new publisher**, or **Edit** on an existing one?
+Take note of this mapping. Learn which directory holds what.
+Even if it all feels unclear right now, this map will be the
+thing that makes everything click.
 
-### Opening the form
+## What happens when you click Save
 
-```
-    Browser                                          Server
-    ───────                                          ──────
+The list page reads. The form page writes. What happens when
+the user fills a form and clicks Save?
 
-    ┌─────────────────────────────────────┐
-    │  Two ways to reach the form:        │
-    │                                     │
-    │  A) Click "Add new publisher"       │
-    │     GET /publisher                  │
-    │     (no ?id parameter)              │
-    │                                     │
-    │  B) Click "Edit" on Einaudi         │
-    │     GET /publisher?id=2             │
-    │                                     │
-    └─────────────────────────────────────┘
-                │
-                ▼
- 1  .htaccess ─── RewriteRule ──► index.php?route=publisher
-                                        │
-                                        ▼
- 2  Browser receives HTML ◄──────── index.php renders the page:
-    ┌─────────────────────┐         pages/publisher.php
-    │ header / nav        │
-    │ ┌─────────────────┐ │         <form> with:
-    │ │ Add Publisher    │ │         - hidden <input> for ID (empty)
-    │ │                  │ │         - text <input> for name (empty)
-    │ │ Name: [        ] │ │         - checkbox Active (hidden until Edit)
-    │ │                  │ │         - Save button
-    │ │ [Save] [Cancel]  │ │         - Delete button (hidden until Edit)
-    │ └─────────────────┘ │
-    │ footer              │
-    └─────────────────────┘
-                │
-                │  <script src="js/publisher.js">
-                ▼
- 3  PublisherForm fires
-    │
-    │  constructor()
-    │  │  binds form submit → this.save()
-    │  │  binds delete button → this.remove()
-    │  │  calls this.checkEdit()
-    │  │
-    │  checkEdit()
-    │  │  reads ?id from URL
-    │  │
-    │  ├─── no ?id ──► form stays empty ("Add Publisher")
-    │  │                checkbox and Delete stay hidden
-    │  │                done — waiting for user input
-    │  │
-    │  └─── ?id=2 ──► this.load(2)
-    │                   │
-    │                   │  fetch('/api/publishers.php?id=2')  ─────┐
-    │                   │                                          │
-    │                   │                                          ▼
-    │                   │                               api/publishers.php
-    │                   │                               │
-    │                   │                               │  GET with ?id=2
-    │                   │                               │  $publisher->getById(2)
-    │                   │                               │
-    │                   │                               │  SELECT ... WHERE publisher_id = :id
-    │                   │                               │
-    │                   │  JSON ◄────────────────────────┘
-    │                   │  {"publisher_id":2,"name":"Einaudi","status":1}
-    │                   │
-    │                   │  fills the form:
-    │                   │  - hidden ID ← 2
-    │                   │  - name input ← "Einaudi"
-    │                   │  - checkbox Active ← checked (status 1)
-    │                   │  - shows checkbox and Delete button
-    │                   │  - title ← "Edit Publisher"
-    │                   │
-    │                   ▼
-    │  ┌───────────────────────┐
-    │  │ Edit Publisher         │
-    │  │                        │
-    │  │ Name: [Einaudi      ]  │
-    │  │ ☑ Active               │
-    │  │                        │
-    │  │ [Save] [Delete] Cancel │
-    │  └────────────────────────┘
-    │
-    ▼  Waiting for user input.
+```bash
+# JavaScript sends this (you can simulate with curl):
+curl -X POST \
+     -H "Content-Type: application/json" \
+     -H "X-CSRF-Token: a7f3b9..." \
+     -d '{"name":"Biography"}' \
+     http://localhost/bibliotheca/public/api/categories.php
 ```
 
-### Saving the form
+The same URL as the GET. The only difference is the method:
+POST instead of GET. When JavaScript writes:
 
-```
-    Browser                                          Server
-    ───────                                          ──────
-
- 4  User modifies the record, clicks Save
-    │
-    │  form submit event
-    │  e.preventDefault() — no page reload
-    │
-    │  this.save()
-    │  │
-    │  │  this.validate()
-    │  │  ├─── name empty? ──► show error, stop
-    │  │  └─── name ok?    ──► continue
-    │  │
-    │  │  check hidden ID field:
-    │  │
-    │  ├─── ID is empty (Add mode)
-    │  │    │
-    │  │    │  fetch(API, {                    ────────────────────┐
-    │  │    │      method: 'POST',                                │
-    │  │    │      body: {"name":"Einaudi Editore"}               │
-    │  │    │  })                                                  │
-    │  │    │                                                      ▼
-    │  │    │                                           api/publishers.php
-    │  │    │                                           │
-    │  │    │                                           │  POST
-    │  │    │                                           │  validate: name required? ✓
-    │  │    │                                           │  check: exists()? → no
-    │  │    │                                           │  $publisher->insert("Einaudi Editore")
-    │  │    │                                           │
-    │  │    │                                           │  INSERT INTO publisher (name)
-    │  │    │                                           │  VALUES (:name)
-    │  │    │                                           │
-    │  │    │  JSON ◄───────────────────────────────────┘
-    │  │    │  {"publisher_id":13,"name":"Einaudi Editore"}
-    │  │
-    │  └─── ID is 2 (Edit mode)
-    │       │
-    │       │  fetch(API, {                    ────────────────────┐
-    │       │      method: 'PUT',                                  │
-    │       │      body: {"publisher_id":2,                        │
-    │       │             "name":"Einaudi Editore",                │
-    │       │             "status":0}                              │
-    │       │  })                                                   │
-    │       │                                                       ▼
-    │       │                                            api/publishers.php
-    │       │                                            │
-    │       │                                            │  PUT
-    │       │                                            │  validate: ID and name? ✓
-    │       │                                            │  check: exists()? → no
-    │       │                                            │  status=0 and hasBooks()? → block or allow
-    │       │                                            │  $publisher->update(2, "Einaudi Editore", 0)
-    │       │                                            │
-    │       │                                            │  UPDATE publisher
-    │       │                                            │  SET name = :name, status = :status
-    │       │                                            │  WHERE publisher_id = :id
-    │       │                                            │
-    │       │  JSON ◄────────────────────────────────────┘
-    │       │  {"publisher_id":2,"name":"Einaudi Editore","status":0}
-    │
-    │
- 5  ├─── response ok? ──► redirect to /publishers (the list reloads)
-    │
-    └─── response error (409/422)?
-         │
-         │  {"error":"Publisher already exists"}
-         │  — or —
-         │  {"error":"Cannot disable: publisher has associated books"}
-         │
-         │  this.showError('publisher-name', result.error)
-         │
-         ▼
-         ┌──────────────────────────────┐
-         │ Edit Publisher                │
-         │                               │
-         │ Name: [Einaudi Editore     ]  │
-         │ Publisher already exists       │
-         │ ☐ Active                      │
-         │                               │
-         │ [Save] [Delete] Cancel        │
-         └───────────────────────────────┘
+```javascript
+response = await fetch(this.API, {
+    method: 'POST',
+    ...
+});
 ```
 
-### Deleting from the form
+that `'POST'` becomes the first word of the HTTP request
+line: `POST /api/categories.php HTTP/1.1`. It travels over
+the wire like any other text. On the server side, PHP reads
+it from `$_SERVER['REQUEST_METHOD']`. The controller uses
+this value to decide what to do:
 
-```
-    Browser                                          Server
-    ───────                                          ──────
+- **POST** → validate, `insert`, return the new record
+- **PUT** → validate, `update`, return the updated record
+- **DELETE** → check dependencies, `delete`, confirm
 
-    ┌───────────────────────┐
-    │ Edit Publisher         │
-    │                        │
-    │ Name: [Einaudi      ]  │
-    │ ☑ Active               │
-    │                        │
-    │ [Save] [Delete] Cancel │  ◄── user clicks [Delete]
-    └────────────────────────┘
-                │
-                ▼
- 1  confirm('Permanently delete this publisher?
-             This cannot be undone.')
-    │
-    ├─── Cancel ──► nothing happens, form stays open
-    │
-    └─── OK
-         │
-         │  fetch(API, {                         ────────────────────┐
-         │      method: 'DELETE',                                    │
-         │      body: {"publisher_id": 2}                            │
-         │  })                                                       │
-         │                                                           ▼
-         │                                                api/publishers.php
-         │                                                │
-         │                                                │  DELETE
-         │                                                │  validate: ID required? ✓
-         │                                                │
-         │                                                │  $publisher->hasBooks(2, false)?
-         │                                                │  (checks ALL books, active or not)
-         │                                                │
-         │                                                ├─── yes (has books)
-         │                                                │    │
-         │                                                │    │  HTTP 422
-         │                                                │    │  {"error":"Cannot delete:
-         │                                                │    │   publisher has associated books"}
-         │                                                │    │
-         │                                                └─── no (safe to delete)
-         │                                                     │
-         │                                                     │  $publisher->delete(2)
-         │                                                     │
-         │                                                     │  DELETE FROM publisher
-         │                                                     │  WHERE publisher_id = :id
-         │                                                     │
-         │                                                     │  {"deleted": true}
-         │                                                     │
- 2  JSON ◄─────────────────────────────────────────────────────┘
-    │
-    ├─── response ok? ──► redirect to /publishers
-    │
-    └─── response error (409/422)?
-         │
-         │  alert("Cannot delete: publisher has associated books")
-         │  form stays open
-         ▼
+## What `fetch` sends to the controller (`api/categories.php`) and what it gets back
+
+Look at a complete `fetch` call. Remember, `this.API` is
+the URL we defined in the constructor
+(`/bibliotheca/public/api/categories.php`):
+
+The `payload` is the JavaScript object that holds the data
+we want to send — built from the form fields:
+
+```javascript
+const payload = { name: 'Biography' };
 ```
 
-### Step by step
+For a category, the payload is simple — just a name. For a
+book, it carries more fields — as many as the database table
+columns we need to insert or update:
 
-**Step 1–2** — identical to the list page: `.htaccess` rewrites,
-the router loads `pages/publisher.php` inside the HTML shell.
-The form arrives empty.
+```javascript
+const payload = {
+    title: 'The Art of War',
+    publisher_id: 1,
+    category_id: 3,
+    pages: 128,
+    published: 500,
+    author_ids: [5]
+};
+```
 
-**Step 3 — checkEdit** — `PublisherForm` reads the URL. If there
-is no `?id`, the form stays empty — it is an Add. The Active
-checkbox and Delete button stay hidden because they make no sense
-on a record that does not exist yet.
+The structure changes, the mechanism does not. Then `fetch`
+sends it:
 
-If `?id=2` is present, JavaScript fetches that single record from
-the API and fills the form fields, including the checkbox state.
-The title changes from "Add" to "Edit", and the checkbox and
-Delete button become visible.
+```javascript
+response = await fetch(this.API, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': document.querySelector(
+            'meta[name="csrf-token"]'
+        ).content
+    },
+    body: JSON.stringify(payload)
+});
+```
 
-One form, two modes. The hidden `<input>` for the ID decides which.
+Everything inside this call becomes part of the HTTP request
+that travels to the server:
 
-**Step 4 — save** — the user clicks Save. JavaScript prevents the
-default form submission (no page reload) and runs validation. If
-the name is empty, it shows an inline error and stops.
+- **`method: 'POST'`** → PHP reads it from
+  `$_SERVER['REQUEST_METHOD']`.
+- **`'Content-Type': 'application/json'`** → tells PHP that
+  the body is JSON. PHP reads the body with
+  `json_decode(file_get_contents('php://input'))`.
+- **`'X-CSRF-Token': ...`** → the security token. PHP reads
+  it from the headers and compares it to the session. If it
+  does not match, the request is rejected with 403.
+- **`body: JSON.stringify(payload)`** → the actual data. The
+  `payload` object is converted to a JSON string because HTTP
+  only carries text.
 
-If validation passes, JavaScript checks the hidden ID:
-- **Empty** → POST (create a new record)
-- **Has a value** → PUT (update the existing record, including status)
+Nothing is hidden. Everything that `fetch` sends, PHP can
+read. The request is just structured text — method, headers,
+body — and each part has a purpose.
 
-The server validates again (never trust the client), normalizes the
-input (`ucwords`, `strtolower`, `trim`), checks for duplicates, and
-checks whether a disable is allowed (a publisher with active books
-cannot be disabled). Then it executes the query.
+## Inside the controller (`api/categories.php`)
 
-**Step 5 — response** — if the server returns OK, JavaScript
-redirects to the list page. If the server returns an error (e.g.,
-409 Conflict for a duplicate name, or 422 for disabling with active
-books), JavaScript shows the server's error message inline under
-the field.
+The controller runs on the server. You never see it work —
+there is no visible output, no window, no log on screen. Out
+of sight, out of mind. But it is the most important file in
+the chain.
 
-**Delete** — happens from the same form page. The user clicks
-Delete, confirms the dialog, and JavaScript sends a DELETE request.
-The server checks referential integrity — a publisher with any books
-(active or disabled) cannot be deleted. On success, the record is
-permanently removed (`DELETE FROM`) and the user is redirected to
-the list.
+What does `api/categories.php` actually do when a request
+arrives? The first thing it does is load the model and the
+database wrapper, and create the objects it needs:
 
-### Disable vs Delete
+```php
+require_once __DIR__ . '/../../src/DBMS.php';
+require_once __DIR__ . '/../../src/Category.php';
 
-The form offers two ways to remove a record:
+$db = new DBMS(__DIR__ . '/../../sql/bibliotheca.db');
+$category = new Category($db);
+```
 
-- **Disable** — uncheck Active, click Save.
-  SQL: `UPDATE status=0`. Reversible. Checks for active books.
-- **Delete** — click Delete.
-  SQL: `DELETE FROM`. Permanent. Checks for any books.
+Notice the path: `../../src/` — the controller reaches
+outside `public/` to get to the private files. The model
+receives the DBMS instance in its constructor, so it can
+query the database.
 
-Disabling keeps the record in the database but grayed out in the
-list. It can be reversed by checking Active again.
+Then it reads the HTTP method and decides what to do:
 
-Deleting removes the record forever. The safety check is stricter:
-it looks for *any* associated books, not just active ones, because
-even a disabled book still holds a foreign key reference.
+```php
+$method = $_SERVER['REQUEST_METHOD'];
 
-### The key insight
+if ($method === 'GET') {
+    // read: call the model, return JSON
+} elseif ($method === 'POST') {
+    // create: read the body, validate, insert
+} elseif ($method === 'PUT') {
+    // update: read the body, validate, update
+} elseif ($method === 'DELETE') {
+    // delete: read the body, check dependencies, delete
+}
+```
 
-The form page loads **once or twice**, depending on the mode:
+One file, one `if/elseif` chain. The HTTP method decides
+the branch. This is why REST works (Chapter 05): the same
+URL handles all four operations, and the method tells the
+controller which one.
 
-| Mode | Trips | What happens                              |
-|------|-------|-------------------------------------------|
-| Add  | 1     | HTML arrives, form is empty, done         |
-| Edit | 2     | HTML arrives, then fetch loads the record  |
+For POST and PUT, the controller reads the body that `fetch`
+sent:
 
-Saving always adds **one more trip**: the POST or PUT to the API.
-On success, the redirect to the list triggers the full list flow
-again (steps 1–9 from the first diagram).
+```php
+$data = json_decode(
+    file_get_contents('php://input'), true
+);
+$name = trim(strip_tags($data['name'] ?? ''));
+```
+
+`php://input` is where PHP finds the request body — the
+JSON string that `JSON.stringify(payload)` created on the
+JavaScript side. `json_decode` turns it back into a PHP
+array. Then the controller validates, normalizes, and calls
+the model:
+
+```php
+if ($name === '') {
+    http_response_code(400);
+    echo json_encode(['error' => 'Name is required']);
+    exit;
+}
+
+$id = $category->insert($name);
+echo json_encode(['category_id' => $id, 'name' => $name]);
+```
+
+If something is wrong, the controller sets an error status
+code and stops. If everything is fine, it calls the model
+and returns the result as JSON. The controller never touches
+the database directly — it delegates to the model, and the
+model delegates to DBMS.
+
+## Below the surface, under the browser's surfing: `src/`
+
+When the controller (`api/categories.php`) calls `$category->insert($name)`, what
+happens? Open `src/Category.php`:
+
+```php
+public function insert(string $name): int
+{
+    $sql = "INSERT INTO category (name) VALUES (:name)";
+
+    return $this->db->insert($sql, [':name' => $name]);
+}
+```
+
+The model knows the SQL — it knows the table name, the
+column names, the query structure. But it does not execute
+the query itself. It passes the SQL and the parameters to
+`$this->db`, which is the DBMS instance it received in its
+constructor.
+
+Now open `src/DBMS.php`. Before executing a query, DBMS
+binds each parameter with the correct type:
+
+```php
+private function bindParams(\PDOStatement $stmt,
+                            array $params): void
+{
+    foreach ($params as $key => $value) {
+        $type = match (true) {
+            is_int($value)  => PDO::PARAM_INT,
+            is_bool($value) => PDO::PARAM_BOOL,
+            is_null($value) => PDO::PARAM_NULL,
+            default         => PDO::PARAM_STR,
+        };
+
+        $stmt->bindValue($key, $value, $type);
+    }
+}
+```
+
+An integer is bound as `PARAM_INT`, a null as `PARAM_NULL`,
+a string as `PARAM_STR`. The database receives the right
+type, not just text.
+
+We wrote this function (that in a class is more correctly
+named a method, just as variables are named properties). It
+is not part of PHP or PDO — it is ours. Why? Because we control the type of data at every level
+(Chapter 07). JavaScript validates the input, PHP normalizes
+it, and here — at the deepest point — we make sure the
+database receives an integer as an integer, not as a string
+that looks like a number. Instead of repeating this logic in
+every function, we write it once and reuse it everywhere.
+This is what it means to have dominion over the code: we make
+PDO work for us, not the other way around.
+
+Then the insert function uses it:
+
+```php
+public function insert(string $sql,
+                       array $params = []): int
+{
+    $stmt = $this->pdo->prepare($sql);
+    $this->bindParams($stmt, $params);
+    $stmt->execute();
+    return (int) $this->pdo->lastInsertId();
+}
+```
+
+DBMS uses PDO — PHP's built-in database layer. `prepare`
+creates the query with placeholders (`:name`).
+`bindParams` attaches each value with its type.
+`execute` runs the query. `lastInsertId` returns the ID
+of the new row.
+
+This is the deepest point of the chain. From here, the data
+travels back up: DBMS returns the ID to the model, the model
+returns it to the controller, the controller wraps it in
+JSON and sends it back to `fetch`.
+
+Three files, three responsibilities:
+
+| File                   | Role       | Handles |
+|------------------------|------------|---------|
+| `api/categories.php`   | Controller | HTTP    |
+| `src/Category.php`     | Model      | SQL     |
+| `src/DBMS.php`         | Wrapper    | PDO     |
+
+Each one does one thing.
+
+## What comes back
+
+What the controller sends back depends on what you asked —
+which HTTP method you used:
+
+- **GET** → the server returns data as JSON: a list of
+  records, or a single record. This is the only method that
+  returns data to display.
+- **POST, PUT, DELETE** → the server does not return data to
+  display. It returns a confirmation
+  (`{"category_id":4,"name":"Biography"}`) or an error
+  (`{"error":"Category already exists"}`).
+
+Every response also carries a **status code**: 200 (OK),
+400 (bad input), 401 (not logged in), 409 (duplicate),
+422 (dependency error).
+
+The user never sees this JSON directly. Unlike a traditional
+website, the server does not redirect to a new page. It just
+sends JSON back. It is JavaScript that reads the response
+and decides what to do: redirect to the list on success, or
+show the error message inline.
+
+JavaScript reads both:
+
+```javascript
+if (!response.ok) {
+    const result = await response.json();
+    this.showError('category-name', result.error);
+    return;
+}
+```
+
+`response.ok` checks the status code. `response.json()`
+reads the body. The conversation is complete: `fetch` sent
+a request, the controller processed it, and the response
+tells JavaScript what happened.
+
+On success, JavaScript redirects to the list page — which
+triggers the full two-request cycle again.
+
+On error (409 duplicate, 422 dependency), JavaScript reads
+the response and shows the message inline with `showError`.
+
+## Edit mode
+
+Editing adds one extra request (Chapter 05 and 06). When the
+user clicks Edit, the URL contains `?id=2`. `checkEdit` sees
+it, `load(2)` fetches the record via GET, `render` fills the
+form. Then Save sends a PUT. Three requests total instead of
+two.
 
 ## The complete picture
 
-All four CRUD operations, one entity, two pages:
+| Operation | Method   | Requests | Flow                     |
+|-----------|----------|----------|--------------------------|
+| Read      | `GET`    | 2        | HTML + JSON → table      |
+| Create    | `POST`   | 2        | Empty form → save → list |
+| Update    | `PUT`    | 3        | Form + load → save → list|
+| Delete    | `DELETE` | 2        | Confirm → delete → list  |
 
-- **Read** — list page, `GET`, 2 trips.
-  Table fills with data.
-- **Create** — form page, `POST`, 2 trips.
-  Empty form → save → list.
-- **Update** — form page, `PUT`, 3 trips.
-  Form loads record → save → list.
-- **Disable** — form page, `PUT`, 3 trips.
-  Uncheck Active → save → gray row.
-- **Delete** — form page, `DELETE`, 2 trips.
-  Click Delete → confirm → gone.
+Every operation follows the same pattern: the HTML arrives
+first (the skeleton), then JavaScript does the rest (the
+data). The list is read-only. Every write goes through the
+form. One URL per entity, different HTTP methods.
 
-The list is read-only. Every write operation goes through the form.
-This is the single point of control.
-
-Every other entity (Category, Author, Book) follows the same
-pattern. The files change, the flow does not.
-
-## Authentication
-
-Bibliotheca has a single admin user. The login flow adds one
-layer on top of everything described above.
-
-### The login
-
-1. The user visits `/login` (default credentials: `admin` /
-   `bibliotheca`). The front controller loads `pages/login.php`,
-   which includes `js/login.js`.
-2. The user submits username and password. JavaScript sends
-   a POST to `api/auth.php` with JSON body.
-3. The API calls `Auth::login()`, which queries the `user`
-   table and compares the password with `password_verify()`.
-4. If valid, `session_regenerate_id(true)` creates a new
-   session (preventing fixation), and `$_SESSION['user_id']`
-   is set. The API returns `{"authenticated": true}`.
-5. JavaScript redirects to the home page.
-
-### Changing the password
-
-The default password should be changed immediately. Generate
-a new hash from the command line:
-
-```bash
-php -r "echo password_hash('yournewpassword', PASSWORD_DEFAULT);"
-```
-
-Then update the database:
-
-```bash
-sqlite3 sql/bibliotheca.db
-UPDATE user SET password = '$2y$10$...' WHERE username = 'admin';
-```
-
-Replace `$2y$10$...` with the hash you generated. The username
-can be changed the same way.
-
-### Protecting writes
-
-Every API endpoint checks authentication before processing
-POST, PUT, or DELETE requests:
-
-```php
-Csrf::start();
-Csrf::verify();
-Auth::require();  // 401 if not logged in
-```
-
-`Auth::require()` reads `$_SESSION['user_id']`. If it is not
-set, it responds with HTTP 401 and exits.
-
-### Hiding the UI
-
-The front controller sets `$isLoggedIn = Auth::check()` and
-exposes it to templates and JavaScript:
-
-- **PHP templates** — the "Add new" buttons are wrapped in
-  `<?php if ($isLoggedIn): ?>` blocks.
-- **JavaScript** — the `<meta name="authenticated">` tag
-  carries the state. `auth.js` reads it into `AUTH.authenticated`,
-  and list views check this before rendering Edit buttons.
-- **Form pages** — the front controller redirects to `/login`
-  if the user tries to access a form page without being
-  logged in.
-
-The API is the real guard. The UI changes are convenience —
-they prevent confusion, not attacks.
-
-## See also
-
-This overview shows the full journey. The chapters break it into
-layers:
-
-- [Chapter 03 — Project Structure](03_structure.md) — where files live and why
-- [Chapter 04 — Backend](04_backend.md) — DBMS, Model, Controller
-- [Chapter 05 — Frontend](05_frontend.md) — routing, fetch, DOM
-- [Chapter 06 — CRUD](06_crud.md) — the four operations in detail
+Every entity — Publisher, Category, Author, Book — follows
+this exact flow. The files change, the pattern does not.
 
 \newpage
 
@@ -3076,9 +3029,13 @@ whether it is right. If you give up that responsibility, you
 have no reason to be there. That should be unsettling enough
 to keep you learning. Remember this always.
 
-The programmers who will thrive are not the ones who type fastest.
-They are the ones who understand what the machine wrote, can verify
-it is correct, and know when to throw it away and start over.
+The programmers who will thrive are not the ones who type
+fastest. They are the ones who have dominion over their code
+— who understand what the machine wrote, can verify it is
+correct, and know when to throw it away and start over.
+Whether you write the code yourself or an AI writes it for
+you, the responsibility is yours. Dominion means understanding
+every line, at every level.
 
 *Learn to read, write and compute — before it's too late.*
 

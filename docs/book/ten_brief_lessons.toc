@@ -97,51 +97,38 @@
 \contentsline {section}{\numberline {10.7}The layers}{46}{section.10.7}%
 \contentsline {section}{\numberline {10.8}The rule}{46}{section.10.8}%
 \contentsline {chapter}{\numberline {A}How It Works}{47}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Single point of control}{47}{section.A.1}%
-\contentsline {section}{\numberline {A.2}The life of a request}{47}{section.A.2}%
-\contentsline {section}{\numberline {A.3}Step by step}{49}{section.A.3}%
-\contentsline {subsection}{\numberline {A.3.1}1 --- The click}{49}{subsection.A.3.1}%
-\contentsline {subsection}{\numberline {A.3.2}2 --- URL rewriting}{49}{subsection.A.3.2}%
-\contentsline {subsection}{\numberline {A.3.3}3 --- The router}{49}{subsection.A.3.3}%
-\contentsline {subsection}{\numberline {A.3.4}4 --- JavaScript takes over}{49}{subsection.A.3.4}%
-\contentsline {subsection}{\numberline {A.3.5}5 --- The controller}{49}{subsection.A.3.5}%
-\contentsline {subsection}{\numberline {A.3.6}6 --- The model}{49}{subsection.A.3.6}%
-\contentsline {subsection}{\numberline {A.3.7}7 --- The database wrapper}{50}{subsection.A.3.7}%
-\contentsline {subsection}{\numberline {A.3.8}8 --- SQLite}{50}{subsection.A.3.8}%
-\contentsline {subsection}{\numberline {A.3.9}9 --- Rendering}{50}{subsection.A.3.9}%
-\contentsline {section}{\numberline {A.4}The round trip}{50}{section.A.4}%
-\contentsline {section}{\numberline {A.5}What travels on the wire}{50}{section.A.5}%
-\contentsline {section}{\numberline {A.6}The DOM}{51}{section.A.6}%
-\contentsline {section}{\numberline {A.7}How data changes shape}{51}{section.A.7}%
-\contentsline {section}{\numberline {A.8}Where each file lives}{52}{section.A.8}%
-\contentsline {section}{\numberline {A.9}The life of a form}{53}{section.A.9}%
-\contentsline {subsection}{\numberline {A.9.1}Opening the form}{53}{subsection.A.9.1}%
-\contentsline {subsection}{\numberline {A.9.2}Saving the form}{54}{subsection.A.9.2}%
-\contentsline {subsection}{\numberline {A.9.3}Deleting from the form}{56}{subsection.A.9.3}%
-\contentsline {subsection}{\numberline {A.9.4}Step by step}{57}{subsection.A.9.4}%
-\contentsline {subsection}{\numberline {A.9.5}Disable vs Delete}{58}{subsection.A.9.5}%
-\contentsline {subsection}{\numberline {A.9.6}The key insight}{58}{subsection.A.9.6}%
-\contentsline {section}{\numberline {A.10}The complete picture}{58}{section.A.10}%
-\contentsline {section}{\numberline {A.11}Authentication}{59}{section.A.11}%
-\contentsline {subsection}{\numberline {A.11.1}The login}{59}{subsection.A.11.1}%
-\contentsline {subsection}{\numberline {A.11.2}Changing the password}{59}{subsection.A.11.2}%
-\contentsline {subsection}{\numberline {A.11.3}Protecting writes}{59}{subsection.A.11.3}%
-\contentsline {subsection}{\numberline {A.11.4}Hiding the UI}{59}{subsection.A.11.4}%
-\contentsline {section}{\numberline {A.12}See also}{60}{section.A.12}%
-\contentsline {chapter}{\numberline {B}Glossary}{61}{appendix.B}%
-\contentsline {chapter}{\numberline {C}Bibliography}{65}{appendix.C}%
-\contentsline {section}{\numberline {C.1}The terminal}{65}{section.C.1}%
-\contentsline {section}{\numberline {C.2}Apache}{65}{section.C.2}%
-\contentsline {section}{\numberline {C.3}PHP}{65}{section.C.3}%
-\contentsline {section}{\numberline {C.4}JavaScript, HTML, CSS}{65}{section.C.4}%
-\contentsline {section}{\numberline {C.5}SQL and SQLite}{65}{section.C.5}%
-\contentsline {section}{\numberline {C.6}HTTP}{65}{section.C.6}%
-\contentsline {section}{\numberline {C.7}Git}{65}{section.C.7}%
-\contentsline {section}{\numberline {C.8}The classics}{66}{section.C.8}%
-\contentsline {section}{\numberline {C.9}Security}{66}{section.C.9}%
-\contentsline {chapter}{\numberline {D}The Apocryphal Chapter --- Beyond the Launch}{67}{appendix.D}%
-\contentsline {section}{\numberline {D.1}What you actually learned}{67}{section.D.1}%
-\contentsline {section}{\numberline {D.2}What Bibliotheca does not do}{67}{section.D.2}%
-\contentsline {section}{\numberline {D.3}Frameworks --- when and why}{68}{section.D.3}%
-\contentsline {section}{\numberline {D.4}The age of AI}{68}{section.D.4}%
-\contentsline {section}{\numberline {D.5}42}{69}{section.D.5}%
+\contentsline {section}{\numberline {A.1}Request and response}{47}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Open your terminal}{47}{section.A.2}%
+\contentsline {section}{\numberline {A.3}The first request}{47}{section.A.3}%
+\contentsline {section}{\numberline {A.4}Where are the records?}{48}{section.A.4}%
+\contentsline {section}{\numberline {A.5}Two requests, one page}{48}{section.A.5}%
+\contentsline {section}{\numberline {A.6}What travels on the wire}{49}{section.A.6}%
+\contentsline {section}{\numberline {A.7}What Apache does}{49}{section.A.7}%
+\contentsline {section}{\numberline {A.8}What the browser does}{50}{section.A.8}%
+\contentsline {section}{\numberline {A.9}What JavaScript does}{50}{section.A.9}%
+\contentsline {section}{\numberline {A.10}How data changes shape}{51}{section.A.10}%
+\contentsline {section}{\numberline {A.11}The chain}{51}{section.A.11}%
+\contentsline {section}{\numberline {A.12}What happens when you click Save}{52}{section.A.12}%
+\contentsline {section}{\numberline {A.13}What \texttt {fetch} sends to the controller (\texttt {api/categories.php}) and what it gets back}{53}{section.A.13}%
+\contentsline {section}{\numberline {A.14}Inside the controller (\texttt {api/categories.php})}{53}{section.A.14}%
+\contentsline {section}{\numberline {A.15}Below the surface, under the browser's surfing: \texttt {src/}}{55}{section.A.15}%
+\contentsline {section}{\numberline {A.16}What comes back}{56}{section.A.16}%
+\contentsline {section}{\numberline {A.17}Edit mode}{57}{section.A.17}%
+\contentsline {section}{\numberline {A.18}The complete picture}{57}{section.A.18}%
+\contentsline {chapter}{\numberline {B}Glossary}{58}{appendix.B}%
+\contentsline {chapter}{\numberline {C}Bibliography}{62}{appendix.C}%
+\contentsline {section}{\numberline {C.1}The terminal}{62}{section.C.1}%
+\contentsline {section}{\numberline {C.2}Apache}{62}{section.C.2}%
+\contentsline {section}{\numberline {C.3}PHP}{62}{section.C.3}%
+\contentsline {section}{\numberline {C.4}JavaScript, HTML, CSS}{62}{section.C.4}%
+\contentsline {section}{\numberline {C.5}SQL and SQLite}{62}{section.C.5}%
+\contentsline {section}{\numberline {C.6}HTTP}{62}{section.C.6}%
+\contentsline {section}{\numberline {C.7}Git}{62}{section.C.7}%
+\contentsline {section}{\numberline {C.8}The classics}{63}{section.C.8}%
+\contentsline {section}{\numberline {C.9}Security}{63}{section.C.9}%
+\contentsline {chapter}{\numberline {D}The Apocryphal Chapter --- Beyond the Launch}{64}{appendix.D}%
+\contentsline {section}{\numberline {D.1}What you actually learned}{64}{section.D.1}%
+\contentsline {section}{\numberline {D.2}What Bibliotheca does not do}{64}{section.D.2}%
+\contentsline {section}{\numberline {D.3}Frameworks --- when and why}{65}{section.D.3}%
+\contentsline {section}{\numberline {D.4}The age of AI}{65}{section.D.4}%
+\contentsline {section}{\numberline {D.5}42}{66}{section.D.5}%

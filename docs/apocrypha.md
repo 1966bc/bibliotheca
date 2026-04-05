@@ -112,9 +112,13 @@ whether it is right. If you give up that responsibility, you
 have no reason to be there. That should be unsettling enough
 to keep you learning. Remember this always.
 
-The programmers who will thrive are not the ones who type fastest.
-They are the ones who understand what the machine wrote, can verify
-it is correct, and know when to throw it away and start over.
+The programmers who will thrive are not the ones who type
+fastest. They are the ones who have dominion over their code
+— who understand what the machine wrote, can verify it is
+correct, and know when to throw it away and start over.
+Whether you write the code yourself or an AI writes it for
+you, the responsibility is yours. Dominion means understanding
+every line, at every level.
 
 *Learn to read, write and compute — before it's too late.*
 

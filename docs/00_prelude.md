@@ -60,6 +60,12 @@ This is deliberate. The terminal is not a fallback for when the
 GUI is missing. It is the primary tool of a programmer. Learn
 to think in commands.
 
+One more thing. A programmer must have dominion over the code.
+Every line, every layer, every file — you must know what it
+does and why it is there. If you do not understand it, you do
+not control it. And if you do not control it, sooner or later
+it controls you.
+
 Let the show begin.
 
 [Chapter 00 — Introduction](01_introduction.md)
