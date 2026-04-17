@@ -11,4 +11,6 @@
 
 Everything else is in the book.
 
+Default login: `admin` / `bibliotheca`
+
 ![Bibliotheca](screenshot.png)
