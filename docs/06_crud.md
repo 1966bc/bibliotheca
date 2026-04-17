@@ -102,6 +102,23 @@ payload, choose the method, call `fetch`, handle the response.
 The only things that change are the HTTP method and the data
 inside the payload.
 
+## Unsupported methods
+
+Our controllers dispatch on four methods: GET, POST, PUT, DELETE.
+What happens if someone sends a PATCH? The `else` branch returns
+HTTP 405 (Method Not Allowed) — but not alone. RFC 7231 asks the
+server to include an `Allow` header listing the methods it does
+accept:
+
+```php
+http_response_code(405);
+header('Allow: GET, POST, PUT, DELETE');
+echo json_encode(['error' => 'Method not allowed']);
+```
+
+It costs one line and tells the client exactly what is on the
+menu. Small habit, correct by the book.
+
 ## Next
 
 [Chapter 07 — Validation](07_validation.md)

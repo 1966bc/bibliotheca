@@ -1000,6 +1000,23 @@ payload, choose the method, call `fetch`, handle the response.
 The only things that change are the HTTP method and the data
 inside the payload.
 
+## Unsupported methods
+
+Our controllers dispatch on four methods: GET, POST, PUT, DELETE.
+What happens if someone sends a PATCH? The `else` branch returns
+HTTP 405 (Method Not Allowed) — but not alone. RFC 7231 asks the
+server to include an `Allow` header listing the methods it does
+accept:
+
+```php
+http_response_code(405);
+header('Allow: GET, POST, PUT, DELETE');
+echo json_encode(['error' => 'Method not allowed']);
+```
+
+It costs one line and tells the client exactly what is on the
+menu. Small habit, correct by the book.
+
 
 \newpage
 
@@ -1050,6 +1067,12 @@ best of its capabilities.
   method. Returns HTTP 409 (Conflict) if the record already exists.
 - **Dependencies** — returns HTTP 422 (Unprocessable Entity) if the
   record has linked books and cannot be deleted or disabled.
+- **Missing records** — before updating or deleting, the controller
+  checks that the record exists via `getById()`. If it does not,
+  the API returns HTTP 404 (Not Found). Without this check, an
+  `UPDATE` or `DELETE` on a non-existent ID would affect zero rows
+  and the API would still answer 200: a silent bug where the
+  client thinks the change happened and the database disagrees.
 - **Input filtering** — numeric fields only accept digit keys.
 
 ## Input normalization

@@ -46,6 +46,12 @@ try {
     if ($method === 'GET') {
 
         if (isset($_GET['id'])) {
+            if (!ctype_digit($_GET['id'])) {
+                http_response_code(400);
+                echo json_encode(['error' => 'Invalid ID']);
+                exit;
+            }
+
             $row = $author->getById((int) $_GET['id']);
 
             if ($row) {
@@ -100,13 +106,23 @@ try {
         $firstName = mb_substr(ucwords(strtolower(trim(strip_tags($data['first_name'] ?? '')))), 0, 100);
         $lastName = mb_substr(ucwords(strtolower(trim(strip_tags($data['last_name'] ?? '')))), 0, 100);
         $birthdate = trim($data['birthdate'] ?? '') ?: null;
-        $status = (int) ($data['status'] ?? 1);
 
         if ($id === 0 || $firstName === '' || $lastName === '') {
             http_response_code(400);
             echo json_encode(['error' => 'ID, first name and last name are required']);
             exit;
         }
+
+        $current = $author->getById($id);
+        if ($current === null) {
+            http_response_code(404);
+            echo json_encode(['error' => 'Not found']);
+            exit;
+        }
+
+        // If the client omits `status`, preserve the current value instead of
+        // defaulting to 1 — which would silently re-enable a disabled record.
+        $status = isset($data['status']) ? (int) $data['status'] : (int) $current['status'];
 
         if ($birthdate !== null) {
             $d = \DateTimeImmutable::createFromFormat('Y-m-d', $birthdate);
@@ -145,6 +161,12 @@ try {
             exit;
         }
 
+        if ($author->getById($id) === null) {
+            http_response_code(404);
+            echo json_encode(['error' => 'Not found']);
+            exit;
+        }
+
         if ($author->hasBooks($id, false)) {
             http_response_code(422);
             echo json_encode(['error' => 'Cannot delete: author has associated books']);
@@ -156,6 +178,7 @@ try {
 
     } else {
         http_response_code(405);
+        header('Allow: GET, POST, PUT, DELETE');
         echo json_encode(['error' => 'Method not allowed']);
     }
 

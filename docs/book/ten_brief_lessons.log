@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Debian) (preloaded format=xelatex 2025.12.8)  5 APR 2026 10:27
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022/Debian) (preloaded format=xelatex 2025.12.8)  17 APR 2026 19:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1066,7 +1066,7 @@ Overfull \hbox (7.22763pt too wide) in paragraph at lines 1520--1539
 ] [29] [30]
 Chapter 7.
 
-Overfull \hbox (25.06436pt too wide) in paragraph at lines 1672--1680
+Overfull \hbox (25.06436pt too wide) in paragraph at lines 1692--1700
 []\T1/lmr/bx/n/10.95 HTML \T1/lmr/m/n/10.95 --- we set con-straints di-rectly o
 n the form fields: \T1/lmtt/m/n/10.95 required\T1/lmr/m/n/10.95 , \T1/lmtt/m/n/
 10.95 maxlength\T1/lmr/m/n/10.95 , \T1/lmtt/m/n/10.95 type="number"\T1/lmr/m/n/
@@ -1076,7 +1076,7 @@ n the form fields: \T1/lmtt/m/n/10.95 required\T1/lmr/m/n/10.95 , \T1/lmtt/m/n/
 [31
 
 ]
-Overfull \hbox (41.35432pt too wide) in paragraph at lines 1782--1789
+Overfull \hbox (41.35432pt too wide) in paragraph at lines 1810--1817
 []\T1/lmtt/b/n/10.95 strip_tags() \T1/lmr/m/n/10.95 --- re-moves any HTML or PH
 P tags. A name like \T1/lmtt/m/n/10.95 <script>alert(\TS1/lmtt/m/n/10.95 '\T1/l
 mtt/m/n/10.95 xss\TS1/lmtt/m/n/10.95 '\T1/lmtt/m/n/10.95 )</script>
@@ -1088,7 +1088,7 @@ Chapter 8.
 
 ]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 2047.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 2075.
  [36]
 Chapter 9.
 Missing character: There is no → ("2192) in font ec-lmr10!
@@ -1110,7 +1110,7 @@ Chapter 10.
 Missing character: There is no — ("2014) in font ec-lmtti10!
 Missing character: There is no — ("2014) in font ec-lmtti10!
 [44]
-Overfull \hbox (0.99455pt too wide) in paragraph at lines 2681--2683
+Overfull \hbox (0.99455pt too wide) in paragraph at lines 2709--2711
 \T1/lmr/m/n/10.95 On a De-bian/A-pache server, cer-tifi-cates typ-i-cally live 
 in \T1/lmtt/m/n/10.95 /etc/letsencrypt/live/yourdomain/\T1/lmr/m/n/10.95 .
  []
@@ -1144,7 +1144,7 @@ Missing character: There is no └ ("2514) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
 Missing character: There is no ─ ("2500) in font ec-lmtt10!
 
-Overfull \hbox (39.02527pt too wide) in paragraph at lines 3053--3061
+Overfull \hbox (39.02527pt too wide) in paragraph at lines 3081--3089
 \T1/lmr/m/n/10.95 (\T1/lmtt/m/n/10.95 src/Category.php\T1/lmr/m/n/10.95 ), whic
 h calls DBMS (\T1/lmtt/m/n/10.95 src/DBMS.php\T1/lmr/m/n/10.95 ), which queries
  SQLite (\T1/lmtt/m/n/10.95 sql/bibliotheca.db\T1/lmr/m/n/10.95 ),
@@ -1174,14 +1174,14 @@ Missing character: There is no → ("2192) in font ec-lmr10!
 Missing character: There is no → ("2192) in font ec-lmr10!
 Missing character: There is no → ("2192) in font ec-lmr10!
 
-Overfull \hbox (0.88394pt too wide) in paragraph at lines 3146--3151
+Overfull \hbox (0.88394pt too wide) in paragraph at lines 3174--3179
 \T1/lmr/m/n/10.95 the con-troller (\T1/lmtt/m/n/10.95 api/categories.php\T1/lmr
 /m/n/10.95 )  the con-troller en-codes JSON  JavaScript (\T1/lmtt/m/n/10.95 cat
 egories.js\T1/lmr/m/n/10.95 )
  []
 
 
-Overfull \hbox (32.23058pt too wide) in paragraph at lines 3152--3157
+Overfull \hbox (32.23058pt too wide) in paragraph at lines 3180--3185
 \T1/lmr/m/n/10.95 (\T1/lmtt/m/n/10.95 api/categories.php\T1/lmr/m/n/10.95 ) han
 -dles the re-quest, the \T1/lmr/bx/n/10.95 View \T1/lmr/m/n/10.95 (\T1/lmtt/m/n
 /10.95 pages/categories.php \T1/lmr/m/n/10.95 + \T1/lmtt/m/n/10.95 js/categorie
@@ -1193,7 +1193,7 @@ Missing character: There is no → ("2192) in font ec-lmr10!
 Missing character: There is no → ("2192) in font ec-lmr10!
 [52]
 LaTeX Font Info:    Font shape `TS1/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `TS1/lmtt/b/n' tried instead on input line 3270.
+(Font)              Font shape `TS1/lmtt/b/n' tried instead on input line 3298.
 
 
 Missing character: There is no → ("2192) in font ec-lmr10!
@@ -1201,7 +1201,7 @@ Missing character: There is no → ("2192) in font ec-lmr10!
 Missing character: There is no → ("2192) in font ec-lmr10!
 Missing character: There is no → ("2192) in font ec-lmr10!
 [53]
-Overfull \hbox (28.74355pt too wide) in paragraph at lines 3355--3360
+Overfull \hbox (28.74355pt too wide) in paragraph at lines 3383--3388
 []\T1/lmtt/m/n/10.95 php://input \T1/lmr/m/n/10.95 is where PHP finds the re-qu
 est body --- the JSON string that \T1/lmtt/m/n/10.95 JSON.stringify(payload)
  []
@@ -1220,7 +1220,7 @@ Missing character: There is no → ("2192) in font ec-lmr10!
 [57]
 Appendix B.
 
-Overfull \hbox (44.63806pt too wide) in paragraph at lines 3583--3592
+Overfull \hbox (44.63806pt too wide) in paragraph at lines 3611--3620
 \T1/lmtt/m/n/10.95 index.php?route=...\T1/lmr/m/n/10.95 , en-abling clean URLs 
 like \T1/lmtt/m/n/10.95 /publishers \T1/lmr/m/n/10.95 in-stead of \T1/lmtt/m/n/
 10.95 index.php?route=publishers\T1/lmr/m/n/10.95 .
@@ -1232,7 +1232,7 @@ Missing character: There is no → ("2192) in font ec-lmr10!
 [58
 
 ] [59]
-Overfull \hbox (18.8504pt too wide) in paragraph at lines 3778--3784
+Overfull \hbox (18.8504pt too wide) in paragraph at lines 3806--3812
 []\T1/lmr/m/n/10.95 We use named pa-ram-e-ters be-cause they are eas-ier to rea
 d and safer to refac-tor. \T1/lmtt/m/n/10.95 WHERE publisher_id
  []
@@ -1240,14 +1240,14 @@ d and safer to refac-tor. \T1/lmtt/m/n/10.95 WHERE publisher_id
 [60] [61]
 Appendix C.
 
-Overfull \hbox (52.00249pt too wide) in paragraph at lines 3904--3906
+Overfull \hbox (52.00249pt too wide) in paragraph at lines 3932--3934
 []\T1/lmr/m/n/10.95 William Shotts, \T1/lmr/m/it/10.95 The Linux Com-mand Line\
 T1/lmr/m/n/10.95 , Sixth In-ter-net Edi-tion. Free at https://linuxcommand.org 
 
  []
 
 
-Overfull \hbox (1.53165pt too wide) in paragraph at lines 3937--3940
+Overfull \hbox (1.53165pt too wide) in paragraph at lines 3965--3968
 []\T1/lmr/m/n/10.95 Marijn Haver-beke, \T1/lmr/m/it/10.95 Elo-quent JavaScript\
 T1/lmr/m/n/10.95 , 4th Edi-tion. Free at https://eloquentjavascript.net 
  []
@@ -1265,7 +1265,7 @@ Appendix E.
 [66
 
 ]
-Overfull \hbox (23.15872pt too wide) in paragraph at lines 4208--4213
+Overfull \hbox (23.15872pt too wide) in paragraph at lines 4236--4241
 []\T1/lmr/bx/n/10.95 Middleware \T1/lmr/m/n/10.95 --- your con-trollers check t
 he HTTP method with \T1/lmtt/m/n/10.95 $_SERVER[\TS1/lmtt/m/n/10.95 '\T1/lmtt/m
 /n/10.95 REQUEST_METHOD\TS1/lmtt/m/n/10.95 '\T1/lmtt/m/n/10.95 ]\T1/lmr/m/n/10.
@@ -1274,13 +1274,13 @@ he HTTP method with \T1/lmtt/m/n/10.95 $_SERVER[\TS1/lmtt/m/n/10.95 '\T1/lmtt/m
 
 [67] [68] (./ten_brief_lessons.aux)
 Package rerunfilecheck Info: File `ten_brief_lessons.out' has not changed.
-(rerunfilecheck)             Checksum: F49D3BFFA5DCC5B6C3545977E5D0E069;23343.
+(rerunfilecheck)             Checksum: FA94346B317996D881AF897F65F38B13;23520.
  ) 
 Here is how much of TeX's memory you used:
- 13276 strings out of 478775
- 209678 string characters out of 5850945
+ 13277 strings out of 478775
+ 209699 string characters out of 5850945
  1857991 words of memory out of 5000000
- 33100 multiletter control sequences out of 15000+600000
+ 33101 multiletter control sequences out of 15000+600000
  600465 words of font info for 84 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  72i,13n,78p,563b,524s stack positions out of 10000i,1000n,20000p,200000b,200000s

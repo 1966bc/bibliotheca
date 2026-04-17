@@ -1656,6 +1656,26 @@ payload, choose the method, call \texttt{fetch}, handle the
 response. The only things that change are the HTTP method and the
 data inside the payload.
 
+\hypertarget{unsupported-methods}{%
+\section{Unsupported methods}\label{unsupported-methods}}
+
+Our controllers dispatch on four methods: GET, POST, PUT, DELETE.
+What happens if someone sends a PATCH? The \texttt{else} branch
+returns HTTP 405 (Method Not Allowed) --- but not alone. RFC 7231
+asks the server to include an \texttt{Allow} header listing the
+methods it does accept:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{http\_response\_code}\NormalTok{(}\DecValTok{405}\NormalTok{)}\OtherTok{;}
+\FunctionTok{header}\NormalTok{(}\StringTok{\textquotesingle{}Allow: GET, POST, PUT, DELETE\textquotesingle{}}\NormalTok{)}\OtherTok{;}
+\KeywordTok{echo} \FunctionTok{json\_encode}\NormalTok{([}\StringTok{\textquotesingle{}error\textquotesingle{}}\NormalTok{ =\textgreater{} }\StringTok{\textquotesingle{}Method not allowed\textquotesingle{}}\NormalTok{])}\OtherTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+It costs one line and tells the client exactly what is on the
+menu. Small habit, correct by the book.
+
 \newpage
 
 \hypertarget{validation}{%
@@ -1725,6 +1745,14 @@ project}\label{what-we-validate-in-our-project}}
   \textbf{Dependencies} --- returns HTTP 422 (Unprocessable
   Entity) if the record has linked books and cannot be deleted or
   disabled.
+\item
+  \textbf{Missing records} --- before updating or deleting, the
+  controller checks that the record exists via
+  \texttt{getById()}. If it does not, the API returns HTTP 404
+  (Not Found). Without this check, an \texttt{UPDATE} or
+  \texttt{DELETE} on a non-existent ID would affect zero rows and
+  the API would still answer 200: a silent bug where the client
+  thinks the change happened and the database disagrees.
 \item
   \textbf{Input filtering} --- numeric fields only accept digit
   keys.

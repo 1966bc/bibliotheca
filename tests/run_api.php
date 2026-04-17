@@ -461,6 +461,52 @@ $t->test('API Authors: cannot disable author with books (422)', function () use 
 });
 
 // ---------------------------------------------------------------------------
+// Error handling — invalid ID, missing record, partial PUT
+// ---------------------------------------------------------------------------
+
+$t->test('API: GET with non-numeric ID returns 400', function () use ($t, $API_PUBLISHERS) {
+    $r = apiRequest('GET', $API_PUBLISHERS . '?id=abc', null);
+    $t->assertEqual(400, $r['status']);
+});
+
+$t->test('API: PUT on nonexistent ID returns 404', function () use ($t, $API_PUBLISHERS, $token, $cookie) {
+    $r = apiRequest('PUT', $API_PUBLISHERS, [
+        'publisher_id' => 999999,
+        'name' => 'ZZZ Ghost',
+        'status' => 1,
+    ], $token, $cookie);
+    $t->assertEqual(404, $r['status']);
+});
+
+$t->test('API: DELETE on nonexistent ID returns 404', function () use ($t, $API_CATEGORIES, $token, $cookie) {
+    $r = apiRequest('DELETE', $API_CATEGORIES, ['category_id' => 999999], $token, $cookie);
+    $t->assertEqual(404, $r['status']);
+});
+
+$t->test('API: PUT without status preserves current value', function () use ($t, $API_PUBLISHERS, $token, $cookie) {
+    // Create a fresh publisher, disable it, then PUT without `status`
+    $create = apiRequest('POST', $API_PUBLISHERS, ['name' => 'ZZZ Status Preserve'], $token, $cookie);
+    $id = $create['body']['publisher_id'];
+
+    apiRequest('PUT', $API_PUBLISHERS, [
+        'publisher_id' => $id,
+        'name' => 'ZZZ Status Preserve',
+        'status' => 0,
+    ], $token, $cookie);
+
+    // PUT with no status field — should keep status = 0, not silently re-enable
+    apiRequest('PUT', $API_PUBLISHERS, [
+        'publisher_id' => $id,
+        'name' => 'ZZZ Status Preserve Renamed',
+    ], $token, $cookie);
+
+    $get = apiRequest('GET', $API_PUBLISHERS . '?id=' . $id, null);
+    $t->assertEqual(0, (int) $get['body']['status']);
+
+    apiRequest('DELETE', $API_PUBLISHERS, ['publisher_id' => $id], $token, $cookie);
+});
+
+// ---------------------------------------------------------------------------
 // CSRF tests
 // ---------------------------------------------------------------------------
 

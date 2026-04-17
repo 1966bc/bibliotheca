@@ -46,6 +46,12 @@ try {
     if ($method === 'GET') {
 
         if (isset($_GET['id'])) {
+            if (!ctype_digit($_GET['id'])) {
+                http_response_code(400);
+                echo json_encode(['error' => 'Invalid ID']);
+                exit;
+            }
+
             $row = $category->getById((int) $_GET['id']);
 
             if ($row) {
@@ -85,13 +91,23 @@ try {
         $data = json_decode(file_get_contents('php://input'), true);
         $id = (int) ($data['category_id'] ?? 0);
         $name = mb_substr(ucwords(strtolower(trim(strip_tags($data['name'] ?? '')))), 0, 100);
-        $status = (int) ($data['status'] ?? 1);
 
         if ($id === 0 || $name === '') {
             http_response_code(400);
             echo json_encode(['error' => 'ID and name are required']);
             exit;
         }
+
+        $current = $category->getById($id);
+        if ($current === null) {
+            http_response_code(404);
+            echo json_encode(['error' => 'Not found']);
+            exit;
+        }
+
+        // If the client omits `status`, preserve the current value instead of
+        // defaulting to 1 — which would silently re-enable a disabled record.
+        $status = isset($data['status']) ? (int) $data['status'] : (int) $current['status'];
 
         if ($category->exists($name, $id)) {
             http_response_code(409);
@@ -119,6 +135,12 @@ try {
             exit;
         }
 
+        if ($category->getById($id) === null) {
+            http_response_code(404);
+            echo json_encode(['error' => 'Not found']);
+            exit;
+        }
+
         if ($category->hasBooks($id, false)) {
             http_response_code(422);
             echo json_encode(['error' => 'Cannot delete: category has associated books']);
@@ -130,6 +152,7 @@ try {
 
     } else {
         http_response_code(405);
+        header('Allow: GET, POST, PUT, DELETE');
         echo json_encode(['error' => 'Method not allowed']);
     }
 

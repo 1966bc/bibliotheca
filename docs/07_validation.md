@@ -44,6 +44,12 @@ best of its capabilities.
   method. Returns HTTP 409 (Conflict) if the record already exists.
 - **Dependencies** — returns HTTP 422 (Unprocessable Entity) if the
   record has linked books and cannot be deleted or disabled.
+- **Missing records** — before updating or deleting, the controller
+  checks that the record exists via `getById()`. If it does not,
+  the API returns HTTP 404 (Not Found). Without this check, an
+  `UPDATE` or `DELETE` on a non-existent ID would affect zero rows
+  and the API would still answer 200: a silent bug where the
+  client thinks the change happened and the database disagrees.
 - **Input filtering** — numeric fields only accept digit keys.
 
 ## Input normalization

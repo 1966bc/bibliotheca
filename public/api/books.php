@@ -45,6 +45,12 @@ try {
     if ($method === 'GET') {
 
         if (isset($_GET['id'])) {
+            if (!ctype_digit($_GET['id'])) {
+                http_response_code(400);
+                echo json_encode(['error' => 'Invalid ID']);
+                exit;
+            }
+
             $row = $book->getById((int) $_GET['id']);
 
             if ($row) {
@@ -96,13 +102,23 @@ try {
         $title = mb_substr(trim(strip_tags($data['title'] ?? '')), 0, 255);
         $pages = isset($data['pages']) && $data['pages'] !== '' ? (int) $data['pages'] : null;
         $published = isset($data['published']) && $data['published'] !== '' ? (int) $data['published'] : null;
-        $status = (int) ($data['status'] ?? 1);
 
         if ($id === 0 || $publisherId === 0 || $categoryId === 0 || $title === '') {
             http_response_code(400);
             echo json_encode(['error' => 'ID, publisher, category and title are required']);
             exit;
         }
+
+        $current = $book->getById($id);
+        if ($current === null) {
+            http_response_code(404);
+            echo json_encode(['error' => 'Not found']);
+            exit;
+        }
+
+        // If the client omits `status`, preserve the current value instead of
+        // defaulting to 1 — which would silently re-enable a disabled record.
+        $status = isset($data['status']) ? (int) $data['status'] : (int) $current['status'];
 
         if ($published !== null && ($published < 1000 || $published > (int) date('Y'))) {
             http_response_code(400);
@@ -129,11 +145,18 @@ try {
             exit;
         }
 
+        if ($book->getById($id) === null) {
+            http_response_code(404);
+            echo json_encode(['error' => 'Not found']);
+            exit;
+        }
+
         $book->delete($id);
         echo json_encode(['deleted' => true]);
 
     } else {
         http_response_code(405);
+        header('Allow: GET, POST, PUT, DELETE');
         echo json_encode(['error' => 'Method not allowed']);
     }
 

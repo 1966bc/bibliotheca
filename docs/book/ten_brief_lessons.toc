@@ -55,6 +55,7 @@
 \contentsline {subsection}{\numberline {6.3.2}Read, GET}{29}{subsection.6.3.2}%
 \contentsline {subsection}{\numberline {6.3.3}Update, PUT}{29}{subsection.6.3.3}%
 \contentsline {subsection}{\numberline {6.3.4}Delete, DELETE}{30}{subsection.6.3.4}%
+\contentsline {section}{\numberline {6.4}Unsupported methods}{30}{section.6.4}%
 \contentsline {chapter}{\numberline {7}Validation}{31}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Three lines of defense}{31}{section.7.1}%
 \contentsline {section}{\numberline {7.2}What we validate in our project}{31}{section.7.2}%
